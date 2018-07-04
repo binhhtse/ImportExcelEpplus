@@ -45,10 +45,15 @@ namespace ReadExcel.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await UserManager.FindAsync(model.UserName, model.Password);
-                if (user != null)
+                //var user = await UserManager.FindAsync(model.UserName, model.Password);
+                //if (user != null)
+                //{
+                //    await SignInAsync(user, model.RememberMe);
+                //    return RedirectToLocal(returnUrl);
+                //}
+                if (model.UserName == "admin" && model.Password == "123qwe")
                 {
-                    await SignInAsync(user, model.RememberMe);
+                    //await SignInAsync(user, model.RememberMe);
                     return RedirectToLocal(returnUrl);
                 }
                 else
