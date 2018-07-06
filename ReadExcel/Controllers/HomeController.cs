@@ -7,6 +7,7 @@ using System.IO;
 using OfficeOpenXml;
 using ReadExcel.Models;
 using System.Data;
+using OfficeOpenXml.FormulaParsing.Excel.Functions.Text;
 
 namespace ReadExcel.Controllers
 {
@@ -43,8 +44,10 @@ namespace ReadExcel.Controllers
             //{
                 ExcelPackage package = new ExcelPackage(upload.InputStream);
                 DataTable Dt = ExcelPackageExtensions.ToDataTable(package);
-                // Getting those error because we don't  have any ReadExcel view . you can use this datatatable where you need it.
-                return View(Dt);
+            List<object> lst = Dt.AsEnumerable().ToList<object>();
+            List<PeopleViewModel> second = ExcelPackageExtensions.ConvertTo<PeopleViewModel>(Dt).ToList();
+            // Getting those error because we don't  have any ReadExcel view . you can use this datatatable where you need it.
+            return View(Dt);
             //}
             //return View();
         }
