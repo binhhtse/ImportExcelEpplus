@@ -9,3 +9,9 @@
 *.ide
 *.ide-shm
 *.ide-wal
+*.xml
+*.dll
+*.pdb
+*.dll
+*.cache
+*.cache

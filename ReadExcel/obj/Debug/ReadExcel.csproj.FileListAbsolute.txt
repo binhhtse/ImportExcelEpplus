@@ -194,7 +194,6 @@ C:\Users\Rekkless\Downloads\ReadExcel-master\ReadExcel-master\ReadExcel\bin\Syst
 C:\Users\Rekkless\Downloads\ReadExcel-master\ReadExcel-master\ReadExcel\bin\System.Web.WebPages.dll
 C:\Users\Rekkless\Downloads\ReadExcel-master\ReadExcel-master\ReadExcel\bin\System.Web.WebPages.Razor.dll
 C:\Users\Rekkless\Downloads\ReadExcel-master\ReadExcel-master\ReadExcel\bin\WebGrease.dll
-C:\Users\Rekkless\Downloads\ReadExcel-master\ReadExcel-master\ReadExcel\bin\EPPlus.xml
 C:\Users\Rekkless\Downloads\ReadExcel-master\ReadExcel-master\ReadExcel\bin\System.Web.Helpers.xml
 C:\Users\Rekkless\Downloads\ReadExcel-master\ReadExcel-master\ReadExcel\bin\System.Web.Mvc.xml
 C:\Users\Rekkless\Downloads\ReadExcel-master\ReadExcel-master\ReadExcel\bin\System.Web.Optimization.xml
@@ -218,7 +217,6 @@ C:\Users\Rekkless\Downloads\ReadExcel-master\ReadExcel-master\ReadExcel\bin\Micr
 C:\Users\Rekkless\Downloads\ReadExcel-master\ReadExcel-master\ReadExcel\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\Rekkless\Downloads\ReadExcel-master\ReadExcel-master\ReadExcel\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\Rekkless\Downloads\ReadExcel-master\ReadExcel-master\ReadExcel\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\Rekkless\Downloads\ReadExcel-master\ReadExcel-master\ReadExcel\obj\Debug\ReadExcel.csprojResolveAssemblyReference.cache
 C:\Users\Rekkless\Downloads\ReadExcel-master\ReadExcel-master\ReadExcel\obj\Debug\ReadExcel.csproj.CoreCompileInputs.cache
 C:\Users\Rekkless\Downloads\ReadExcel-master\ReadExcel-master\ReadExcel\obj\Debug\ReadExcel.csproj.CopyComplete
 C:\Users\Rekkless\Downloads\ReadExcel-master\ReadExcel-master\ReadExcel\obj\Debug\ReadExcel.dll
