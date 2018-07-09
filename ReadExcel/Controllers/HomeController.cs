@@ -48,6 +48,7 @@ namespace ReadExcel.Controllers
             List<object> lst = Dt.AsEnumerable().ToList<object>();
             //List<PeopleViewModel> second = ExcelPackageExtensions.ConvertTo<PeopleViewModel>(Dt).ToList();
             List<PeopleViewModel> employeeList = Dt.DataTableToList<PeopleViewModel>();
+            DataTable Dts = ExcelPackageExtensions.ToDataTable(employeeList);
             // Getting those error because we don't  have any ReadExcel view . you can use this datatatable where you need it.
             return View(Dt);
             //}
