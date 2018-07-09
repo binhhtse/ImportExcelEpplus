@@ -17,7 +17,7 @@ namespace ReadExcel.Models
         {
             ExcelWorksheet workSheet = package.Workbook.Worksheets.First();
             DataTable Dt = new DataTable();
-            foreach (var firstRowCell in workSheet.Cells[1,1,1,workSheet.Dimension.End.Column])
+            foreach (var firstRowCell in workSheet.Cells[1, 1, 1, workSheet.Dimension.End.Column])
             {
                 Dt.Columns.Add(firstRowCell.Text);
             }
@@ -34,7 +34,7 @@ namespace ReadExcel.Models
             return Dt;
         }
 
-        
+
         public static IList<T> ConvertTo<T>(IList<DataRow> rows)
         {
             IList<T> list = null;

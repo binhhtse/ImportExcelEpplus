@@ -20,3 +20,4 @@ ReadExcel/bin/ReadExcel.pdb
 ReadExcel/bin/ReadExcel.dll
 ReadExcel/obj/Debug/ReadExcel.dll
 ReadExcel/obj/Debug/ReadExcel.pdb
+*.dll
