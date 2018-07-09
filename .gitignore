@@ -3,3 +3,9 @@
 *.dll
 *.xml
 *.dll
+*.config
+.vs/ReadExcel/v15/.suo
+*.lock
+*.ide
+*.ide-shm
+*.ide-wal
