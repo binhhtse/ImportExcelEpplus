@@ -11,6 +11,6 @@ namespace ReadExcel.Models
         public string Fullname { get; set; }
         public string Money { get; set; }
         public string address { get; set; }
-
+        public string Phone { get; set; }
     }
 }
