@@ -4,10 +4,12 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Reflection;
 using System.Web;
+using System.Web.Configuration;
 
 namespace ReadExcel.Models
 {
@@ -15,7 +17,7 @@ namespace ReadExcel.Models
     {
         public static DataTable ToDataTable(this ExcelPackage package)
         {
-            ExcelWorksheet workSheet = package.Workbook.Worksheets.First();
+            ExcelWorksheet workSheet = package.Workbook.Worksheets[int.Parse(ConfigurationManager.AppSettings["SheetNumber"])];
             DataTable Dt = new DataTable();
             foreach (var firstRowCell in workSheet.Cells[1, 1, 1, workSheet.Dimension.End.Column])
             {
