@@ -8,11 +8,14 @@ using OfficeOpenXml;
 using ReadExcel.Models;
 using System.Data;
 using OfficeOpenXml.FormulaParsing.Excel.Functions.Text;
+using log4net;
 
 namespace ReadExcel.Controllers
 {
     public class HomeController : Controller
     {
+        private static readonly ILog Log =
+              LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         public ActionResult Index()
         {
             return View();
@@ -49,7 +52,7 @@ namespace ReadExcel.Controllers
 
             List<PeopleViewModel> employeeList = Dt.DataTableToList<PeopleViewModel>();
             DataTable Dts = ExcelPackageExtensions.ToDataTable(employeeList);
-
+            Log.Info("Start log INFO...");
 
             return View(Dt);
             //}
