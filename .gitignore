@@ -22,3 +22,5 @@ ReadExcel/obj/Debug/ReadExcel.dll
 ReadExcel/obj/Debug/ReadExcel.pdb
 *.dll
 ReadExcel/MyTestAppender.log.txt
+*.dll
+*.pdb

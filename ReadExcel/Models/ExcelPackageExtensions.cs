@@ -19,9 +19,19 @@ namespace ReadExcel.Models
         {
             ExcelWorksheet workSheet = package.Workbook.Worksheets[int.Parse(ConfigurationManager.AppSettings["SheetNumber"])];
             DataTable Dt = new DataTable();
-            foreach (var firstRowCell in workSheet.Cells[1, 1, 1, workSheet.Dimension.End.Column])
+            DataTable Dt1 = new DataTable();
+            int[] Selection = { 1, 2, 3, 4, 5, 6, 7, 8 };
+            //foreach (var firstRowCell in workSheet.Cells[1, 1, 1, workSheet.Dimension.End.Column])
+            //{
+            //    Dt.Columns.Add(firstRowCell.Text);
+            //}
+            for (var col = 1; col <= workSheet.Dimension.End.Column; col++)
             {
-                Dt.Columns.Add(firstRowCell.Text);
+                int pos = Array.IndexOf(Selection, col);
+                if (pos > -1)
+                {
+                    Dt.Columns.Add(workSheet.Cells[1, col].Text);
+                }
             }
             for (var rowNumber = 2; rowNumber <= workSheet.Dimension.End.Row; rowNumber++)
             {
@@ -29,7 +39,13 @@ namespace ReadExcel.Models
                 var newRow = Dt.NewRow();
                 foreach (var cell in row)
                 {
-                    newRow[cell.Start.Column - 1] = cell.Text;
+                    var columnNumber = cell.Start.Column;
+                    int pos = Array.IndexOf(Selection, columnNumber);
+                    if (pos > -1)
+                    {
+                        newRow[cell.Start.Column - 1] = cell.Text;
+                    }
+                    //newRow[cell.Start.Column - 1] = cell.Text;
                 }
                 Dt.Rows.Add(newRow);
             }
