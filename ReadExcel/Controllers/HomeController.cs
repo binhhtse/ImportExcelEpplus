@@ -9,6 +9,7 @@ using ReadExcel.Models;
 using System.Data;
 using OfficeOpenXml.FormulaParsing.Excel.Functions.Text;
 using log4net;
+using ReadExcel.Repository;
 
 namespace ReadExcel.Controllers
 {
@@ -16,6 +17,7 @@ namespace ReadExcel.Controllers
     {
         private static readonly ILog Log =
               LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        GenericRepository<Account> userRepository = new GenericRepository<Account>();
         public ActionResult Index()
         {
             return View();
@@ -47,7 +49,7 @@ namespace ReadExcel.Controllers
             //{
             ExcelPackage package = new ExcelPackage(upload.InputStream);
             DataTable Dt = ExcelPackageExtensions.ToDataTable(package);
-
+            List<Account> ls = userRepository.List.ToList();
             List<object> lst = Dt.AsEnumerable().ToList<object>();
 
             List<PeopleViewModel> employeeList = Dt.DataTableToList<PeopleViewModel>();
