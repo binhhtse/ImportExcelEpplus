@@ -18,7 +18,7 @@ namespace ReadExcel.Controllers
     {
         private static readonly ILog Log =
               LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        GenericRepository<Account> userRepository = new GenericRepository<Account>();
+        GenericRepository<Person> userRepository = new GenericRepository<Person>();
         public ActionResult Index()
         {
             return View();
@@ -60,10 +60,12 @@ namespace ReadExcel.Controllers
 
             //});
             //userRepository.BatchInsert(ls1);
-            List<PeopleViewModel> employeeList = Dt.DataTableToList<PeopleViewModel>();
+            List<Person> employeeList = Dt.DataTableToList<Person>();
+            //userRepository.BatchInsert(employeeList);
             DataTable Dts = ExcelPackageExtensions.ToDataTable(employeeList);
             Log.Info("Start log INFO...");
-
+            ModelState.AddModelError("Error", "Ex: This login failed "+ employeeList.ElementAt(0).Fullname);
+            ModelState.AddModelError("Error", "Ex: This login failed 1");
             return View(Dt);
             //}
             //return View();

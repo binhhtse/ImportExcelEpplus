@@ -12,8 +12,7 @@
     <EntitySetMapping Name="People">
       <EntityTypeMapping TypeName="DemoModel.Person">
         <MappingFragment StoreEntitySet="People">
-          <ScalarProperty Name="Phone" ColumnName="Phone" />
-          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
           <ScalarProperty Name="Money" ColumnName="Money" />
           <ScalarProperty Name="Fullname" ColumnName="Fullname" />
           <ScalarProperty Name="Id" ColumnName="Id" />

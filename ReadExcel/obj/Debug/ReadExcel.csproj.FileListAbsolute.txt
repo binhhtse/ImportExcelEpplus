@@ -290,3 +290,4 @@ D:\BinhHT\Import\ImportExcelEpplus\ReadExcel\bin\Microsoft.Owin.Security.Microso
 D:\BinhHT\Import\ImportExcelEpplus\ReadExcel\obj\Debug\ReadExcel.csprojResolveAssemblyReference.cache
 D:\BinhHT\Import\ImportExcelEpplus\ReadExcel\obj\Debug\ReadExcel.dll
 D:\BinhHT\Import\ImportExcelEpplus\ReadExcel\obj\Debug\ReadExcel.pdb
+C:\Users\Rekkless\Downloads\ReadExcel-master\ReadExcel-master\ReadExcel\obj\Debug\ReadExcel.csprojResolveAssemblyReference.cache

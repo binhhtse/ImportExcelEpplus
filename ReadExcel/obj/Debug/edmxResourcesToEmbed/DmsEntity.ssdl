@@ -14,8 +14,7 @@
     <Property Name="Id" Type="int" Nullable="false" />
     <Property Name="Fullname" Type="nchar" MaxLength="10" />
     <Property Name="Money" Type="nchar" MaxLength="10" />
-    <Property Name="address" Type="nchar" MaxLength="10" />
-    <Property Name="Phone" Type="nchar" MaxLength="10" />
+    <Property Name="Address" Type="nchar" MaxLength="10" />
   </EntityType>
   <EntityContainer Name="DemoModelStoreContainer">
     <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />

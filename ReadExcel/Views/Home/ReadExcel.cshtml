@@ -23,7 +23,18 @@
 </head>
 <body>
     <div>
-
+       
+        @foreach (var item in ViewContext.ViewData.ModelState)
+        {
+            if (item.Value.Errors.Any())
+            {
+               
+            @*<h5><b>@item.Key</b></h5>*@
+            
+            @*<h5><b>@(string.Join("\r\n" + Environment.NewLine, item.Value.Errors.Select(x => x.ErrorMessage)))</b></h5>*@
+            <b>@Html.ValidationSummary()</b>
+            }
+        }
         @if (Model != null)
         {
             <table border="1" cellpadding="5" id="tableId">
@@ -48,19 +59,9 @@
                 </tbody>
             </table>
         }
-
     </div>
-
-
-
 </body>
 </html>
-
-
-
-
-
-
 <script>
     $(document).ready(function () {
         $('#tableId').DataTable({
@@ -83,7 +84,7 @@
                 }
             },
             pageLength: 10,
-            
+
             dom: 'Bfrtip',
             buttons: [
                 {

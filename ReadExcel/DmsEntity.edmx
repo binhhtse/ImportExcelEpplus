@@ -19,8 +19,7 @@
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Fullname" Type="nchar" MaxLength="10" />
           <Property Name="Money" Type="nchar" MaxLength="10" />
-          <Property Name="address" Type="nchar" MaxLength="10" />
-          <Property Name="Phone" Type="nchar" MaxLength="10" />
+          <Property Name="Address" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityContainer Name="DemoModelStoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
@@ -48,8 +47,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Fullname" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="Money" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="address" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="Phone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -68,8 +66,7 @@
           <EntitySetMapping Name="People">
             <EntityTypeMapping TypeName="DemoModel.Person">
               <MappingFragment StoreEntitySet="People">
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Money" ColumnName="Money" />
                 <ScalarProperty Name="Fullname" ColumnName="Fullname" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
