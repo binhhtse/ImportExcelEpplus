@@ -50,7 +50,7 @@ namespace ReadExcel.Controllers
             //{
             ExcelPackage package = new ExcelPackage(upload.InputStream);
             DataTable Dt = ExcelPackageExtensions.ToDataTable(package);
-            List<Account> ls = userRepository.List.ToList();
+            //List<Account> ls = userRepository.List.ToList();
             List<object> lst = Dt.AsEnumerable().ToList<object>();
             //List<Account> ls1 = new List<Account>();
            
