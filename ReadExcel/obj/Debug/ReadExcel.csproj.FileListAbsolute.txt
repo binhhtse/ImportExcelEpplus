@@ -221,7 +221,6 @@ C:\Users\Rekkless\Downloads\ReadExcel-master\ReadExcel-master\ReadExcel\obj\Debu
 C:\Users\Rekkless\Downloads\ReadExcel-master\ReadExcel-master\ReadExcel\obj\Debug\ReadExcel.csproj.CopyComplete
 C:\Users\Rekkless\Downloads\ReadExcel-master\ReadExcel-master\ReadExcel\obj\Debug\ReadExcel.dll
 C:\Users\Rekkless\Downloads\ReadExcel-master\ReadExcel-master\ReadExcel\obj\Debug\ReadExcel.pdb
-C:\Users\Rekkless\Downloads\ReadExcel-master\ReadExcel-master\ReadExcel\obj\Debug\ReadExcel.csprojResolveAssemblyReference.cache
 C:\Users\Rekkless\Downloads\ReadExcel-master\ReadExcel-master\ReadExcel\bin\log4net.dll
 C:\Users\Rekkless\Downloads\ReadExcel-master\ReadExcel-master\ReadExcel\bin\log4net.xml
 C:\Users\Rekkless\Downloads\ReadExcel-master\ReadExcel-master\ReadExcel\bin\AutoMapper.dll

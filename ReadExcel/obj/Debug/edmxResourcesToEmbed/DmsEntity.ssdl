@@ -7,7 +7,18 @@
     <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Password" Type="nvarchar" MaxLength="50" />
   </EntityType>
+  <EntityType Name="People">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Fullname" Type="nchar" MaxLength="10" />
+    <Property Name="Money" Type="nchar" MaxLength="10" />
+    <Property Name="address" Type="nchar" MaxLength="10" />
+    <Property Name="Phone" Type="nchar" MaxLength="10" />
+  </EntityType>
   <EntityContainer Name="DemoModelStoreContainer">
     <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="People" EntityType="Self.People" Schema="dbo" store:Type="Tables" />
   </EntityContainer>
 </Schema>
