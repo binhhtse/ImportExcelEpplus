@@ -224,3 +224,8 @@ C:\Users\Rekkless\Downloads\ReadExcel-master\ReadExcel-master\ReadExcel\obj\Debu
 C:\Users\Rekkless\Downloads\ReadExcel-master\ReadExcel-master\ReadExcel\obj\Debug\ReadExcel.csprojResolveAssemblyReference.cache
 C:\Users\Rekkless\Downloads\ReadExcel-master\ReadExcel-master\ReadExcel\bin\log4net.dll
 C:\Users\Rekkless\Downloads\ReadExcel-master\ReadExcel-master\ReadExcel\bin\log4net.xml
+C:\Users\Rekkless\Downloads\ReadExcel-master\ReadExcel-master\ReadExcel\bin\AutoMapper.dll
+C:\Users\Rekkless\Downloads\ReadExcel-master\ReadExcel-master\ReadExcel\bin\System.ValueTuple.dll
+C:\Users\Rekkless\Downloads\ReadExcel-master\ReadExcel-master\ReadExcel\bin\AutoMapper.pdb
+C:\Users\Rekkless\Downloads\ReadExcel-master\ReadExcel-master\ReadExcel\bin\AutoMapper.xml
+C:\Users\Rekkless\Downloads\ReadExcel-master\ReadExcel-master\ReadExcel\bin\System.ValueTuple.xml

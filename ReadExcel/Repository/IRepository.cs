@@ -9,6 +9,7 @@ namespace ReadExcel.Repository
     {
         IEnumerable<T> List { get; }
         void Add(T entity);
+        void BatchInsert(List<T> entity);
         void Delete(T entity);
         void Update(T entity);
         T FindById(object Id);

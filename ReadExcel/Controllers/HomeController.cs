@@ -10,6 +10,7 @@ using System.Data;
 using OfficeOpenXml.FormulaParsing.Excel.Functions.Text;
 using log4net;
 using ReadExcel.Repository;
+using AutoMapper;
 
 namespace ReadExcel.Controllers
 {
@@ -51,7 +52,14 @@ namespace ReadExcel.Controllers
             DataTable Dt = ExcelPackageExtensions.ToDataTable(package);
             List<Account> ls = userRepository.List.ToList();
             List<object> lst = Dt.AsEnumerable().ToList<object>();
+            //List<Account> ls1 = new List<Account>();
+           
+            //var config = new MapperConfiguration(cfg => {
 
+            //    cfg.CreateMap<AccountModel, Account>();
+
+            //});
+            //userRepository.BatchInsert(ls1);
             List<PeopleViewModel> employeeList = Dt.DataTableToList<PeopleViewModel>();
             DataTable Dts = ExcelPackageExtensions.ToDataTable(employeeList);
             Log.Info("Start log INFO...");
