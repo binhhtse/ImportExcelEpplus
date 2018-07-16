@@ -59,12 +59,12 @@ namespace ReadExcel.Controllers
             //    cfg.CreateMap<AccountModel, Account>();
 
             //});
-            //userRepository.BatchInsert(ls1);
+           
             List<Person> employeeList = Dt.DataTableToList<Person>();
             //userRepository.BatchInsert(employeeList);
             DataTable Dts = ExcelPackageExtensions.ToDataTable(employeeList);
             Log.Info("Start log INFO...");
-            ModelState.AddModelError("Error", "Ex: This login failed "+ employeeList.ElementAt(0).Fullname);
+            ModelState.AddModelError("Error", "Ex: This login failed " + employeeList.ElementAt(0).Fullname);
             ModelState.AddModelError("Error", "Ex: This login failed 1");
             return View(Dt);
             //}
