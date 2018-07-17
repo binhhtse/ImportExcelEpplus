@@ -52,13 +52,6 @@ namespace ReadExcel.Controllers
             DataTable Dt = ExcelPackageExtensions.ToDataTable(package);
             //List<Account> ls = userRepository.List.ToList();
             List<object> lst = Dt.AsEnumerable().ToList<object>();
-            //List<Account> ls1 = new List<Account>();
-           
-            //var config = new MapperConfiguration(cfg => {
-
-            //    cfg.CreateMap<AccountModel, Account>();
-
-            //});
            
             List<Person> employeeList = Dt.DataTableToList<Person>();
             //userRepository.BatchInsert(employeeList);
