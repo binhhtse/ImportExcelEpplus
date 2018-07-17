@@ -179,6 +179,45 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="DashBoardMT_ProductBySalesRep_Period.cs">
+      <DependentUpon>DMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DashBoardMT_SalesBySalesRep_Period.cs">
+      <DependentUpon>DMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DashBoardMT_SalesByWholeSaler_Period.cs">
+      <DependentUpon>DMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DashB_KPITargetBySalesRoute_Period.cs">
+      <DependentUpon>DMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DashB_SalesForce.cs">
+      <DependentUpon>DMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DashB_SalesRoute.cs">
+      <DependentUpon>DMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DashB_SalesTarget_Period.cs">
+      <DependentUpon>DMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DashB_SellInTarget_Period.cs">
+      <DependentUpon>DMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DMS.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DMS.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DMS.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DMS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DMS.edmx</DependentUpon>
+    </Compile>
     <Compile Include="DmsEntity.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -237,6 +276,23 @@
     </EntityDeploy>
     <Content Include="DmsEntity.edmx.diagram">
       <DependentUpon>DmsEntity.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="DMS.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DMS.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="DMS.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DMS.edmx</DependentUpon>
+      <LastGenOutput>DMS.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DMS.edmx.diagram">
+      <DependentUpon>DMS.edmx</DependentUpon>
+    </Content>
+    <Content Include="DMS.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DMS.edmx</DependentUpon>
+      <LastGenOutput>DMS.cs</LastGenOutput>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
