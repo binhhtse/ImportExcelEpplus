@@ -1,0 +1,845 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DMSSERVER_BINHHTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DMSSERVER_BINHHT.dbo.DashB_KPITargetBySalesRoute_Period' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DashB_KPITargetBySalesRoute_Period">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Period" />
+            <PropertyRef Name="DistributorCode" />
+            <PropertyRef Name="SalesRouteCode" />
+            <PropertyRef Name="KPICode" />
+            <PropertyRef Name="CompanyCode" />
+            <PropertyRef Name="SalesOrgCode" />
+            <PropertyRef Name="CreatedBy" />
+            <PropertyRef Name="LastUpdatedBy" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Period" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="DistributorCode" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="SalesRouteCode" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="KPICode" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="KPITarget" Type="float" />
+          <Property Name="CompanyCode" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="SalesOrgCode" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="Source" Type="nvarchar" MaxLength="1" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="datetime" />
+          <Property Name="LastUpdatedBy" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="LastUpdatedDateTime" Type="datetime" />
+          <Property Name="Deleted" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'DMSSERVER_BINHHT.dbo.DashB_MSLForSalesForce' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="DashB_MSLForSalesForce">
+          <Property Name="BranchID" Type="varchar" MaxLength="15" />
+          <Property Name="AreaID" Type="varchar" MaxLength="15" />
+          <Property Name="BranchName" Type="nvarchar" MaxLength="300" />
+          <Property Name="Region" Type="nvarchar" MaxLength="100" />
+          <Property Name="Actual" Type="int" />
+          <Property Name="FA" Type="decimal" Precision="38" Scale="2" />
+          <Property Name="FB" Type="decimal" Precision="38" Scale="2" />
+          <Property Name="FC" Type="decimal" Precision="38" Scale="2" />
+          <Property Name="DA" Type="decimal" Precision="38" Scale="2" />
+          <Property Name="DB" Type="decimal" Precision="38" Scale="2" />
+          <Property Name="DC" Type="decimal" Precision="38" Scale="2" />
+          <Property Name="DD" Type="decimal" Precision="38" Scale="2" />
+          <Property Name="Taget" Type="decimal" Precision="38" Scale="2" />
+          <Property Name="Compliance" Type="decimal" Precision="38" Scale="26" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'DMSSERVER_BINHHT.dbo.DashB_MSLForSalesRoute' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="DashB_MSLForSalesRoute">
+          <Property Name="AreaID" Type="varchar" MaxLength="50" />
+          <Property Name="RegionID" Type="varchar" MaxLength="50" />
+          <Property Name="CustomerCode" Type="varchar" MaxLength="50" />
+          <Property Name="SalesPersonCode" Type="varchar" MaxLength="50" />
+          <Property Name="SalesRouteCode" Type="varchar" MaxLength="50" />
+          <Property Name="TeamID" Type="varchar" MaxLength="50" />
+          <Property Name="Taget" Type="int" />
+          <Property Name="Actual" Type="int" />
+          <Property Name="Rate" Type="decimal" Precision="38" Scale="20" />
+          <Property Name="BranchName" Type="nvarchar" MaxLength="100" />
+          <Property Name="EmployeeID" Type="varchar" MaxLength="15" />
+          <Property Name="EmployeeName" Type="nvarchar" MaxLength="100" />
+          <Property Name="ASO" Type="int" />
+          <Property Name="KH70" Type="int" />
+          <Property Name="KH71" Type="int" />
+          <Property Name="KH72" Type="int" />
+          <Property Name="KH73" Type="int" />
+          <Property Name="KH74" Type="int" />
+          <Property Name="KH75" Type="int" />
+          <Property Name="KH76" Type="int" />
+          <Property Name="KH77" Type="int" />
+          <Property Name="KH78" Type="int" />
+          <Property Name="KH79" Type="int" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DMSSERVER_BINHHT.dbo.DashB_SalesForce' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DashB_SalesForce">
+          <Key>
+            <PropertyRef Name="CompanyCode" />
+            <PropertyRef Name="SalesOrgCode" />
+            <PropertyRef Name="SalesForceCode" />
+            <PropertyRef Name="SalesForceName" />
+            <PropertyRef Name="SalesForceLevel" />
+            <PropertyRef Name="ParentCode" />
+            <PropertyRef Name="Ordinal" />
+            <PropertyRef Name="Status" />
+            <PropertyRef Name="ExcutedBy" />
+          </Key>
+          <Property Name="CompanyCode" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="SalesOrgCode" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="SalesForceCode" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="SalesForceName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="SalesForceLevel" Type="int" Nullable="false" />
+          <Property Name="ParentCode" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="EmployeeCode" Type="varchar" MaxLength="40" />
+          <Property Name="Ordinal" Type="int" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="20" />
+          <Property Name="CreatedDateTime" Type="datetime" />
+          <Property Name="LastUpdatedBy" Type="varchar" MaxLength="20" />
+          <Property Name="LastUpdatedDateTime" Type="datetime" />
+          <Property Name="ExcutedBy" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="ExecutedDateTime" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DMSSERVER_BINHHT.dbo.DashB_SalesRoute' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DashB_SalesRoute">
+          <Key>
+            <PropertyRef Name="CompanyCode" />
+            <PropertyRef Name="SalesOrgCode" />
+            <PropertyRef Name="CustomerCode" />
+            <PropertyRef Name="SalesRouteCode" />
+            <PropertyRef Name="SalesRouteName" />
+            <PropertyRef Name="SalesTeamCode" />
+            <PropertyRef Name="Status" />
+            <PropertyRef Name="ExcutedBy" />
+          </Key>
+          <Property Name="CompanyCode" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="SalesOrgCode" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="CustomerCode" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="SalesRouteCode" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="SalesRouteName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="SalesPersonCode" Type="varchar" MaxLength="40" />
+          <Property Name="SalesTeamCode" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="SalesForceCode" Type="varchar" MaxLength="40" />
+          <Property Name="SalesForceL1" Type="varchar" MaxLength="40" />
+          <Property Name="SalesForceL2" Type="varchar" MaxLength="40" />
+          <Property Name="SalesForceL3" Type="varchar" MaxLength="40" />
+          <Property Name="SalesForceL4" Type="varchar" MaxLength="40" />
+          <Property Name="SalesForceL5" Type="varchar" MaxLength="40" />
+          <Property Name="SalesForceL6" Type="varchar" MaxLength="40" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Status" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="20" />
+          <Property Name="CreatedDateTime" Type="datetime" />
+          <Property Name="LastUpdatedBy" Type="varchar" MaxLength="20" />
+          <Property Name="LastUpdatedDateTime" Type="datetime" />
+          <Property Name="ExcutedBy" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="ExecutedDateTime" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DMSSERVER_BINHHT.dbo.DashB_SalesTarget_Period' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DashB_SalesTarget_Period">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Period" />
+            <PropertyRef Name="DistributorCode" />
+            <PropertyRef Name="SalesRouteCode" />
+            <PropertyRef Name="BrandCode" />
+            <PropertyRef Name="CompanyCode" />
+            <PropertyRef Name="SalesOrgCode" />
+            <PropertyRef Name="CreatedBy" />
+            <PropertyRef Name="LastUpdatedBy" />
+            <PropertyRef Name="Deleted" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Period" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="DistributorCode" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="SalesRouteCode" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="BrandCode" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="SalesTarget" Type="float" />
+          <Property Name="CompanyCode" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="SalesOrgCode" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="Source" Type="nvarchar" MaxLength="1" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="datetime" />
+          <Property Name="LastUpdatedBy" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="LastUpdatedDateTime" Type="datetime" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DMSSERVER_BINHHT.dbo.DashB_SellInTarget_Period' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DashB_SellInTarget_Period">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Period" />
+            <PropertyRef Name="SalesForceCode" />
+            <PropertyRef Name="SalesForceLevel" />
+            <PropertyRef Name="DistributorCode" />
+            <PropertyRef Name="BrandCode" />
+            <PropertyRef Name="CompanyCode" />
+            <PropertyRef Name="SalesOrgCode" />
+            <PropertyRef Name="Source" />
+            <PropertyRef Name="CreatedBy" />
+            <PropertyRef Name="LastUpdateBy" />
+            <PropertyRef Name="Deleted" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Period" Type="nvarchar" MaxLength="6" Nullable="false" />
+          <Property Name="SalesForceCode" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="SalesForceLevel" Type="int" Nullable="false" />
+          <Property Name="DistributorCode" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="BrandCode" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="SellinTarget" Type="float" />
+          <Property Name="CompanyCode" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="SalesOrgCode" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="Source" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="datetime" />
+          <Property Name="LastUpdateBy" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="LastUpdateDateTime" Type="datetime" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DMSSERVER_BINHHT.dbo.DashBoardMT_ProductBySalesRep_Period' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DashBoardMT_ProductBySalesRep_Period">
+          <Key>
+            <PropertyRef Name="Period" />
+            <PropertyRef Name="EmployeeID" />
+            <PropertyRef Name="CustID" />
+            <PropertyRef Name="WholeSalerID" />
+            <PropertyRef Name="SalesRouteCode" />
+            <PropertyRef Name="CreatedBy" />
+            <PropertyRef Name="LastUpdatedBy" />
+          </Key>
+          <Property Name="Period" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="EmployeeID" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="CustID" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="WholeSalerID" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="ProductTarget" Type="float" />
+          <Property Name="ProductActual" Type="float" />
+          <Property Name="MSLTarget" Type="float" />
+          <Property Name="MSLActual" Type="float" />
+          <Property Name="SalesRouteCode" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="datetime" />
+          <Property Name="LastUpdatedBy" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="LastUpdatedDateTime" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DMSSERVER_BINHHT.dbo.DashBoardMT_SalesBySalesRep_Period' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DashBoardMT_SalesBySalesRep_Period">
+          <Key>
+            <PropertyRef Name="Period" />
+            <PropertyRef Name="EmployeeID" />
+            <PropertyRef Name="CustID" />
+            <PropertyRef Name="WholeSalerID" />
+            <PropertyRef Name="SalesRouteCode" />
+            <PropertyRef Name="CreatedBy" />
+            <PropertyRef Name="LastUpdatedBy" />
+          </Key>
+          <Property Name="Period" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="EmployeeID" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="CustID" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="WholeSalerID" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="SalesTarget" Type="float" />
+          <Property Name="SalesActual" Type="float" />
+          <Property Name="SalesRouteCode" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="datetime" />
+          <Property Name="LastUpdatedBy" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="LastUpdatedDateTime" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DMSSERVER_BINHHT.dbo.DashBoardMT_SalesByWholeSaler_Period' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DashBoardMT_SalesByWholeSaler_Period">
+          <Key>
+            <PropertyRef Name="Period" />
+            <PropertyRef Name="Region" />
+            <PropertyRef Name="WholeSalerID" />
+            <PropertyRef Name="CreatedBy" />
+            <PropertyRef Name="LastUpdatedBy" />
+          </Key>
+          <Property Name="Period" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="Region" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="WholeSalerID" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="SalesTarget" Type="float" />
+          <Property Name="SalesActual" Type="float" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="datetime" />
+          <Property Name="LastUpdatedBy" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="LastUpdatedDateTime" Type="datetime" />
+        </EntityType>
+        <EntityContainer Name="DMSSERVER_BINHHTModelStoreContainer">
+          <EntitySet Name="DashB_KPITargetBySalesRoute_Period" EntityType="Self.DashB_KPITargetBySalesRoute_Period" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DashB_KPITargetBySalesRoute_Period].[Id] AS [Id], 
+    [DashB_KPITargetBySalesRoute_Period].[Period] AS [Period], 
+    [DashB_KPITargetBySalesRoute_Period].[DistributorCode] AS [DistributorCode], 
+    [DashB_KPITargetBySalesRoute_Period].[SalesRouteCode] AS [SalesRouteCode], 
+    [DashB_KPITargetBySalesRoute_Period].[KPICode] AS [KPICode], 
+    [DashB_KPITargetBySalesRoute_Period].[KPITarget] AS [KPITarget], 
+    [DashB_KPITargetBySalesRoute_Period].[CompanyCode] AS [CompanyCode], 
+    [DashB_KPITargetBySalesRoute_Period].[SalesOrgCode] AS [SalesOrgCode], 
+    [DashB_KPITargetBySalesRoute_Period].[Source] AS [Source], 
+    [DashB_KPITargetBySalesRoute_Period].[CreatedBy] AS [CreatedBy], 
+    [DashB_KPITargetBySalesRoute_Period].[CreatedDateTime] AS [CreatedDateTime], 
+    [DashB_KPITargetBySalesRoute_Period].[LastUpdatedBy] AS [LastUpdatedBy], 
+    [DashB_KPITargetBySalesRoute_Period].[LastUpdatedDateTime] AS [LastUpdatedDateTime], 
+    [DashB_KPITargetBySalesRoute_Period].[Deleted] AS [Deleted]
+    FROM [dbo].[DashB_KPITargetBySalesRoute_Period] AS [DashB_KPITargetBySalesRoute_Period]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DashB_SalesForce" EntityType="Self.DashB_SalesForce" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DashB_SalesForce].[CompanyCode] AS [CompanyCode], 
+    [DashB_SalesForce].[SalesOrgCode] AS [SalesOrgCode], 
+    [DashB_SalesForce].[SalesForceCode] AS [SalesForceCode], 
+    [DashB_SalesForce].[SalesForceName] AS [SalesForceName], 
+    [DashB_SalesForce].[SalesForceLevel] AS [SalesForceLevel], 
+    [DashB_SalesForce].[ParentCode] AS [ParentCode], 
+    [DashB_SalesForce].[EmployeeCode] AS [EmployeeCode], 
+    [DashB_SalesForce].[Ordinal] AS [Ordinal], 
+    [DashB_SalesForce].[Status] AS [Status], 
+    [DashB_SalesForce].[CreatedBy] AS [CreatedBy], 
+    [DashB_SalesForce].[CreatedDateTime] AS [CreatedDateTime], 
+    [DashB_SalesForce].[LastUpdatedBy] AS [LastUpdatedBy], 
+    [DashB_SalesForce].[LastUpdatedDateTime] AS [LastUpdatedDateTime], 
+    [DashB_SalesForce].[ExcutedBy] AS [ExcutedBy], 
+    [DashB_SalesForce].[ExecutedDateTime] AS [ExecutedDateTime]
+    FROM [dbo].[DashB_SalesForce] AS [DashB_SalesForce]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DashB_SalesRoute" EntityType="Self.DashB_SalesRoute" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DashB_SalesRoute].[CompanyCode] AS [CompanyCode], 
+    [DashB_SalesRoute].[SalesOrgCode] AS [SalesOrgCode], 
+    [DashB_SalesRoute].[CustomerCode] AS [CustomerCode], 
+    [DashB_SalesRoute].[SalesRouteCode] AS [SalesRouteCode], 
+    [DashB_SalesRoute].[SalesRouteName] AS [SalesRouteName], 
+    [DashB_SalesRoute].[SalesPersonCode] AS [SalesPersonCode], 
+    [DashB_SalesRoute].[SalesTeamCode] AS [SalesTeamCode], 
+    [DashB_SalesRoute].[SalesForceCode] AS [SalesForceCode], 
+    [DashB_SalesRoute].[SalesForceL1] AS [SalesForceL1], 
+    [DashB_SalesRoute].[SalesForceL2] AS [SalesForceL2], 
+    [DashB_SalesRoute].[SalesForceL3] AS [SalesForceL3], 
+    [DashB_SalesRoute].[SalesForceL4] AS [SalesForceL4], 
+    [DashB_SalesRoute].[SalesForceL5] AS [SalesForceL5], 
+    [DashB_SalesRoute].[SalesForceL6] AS [SalesForceL6], 
+    [DashB_SalesRoute].[Remark] AS [Remark], 
+    [DashB_SalesRoute].[Status] AS [Status], 
+    [DashB_SalesRoute].[CreatedBy] AS [CreatedBy], 
+    [DashB_SalesRoute].[CreatedDateTime] AS [CreatedDateTime], 
+    [DashB_SalesRoute].[LastUpdatedBy] AS [LastUpdatedBy], 
+    [DashB_SalesRoute].[LastUpdatedDateTime] AS [LastUpdatedDateTime], 
+    [DashB_SalesRoute].[ExcutedBy] AS [ExcutedBy], 
+    [DashB_SalesRoute].[ExecutedDateTime] AS [ExecutedDateTime]
+    FROM [dbo].[DashB_SalesRoute] AS [DashB_SalesRoute]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DashB_SalesTarget_Period" EntityType="Self.DashB_SalesTarget_Period" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DashB_SalesTarget_Period].[Id] AS [Id], 
+    [DashB_SalesTarget_Period].[Period] AS [Period], 
+    [DashB_SalesTarget_Period].[DistributorCode] AS [DistributorCode], 
+    [DashB_SalesTarget_Period].[SalesRouteCode] AS [SalesRouteCode], 
+    [DashB_SalesTarget_Period].[BrandCode] AS [BrandCode], 
+    [DashB_SalesTarget_Period].[SalesTarget] AS [SalesTarget], 
+    [DashB_SalesTarget_Period].[CompanyCode] AS [CompanyCode], 
+    [DashB_SalesTarget_Period].[SalesOrgCode] AS [SalesOrgCode], 
+    [DashB_SalesTarget_Period].[Source] AS [Source], 
+    [DashB_SalesTarget_Period].[CreatedBy] AS [CreatedBy], 
+    [DashB_SalesTarget_Period].[CreatedDateTime] AS [CreatedDateTime], 
+    [DashB_SalesTarget_Period].[LastUpdatedBy] AS [LastUpdatedBy], 
+    [DashB_SalesTarget_Period].[LastUpdatedDateTime] AS [LastUpdatedDateTime], 
+    [DashB_SalesTarget_Period].[Deleted] AS [Deleted]
+    FROM [dbo].[DashB_SalesTarget_Period] AS [DashB_SalesTarget_Period]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DashB_SellInTarget_Period" EntityType="Self.DashB_SellInTarget_Period" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DashB_SellInTarget_Period].[Id] AS [Id], 
+    [DashB_SellInTarget_Period].[Period] AS [Period], 
+    [DashB_SellInTarget_Period].[SalesForceCode] AS [SalesForceCode], 
+    [DashB_SellInTarget_Period].[SalesForceLevel] AS [SalesForceLevel], 
+    [DashB_SellInTarget_Period].[DistributorCode] AS [DistributorCode], 
+    [DashB_SellInTarget_Period].[BrandCode] AS [BrandCode], 
+    [DashB_SellInTarget_Period].[SellinTarget] AS [SellinTarget], 
+    [DashB_SellInTarget_Period].[CompanyCode] AS [CompanyCode], 
+    [DashB_SellInTarget_Period].[SalesOrgCode] AS [SalesOrgCode], 
+    [DashB_SellInTarget_Period].[Source] AS [Source], 
+    [DashB_SellInTarget_Period].[CreatedBy] AS [CreatedBy], 
+    [DashB_SellInTarget_Period].[CreatedDateTime] AS [CreatedDateTime], 
+    [DashB_SellInTarget_Period].[LastUpdateBy] AS [LastUpdateBy], 
+    [DashB_SellInTarget_Period].[LastUpdateDateTime] AS [LastUpdateDateTime], 
+    [DashB_SellInTarget_Period].[Deleted] AS [Deleted]
+    FROM [dbo].[DashB_SellInTarget_Period] AS [DashB_SellInTarget_Period]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DashBoardMT_ProductBySalesRep_Period" EntityType="Self.DashBoardMT_ProductBySalesRep_Period" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DashBoardMT_ProductBySalesRep_Period].[Period] AS [Period], 
+    [DashBoardMT_ProductBySalesRep_Period].[EmployeeID] AS [EmployeeID], 
+    [DashBoardMT_ProductBySalesRep_Period].[CustID] AS [CustID], 
+    [DashBoardMT_ProductBySalesRep_Period].[WholeSalerID] AS [WholeSalerID], 
+    [DashBoardMT_ProductBySalesRep_Period].[ProductTarget] AS [ProductTarget], 
+    [DashBoardMT_ProductBySalesRep_Period].[ProductActual] AS [ProductActual], 
+    [DashBoardMT_ProductBySalesRep_Period].[MSLTarget] AS [MSLTarget], 
+    [DashBoardMT_ProductBySalesRep_Period].[MSLActual] AS [MSLActual], 
+    [DashBoardMT_ProductBySalesRep_Period].[SalesRouteCode] AS [SalesRouteCode], 
+    [DashBoardMT_ProductBySalesRep_Period].[CreatedBy] AS [CreatedBy], 
+    [DashBoardMT_ProductBySalesRep_Period].[CreatedDateTime] AS [CreatedDateTime], 
+    [DashBoardMT_ProductBySalesRep_Period].[LastUpdatedBy] AS [LastUpdatedBy], 
+    [DashBoardMT_ProductBySalesRep_Period].[LastUpdatedDateTime] AS [LastUpdatedDateTime]
+    FROM [dbo].[DashBoardMT_ProductBySalesRep_Period] AS [DashBoardMT_ProductBySalesRep_Period]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DashBoardMT_SalesBySalesRep_Period" EntityType="Self.DashBoardMT_SalesBySalesRep_Period" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DashBoardMT_SalesBySalesRep_Period].[Period] AS [Period], 
+    [DashBoardMT_SalesBySalesRep_Period].[EmployeeID] AS [EmployeeID], 
+    [DashBoardMT_SalesBySalesRep_Period].[CustID] AS [CustID], 
+    [DashBoardMT_SalesBySalesRep_Period].[WholeSalerID] AS [WholeSalerID], 
+    [DashBoardMT_SalesBySalesRep_Period].[SalesTarget] AS [SalesTarget], 
+    [DashBoardMT_SalesBySalesRep_Period].[SalesActual] AS [SalesActual], 
+    [DashBoardMT_SalesBySalesRep_Period].[SalesRouteCode] AS [SalesRouteCode], 
+    [DashBoardMT_SalesBySalesRep_Period].[CreatedBy] AS [CreatedBy], 
+    [DashBoardMT_SalesBySalesRep_Period].[CreatedDateTime] AS [CreatedDateTime], 
+    [DashBoardMT_SalesBySalesRep_Period].[LastUpdatedBy] AS [LastUpdatedBy], 
+    [DashBoardMT_SalesBySalesRep_Period].[LastUpdatedDateTime] AS [LastUpdatedDateTime]
+    FROM [dbo].[DashBoardMT_SalesBySalesRep_Period] AS [DashBoardMT_SalesBySalesRep_Period]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DashBoardMT_SalesByWholeSaler_Period" EntityType="Self.DashBoardMT_SalesByWholeSaler_Period" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DashBoardMT_SalesByWholeSaler_Period].[Period] AS [Period], 
+    [DashBoardMT_SalesByWholeSaler_Period].[Region] AS [Region], 
+    [DashBoardMT_SalesByWholeSaler_Period].[WholeSalerID] AS [WholeSalerID], 
+    [DashBoardMT_SalesByWholeSaler_Period].[SalesTarget] AS [SalesTarget], 
+    [DashBoardMT_SalesByWholeSaler_Period].[SalesActual] AS [SalesActual], 
+    [DashBoardMT_SalesByWholeSaler_Period].[CreatedBy] AS [CreatedBy], 
+    [DashBoardMT_SalesByWholeSaler_Period].[CreatedDateTime] AS [CreatedDateTime], 
+    [DashBoardMT_SalesByWholeSaler_Period].[LastUpdatedBy] AS [LastUpdatedBy], 
+    [DashBoardMT_SalesByWholeSaler_Period].[LastUpdatedDateTime] AS [LastUpdatedDateTime]
+    FROM [dbo].[DashBoardMT_SalesByWholeSaler_Period] AS [DashBoardMT_SalesByWholeSaler_Period]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DMSSERVER_BINHHTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DashB_KPITargetBySalesRoute_Period">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Period" />
+            <PropertyRef Name="DistributorCode" />
+            <PropertyRef Name="SalesRouteCode" />
+            <PropertyRef Name="KPICode" />
+            <PropertyRef Name="CompanyCode" />
+            <PropertyRef Name="SalesOrgCode" />
+            <PropertyRef Name="CreatedBy" />
+            <PropertyRef Name="LastUpdatedBy" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Period" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DistributorCode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SalesRouteCode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="KPICode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="KPITarget" Type="Double" />
+          <Property Name="CompanyCode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SalesOrgCode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Source" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="LastUpdatedBy" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastUpdatedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="Deleted" Type="Int32" />
+        </EntityType>
+        <EntityType Name="DashB_SalesForce">
+          <Key>
+            <PropertyRef Name="CompanyCode" />
+            <PropertyRef Name="SalesOrgCode" />
+            <PropertyRef Name="SalesForceCode" />
+            <PropertyRef Name="SalesForceName" />
+            <PropertyRef Name="SalesForceLevel" />
+            <PropertyRef Name="ParentCode" />
+            <PropertyRef Name="Ordinal" />
+            <PropertyRef Name="Status" />
+            <PropertyRef Name="ExcutedBy" />
+          </Key>
+          <Property Name="CompanyCode" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SalesOrgCode" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SalesForceCode" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SalesForceName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SalesForceLevel" Type="Int32" Nullable="false" />
+          <Property Name="ParentCode" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EmployeeCode" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="Ordinal" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="LastUpdatedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LastUpdatedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="ExcutedBy" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ExecutedDateTime" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="DashB_SalesRoute">
+          <Key>
+            <PropertyRef Name="CompanyCode" />
+            <PropertyRef Name="SalesOrgCode" />
+            <PropertyRef Name="CustomerCode" />
+            <PropertyRef Name="SalesRouteCode" />
+            <PropertyRef Name="SalesRouteName" />
+            <PropertyRef Name="SalesTeamCode" />
+            <PropertyRef Name="Status" />
+            <PropertyRef Name="ExcutedBy" />
+          </Key>
+          <Property Name="CompanyCode" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SalesOrgCode" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CustomerCode" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SalesRouteCode" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SalesRouteName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SalesPersonCode" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="SalesTeamCode" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SalesForceCode" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="SalesForceL1" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="SalesForceL2" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="SalesForceL3" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="SalesForceL4" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="SalesForceL5" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="SalesForceL6" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="Remark" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="LastUpdatedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LastUpdatedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="ExcutedBy" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ExecutedDateTime" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="DashB_SalesTarget_Period">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Period" />
+            <PropertyRef Name="DistributorCode" />
+            <PropertyRef Name="SalesRouteCode" />
+            <PropertyRef Name="BrandCode" />
+            <PropertyRef Name="CompanyCode" />
+            <PropertyRef Name="SalesOrgCode" />
+            <PropertyRef Name="CreatedBy" />
+            <PropertyRef Name="LastUpdatedBy" />
+            <PropertyRef Name="Deleted" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Period" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DistributorCode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SalesRouteCode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BrandCode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SalesTarget" Type="Double" />
+          <Property Name="CompanyCode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SalesOrgCode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Source" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="LastUpdatedBy" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastUpdatedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DashB_SellInTarget_Period">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Period" />
+            <PropertyRef Name="SalesForceCode" />
+            <PropertyRef Name="SalesForceLevel" />
+            <PropertyRef Name="DistributorCode" />
+            <PropertyRef Name="BrandCode" />
+            <PropertyRef Name="CompanyCode" />
+            <PropertyRef Name="SalesOrgCode" />
+            <PropertyRef Name="Source" />
+            <PropertyRef Name="CreatedBy" />
+            <PropertyRef Name="LastUpdateBy" />
+            <PropertyRef Name="Deleted" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Period" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SalesForceCode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SalesForceLevel" Type="Int32" Nullable="false" />
+          <Property Name="DistributorCode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BrandCode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SellinTarget" Type="Double" />
+          <Property Name="CompanyCode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SalesOrgCode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Source" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="LastUpdateBy" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastUpdateDateTime" Type="DateTime" Precision="3" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DashBoardMT_ProductBySalesRep_Period">
+          <Key>
+            <PropertyRef Name="Period" />
+            <PropertyRef Name="EmployeeID" />
+            <PropertyRef Name="CustID" />
+            <PropertyRef Name="WholeSalerID" />
+            <PropertyRef Name="SalesRouteCode" />
+            <PropertyRef Name="CreatedBy" />
+            <PropertyRef Name="LastUpdatedBy" />
+          </Key>
+          <Property Name="Period" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EmployeeID" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CustID" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="WholeSalerID" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProductTarget" Type="Double" />
+          <Property Name="ProductActual" Type="Double" />
+          <Property Name="MSLTarget" Type="Double" />
+          <Property Name="MSLActual" Type="Double" />
+          <Property Name="SalesRouteCode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="LastUpdatedBy" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastUpdatedDateTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="DashBoardMT_SalesBySalesRep_Period">
+          <Key>
+            <PropertyRef Name="Period" />
+            <PropertyRef Name="EmployeeID" />
+            <PropertyRef Name="CustID" />
+            <PropertyRef Name="WholeSalerID" />
+            <PropertyRef Name="SalesRouteCode" />
+            <PropertyRef Name="CreatedBy" />
+            <PropertyRef Name="LastUpdatedBy" />
+          </Key>
+          <Property Name="Period" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EmployeeID" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CustID" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="WholeSalerID" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SalesTarget" Type="Double" />
+          <Property Name="SalesActual" Type="Double" />
+          <Property Name="SalesRouteCode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="LastUpdatedBy" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastUpdatedDateTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="DashBoardMT_SalesByWholeSaler_Period">
+          <Key>
+            <PropertyRef Name="Period" />
+            <PropertyRef Name="Region" />
+            <PropertyRef Name="WholeSalerID" />
+            <PropertyRef Name="CreatedBy" />
+            <PropertyRef Name="LastUpdatedBy" />
+          </Key>
+          <Property Name="Period" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Region" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="WholeSalerID" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SalesTarget" Type="Double" />
+          <Property Name="SalesActual" Type="Double" />
+          <Property Name="CreatedBy" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="LastUpdatedBy" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastUpdatedDateTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="DMSSERVER_BINHHTEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DashB_KPITargetBySalesRoute_Period" EntityType="Self.DashB_KPITargetBySalesRoute_Period" />
+          <EntitySet Name="DashB_SalesForce" EntityType="Self.DashB_SalesForce" />
+          <EntitySet Name="DashB_SalesRoute" EntityType="Self.DashB_SalesRoute" />
+          <EntitySet Name="DashB_SalesTarget_Period" EntityType="Self.DashB_SalesTarget_Period" />
+          <EntitySet Name="DashB_SellInTarget_Period" EntityType="Self.DashB_SellInTarget_Period" />
+          <EntitySet Name="DashBoardMT_ProductBySalesRep_Period" EntityType="Self.DashBoardMT_ProductBySalesRep_Period" />
+          <EntitySet Name="DashBoardMT_SalesBySalesRep_Period" EntityType="Self.DashBoardMT_SalesBySalesRep_Period" />
+          <EntitySet Name="DashBoardMT_SalesByWholeSaler_Period" EntityType="Self.DashBoardMT_SalesByWholeSaler_Period" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DMSSERVER_BINHHTModelStoreContainer" CdmEntityContainer="DMSSERVER_BINHHTEntities">
+          <EntitySetMapping Name="DashB_KPITargetBySalesRoute_Period">
+            <EntityTypeMapping TypeName="DMSSERVER_BINHHTModel.DashB_KPITargetBySalesRoute_Period">
+              <MappingFragment StoreEntitySet="DashB_KPITargetBySalesRoute_Period">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Period" ColumnName="Period" />
+                <ScalarProperty Name="DistributorCode" ColumnName="DistributorCode" />
+                <ScalarProperty Name="SalesRouteCode" ColumnName="SalesRouteCode" />
+                <ScalarProperty Name="KPICode" ColumnName="KPICode" />
+                <ScalarProperty Name="KPITarget" ColumnName="KPITarget" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="SalesOrgCode" ColumnName="SalesOrgCode" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+                <ScalarProperty Name="LastUpdatedDateTime" ColumnName="LastUpdatedDateTime" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DashB_SalesForce">
+            <EntityTypeMapping TypeName="DMSSERVER_BINHHTModel.DashB_SalesForce">
+              <MappingFragment StoreEntitySet="DashB_SalesForce">
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="SalesOrgCode" ColumnName="SalesOrgCode" />
+                <ScalarProperty Name="SalesForceCode" ColumnName="SalesForceCode" />
+                <ScalarProperty Name="SalesForceName" ColumnName="SalesForceName" />
+                <ScalarProperty Name="SalesForceLevel" ColumnName="SalesForceLevel" />
+                <ScalarProperty Name="ParentCode" ColumnName="ParentCode" />
+                <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
+                <ScalarProperty Name="Ordinal" ColumnName="Ordinal" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+                <ScalarProperty Name="LastUpdatedDateTime" ColumnName="LastUpdatedDateTime" />
+                <ScalarProperty Name="ExcutedBy" ColumnName="ExcutedBy" />
+                <ScalarProperty Name="ExecutedDateTime" ColumnName="ExecutedDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DashB_SalesRoute">
+            <EntityTypeMapping TypeName="DMSSERVER_BINHHTModel.DashB_SalesRoute">
+              <MappingFragment StoreEntitySet="DashB_SalesRoute">
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="SalesOrgCode" ColumnName="SalesOrgCode" />
+                <ScalarProperty Name="CustomerCode" ColumnName="CustomerCode" />
+                <ScalarProperty Name="SalesRouteCode" ColumnName="SalesRouteCode" />
+                <ScalarProperty Name="SalesRouteName" ColumnName="SalesRouteName" />
+                <ScalarProperty Name="SalesPersonCode" ColumnName="SalesPersonCode" />
+                <ScalarProperty Name="SalesTeamCode" ColumnName="SalesTeamCode" />
+                <ScalarProperty Name="SalesForceCode" ColumnName="SalesForceCode" />
+                <ScalarProperty Name="SalesForceL1" ColumnName="SalesForceL1" />
+                <ScalarProperty Name="SalesForceL2" ColumnName="SalesForceL2" />
+                <ScalarProperty Name="SalesForceL3" ColumnName="SalesForceL3" />
+                <ScalarProperty Name="SalesForceL4" ColumnName="SalesForceL4" />
+                <ScalarProperty Name="SalesForceL5" ColumnName="SalesForceL5" />
+                <ScalarProperty Name="SalesForceL6" ColumnName="SalesForceL6" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+                <ScalarProperty Name="LastUpdatedDateTime" ColumnName="LastUpdatedDateTime" />
+                <ScalarProperty Name="ExcutedBy" ColumnName="ExcutedBy" />
+                <ScalarProperty Name="ExecutedDateTime" ColumnName="ExecutedDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DashB_SalesTarget_Period">
+            <EntityTypeMapping TypeName="DMSSERVER_BINHHTModel.DashB_SalesTarget_Period">
+              <MappingFragment StoreEntitySet="DashB_SalesTarget_Period">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Period" ColumnName="Period" />
+                <ScalarProperty Name="DistributorCode" ColumnName="DistributorCode" />
+                <ScalarProperty Name="SalesRouteCode" ColumnName="SalesRouteCode" />
+                <ScalarProperty Name="BrandCode" ColumnName="BrandCode" />
+                <ScalarProperty Name="SalesTarget" ColumnName="SalesTarget" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="SalesOrgCode" ColumnName="SalesOrgCode" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+                <ScalarProperty Name="LastUpdatedDateTime" ColumnName="LastUpdatedDateTime" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DashB_SellInTarget_Period">
+            <EntityTypeMapping TypeName="DMSSERVER_BINHHTModel.DashB_SellInTarget_Period">
+              <MappingFragment StoreEntitySet="DashB_SellInTarget_Period">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Period" ColumnName="Period" />
+                <ScalarProperty Name="SalesForceCode" ColumnName="SalesForceCode" />
+                <ScalarProperty Name="SalesForceLevel" ColumnName="SalesForceLevel" />
+                <ScalarProperty Name="DistributorCode" ColumnName="DistributorCode" />
+                <ScalarProperty Name="BrandCode" ColumnName="BrandCode" />
+                <ScalarProperty Name="SellinTarget" ColumnName="SellinTarget" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="SalesOrgCode" ColumnName="SalesOrgCode" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="LastUpdateBy" ColumnName="LastUpdateBy" />
+                <ScalarProperty Name="LastUpdateDateTime" ColumnName="LastUpdateDateTime" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DashBoardMT_ProductBySalesRep_Period">
+            <EntityTypeMapping TypeName="DMSSERVER_BINHHTModel.DashBoardMT_ProductBySalesRep_Period">
+              <MappingFragment StoreEntitySet="DashBoardMT_ProductBySalesRep_Period">
+                <ScalarProperty Name="Period" ColumnName="Period" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="CustID" ColumnName="CustID" />
+                <ScalarProperty Name="WholeSalerID" ColumnName="WholeSalerID" />
+                <ScalarProperty Name="ProductTarget" ColumnName="ProductTarget" />
+                <ScalarProperty Name="ProductActual" ColumnName="ProductActual" />
+                <ScalarProperty Name="MSLTarget" ColumnName="MSLTarget" />
+                <ScalarProperty Name="MSLActual" ColumnName="MSLActual" />
+                <ScalarProperty Name="SalesRouteCode" ColumnName="SalesRouteCode" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+                <ScalarProperty Name="LastUpdatedDateTime" ColumnName="LastUpdatedDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DashBoardMT_SalesBySalesRep_Period">
+            <EntityTypeMapping TypeName="DMSSERVER_BINHHTModel.DashBoardMT_SalesBySalesRep_Period">
+              <MappingFragment StoreEntitySet="DashBoardMT_SalesBySalesRep_Period">
+                <ScalarProperty Name="Period" ColumnName="Period" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="CustID" ColumnName="CustID" />
+                <ScalarProperty Name="WholeSalerID" ColumnName="WholeSalerID" />
+                <ScalarProperty Name="SalesTarget" ColumnName="SalesTarget" />
+                <ScalarProperty Name="SalesActual" ColumnName="SalesActual" />
+                <ScalarProperty Name="SalesRouteCode" ColumnName="SalesRouteCode" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+                <ScalarProperty Name="LastUpdatedDateTime" ColumnName="LastUpdatedDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DashBoardMT_SalesByWholeSaler_Period">
+            <EntityTypeMapping TypeName="DMSSERVER_BINHHTModel.DashBoardMT_SalesByWholeSaler_Period">
+              <MappingFragment StoreEntitySet="DashBoardMT_SalesByWholeSaler_Period">
+                <ScalarProperty Name="Period" ColumnName="Period" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="WholeSalerID" ColumnName="WholeSalerID" />
+                <ScalarProperty Name="SalesTarget" ColumnName="SalesTarget" />
+                <ScalarProperty Name="SalesActual" ColumnName="SalesActual" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+                <ScalarProperty Name="LastUpdatedDateTime" ColumnName="LastUpdatedDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
