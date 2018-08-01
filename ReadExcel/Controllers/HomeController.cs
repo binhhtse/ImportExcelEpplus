@@ -66,7 +66,7 @@ namespace ReadExcel.Controllers
                 }
                 else
                 {
-                    item.Growth =(int.Parse(item.Actual) / int.Parse(item.Archive)).ToString()  ;
+                    item.Growth =(double.Parse(item.Actual) / double.Parse(item.Archive)).ToString()  ;
                 }
                 if (item.LastMonth.Trim() == "0" || item.LastMonth.Trim() == "-")
                 {
@@ -74,7 +74,7 @@ namespace ReadExcel.Controllers
                 }
                 else
                 {
-                    item.GrowthLastMonth = (int.Parse(item.Actual) / int.Parse(item.LastMonth)).ToString();
+                    item.GrowthLastMonth = (double.Parse(item.Actual) / double.Parse(item.LastMonth)).ToString();
 
                 }
                 if (item.TargetMonth.Trim() == "0" || item.TargetMonth.Trim() == "-")
@@ -82,11 +82,12 @@ namespace ReadExcel.Controllers
                     item.PercentTarget = "0";
                 }
                 else
+
                 {
                     var a = double.Parse(item.Actual);
                     var b = double.Parse(item.TargetMonth);
                     var c = (double.Parse(item.Actual) / double.Parse(item.TargetMonth));
-                    item.PercentTarget = (int.Parse(item.Actual) / int.Parse(item.TargetMonth)).ToString();
+                    item.PercentTarget = (double.Parse(item.Actual) / double.Parse(item.TargetMonth)).ToString();
                    
                 }
                 if (item.TargetWeek.Trim() == "0" || item.TargetWeek.Trim() == "-")
@@ -95,7 +96,7 @@ namespace ReadExcel.Controllers
                 }
                 else
                 {
-                    item.PercentWeek = (int.Parse(item.ActualWeek) / int.Parse(item.TargetWeek)).ToString();
+                    item.PercentWeek = (double.Parse(item.ActualWeek) / double.Parse(item.TargetWeek)).ToString();
 
                 }
 
