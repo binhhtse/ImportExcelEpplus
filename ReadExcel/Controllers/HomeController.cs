@@ -29,6 +29,7 @@ namespace ReadExcel.Controllers
             ViewBag.Message = "Your application description page.";
 
             return View();
+            
         }
 
         public ActionResult Contact()
@@ -49,15 +50,60 @@ namespace ReadExcel.Controllers
             //if (Path.GetExtension(upload.FileName) == ".xlsx" || Path.GetExtension(upload.FileName) == ".xls")
             //{
             ExcelPackage package = new ExcelPackage(upload.InputStream);
-            DataTable Dt = ExcelPackageExtensions.ToDataTable(package);
+            DataTable[] Dt = ExcelPackageExtensions.ToDataTable(package);
             //List<Account> ls = userRepository.List.ToList();
-            List<object> lst = Dt.AsEnumerable().ToList<object>();
-           
-            List<Person> employeeList = Dt.DataTableToList<Person>();
+
+            //List<object> lst = Dt.AsEnumerable().ToList<object>();
+
+            //List<Person> employeeList = Dt.DataTableToList<Person>();
+
+            List<SellinFirstTab> employeeList = Dt[0].DataTableToList<SellinFirstTab>();
+            foreach (var item in employeeList)
+            {
+                if (item.Archive.Trim() == "0" || item.Archive.Trim() =="-")
+                {
+                    item.Growth = "0";
+                }
+                else
+                {
+                    item.Growth =(int.Parse(item.Actual) / int.Parse(item.Archive)).ToString()  ;
+                }
+                if (item.LastMonth.Trim() == "0" || item.LastMonth.Trim() == "-")
+                {
+                    item.GrowthLastMonth = "0";
+                }
+                else
+                {
+                    item.GrowthLastMonth = (int.Parse(item.Actual) / int.Parse(item.LastMonth)).ToString();
+
+                }
+                if (item.TargetMonth.Trim() == "0" || item.TargetMonth.Trim() == "-")
+                {
+                    item.PercentTarget = "0";
+                }
+                else
+                {
+                    var a = double.Parse(item.Actual);
+                    var b = double.Parse(item.TargetMonth);
+                    var c = (double.Parse(item.Actual) / double.Parse(item.TargetMonth));
+                    item.PercentTarget = (int.Parse(item.Actual) / int.Parse(item.TargetMonth)).ToString();
+                   
+                }
+                if (item.TargetWeek.Trim() == "0" || item.TargetWeek.Trim() == "-")
+                {
+                    item.PercentWeek = "0";
+                }
+                else
+                {
+                    item.PercentWeek = (int.Parse(item.ActualWeek) / int.Parse(item.TargetWeek)).ToString();
+
+                }
+
+            }
             //userRepository.BatchInsert(employeeList);
             DataTable Dts = ExcelPackageExtensions.ToDataTable(employeeList);
             Log.Info("Start log INFO...");
-            ModelState.AddModelError("Error", "Ex: This login failed " + employeeList.ElementAt(0).Fullname);
+            //ModelState.AddModelError("Error", "Ex: This login failed " + employeeList.ElementAt(0).Fullname);
             ModelState.AddModelError("Error", "Ex: This login failed 1");
             return View(Dt);
             //}

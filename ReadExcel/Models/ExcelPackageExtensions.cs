@@ -15,15 +15,17 @@ namespace ReadExcel.Models
 {
     public static class ExcelPackageExtensions
     {
-        public static DataTable ToDataTable(this ExcelPackage package)
+        public static DataTable[] ToDataTable(this ExcelPackage package)
         {
             ExcelWorksheet workSheet = package.Workbook.Worksheets[int.Parse(ConfigurationManager.AppSettings["SheetNumber"])];
             DataTable Dt = new DataTable();
             DataTable Dt1 = new DataTable();
             int[] Selection = { 1, 2, 3, 4, 5, 6, 7, 8 };
+
             foreach (var firstRowCell in workSheet.Cells[1, 1, 1, workSheet.Dimension.End.Column])
             {
                 Dt.Columns.Add(firstRowCell.Text);
+                Dt1.Columns.Add("");
             }
             //for (var col = 1; col <= workSheet.Dimension.End.Column; col++)
             //{
@@ -33,24 +35,53 @@ namespace ReadExcel.Models
             //        Dt.Columns.Add(workSheet.Cells[1, col].Text);
             //    }
             //}
-            for (var rowNumber = 2; rowNumber <= workSheet.Dimension.End.Row; rowNumber++)
+
+            bool isSepa = false;
+            for (var rowNumber = 3; rowNumber <= workSheet.Dimension.End.Row; rowNumber++)
             {
+
                 var row = workSheet.Cells[rowNumber, 1, rowNumber, workSheet.Dimension.End.Column];
                 var newRow = Dt.NewRow();
+                var newRow1 = Dt1.NewRow();
+                int count = 0;
                 foreach (var cell in row)
                 {
                     var columnNumber = cell.Start.Column;
                     int pos = Array.IndexOf(Selection, columnNumber);
                     //if (pos > -1)
                     //{
-                        newRow[cell.Start.Column - 1] = cell.Text;
+                    newRow[cell.Start.Column - 1] = cell.Text;
+                    newRow1[cell.Start.Column - 1] = cell.Text;
                     //}
-                   
+                    if (string.IsNullOrEmpty(cell.Text))
+                    {
+                        count++;
+                    }
                 }
-                Dt.Rows.Add(newRow);
+                if (count > 15)
+                {
+                    isSepa = true;
+                }
+                if (isSepa == true)
+                {
+                    Dt1.Rows.Add(newRow1);
+                }
+                else
+                {
+                    Dt.Rows.Add(newRow);
+                }
+
             }
-            
-            return Dt;
+            for (int i = 0; i < 2; i++)
+            {
+                DataRow recRow = Dt1.Rows[i];
+                recRow[i] = string.Empty;
+                recRow.Delete();
+                Dt1.AcceptChanges();
+
+            }
+            return new DataTable[] { Dt, Dt1 };
+            //return Dt;
         }
 
 

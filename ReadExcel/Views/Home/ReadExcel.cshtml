@@ -8,7 +8,42 @@
 
 <html>
 <head>
+    <style>
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
 
+            /* Style the buttons that are used to open the tab content */
+            .tab button {
+                background-color: inherit;
+                float: left;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 14px 16px;
+                transition: 0.3s;
+            }
+
+                /* Change background color of buttons on hover */
+                .tab button:hover {
+                    background-color: #ddd;
+                }
+
+                /* Create an active/current tablink class */
+                .tab button.active {
+                    background-color: #ccc;
+                }
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            /*border: 1px solid #ccc;
+            border-top: none;*/
+        }
+    </style>
     <title>ReadFromExcel</title>
     <link href="~/Content/jquery.dataTables.min.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
@@ -22,48 +57,94 @@
 
 </head>
 <body>
-    <div>
-       
-        @foreach (var item in ViewContext.ViewData.ModelState)
-        {
-            if (item.Value.Errors.Any())
+    <div class="tab">
+        <button class="tablinks" onclick="openCity(event, 'tab1')">Tab1</button>
+        <button class="tablinks" onclick="openCity(event, 'tab2')">Tab2</button>
+
+    </div>
+    <div id="tab1" class="tabcontent" style="display: block;">
+        <div class="table-responsive">
+
+            @foreach (var item in ViewContext.ViewData.ModelState)
             {
-               
-            @*<h5><b>@item.Key</b></h5>*@
-            
-            @*<h5><b>@(string.Join("\r\n" + Environment.NewLine, item.Value.Errors.Select(x => x.ErrorMessage)))</b></h5>*@
-            <b>@Html.ValidationSummary()</b>
+                if (item.Value.Errors.Any())
+                {
+
+                    @*<h5><b>@item.Key</b></h5>*@
+
+                    @*<h5><b>@(string.Join("\r\n" + Environment.NewLine, item.Value.Errors.Select(x => x.ErrorMessage)))</b></h5>*@
+                    <b>@Html.ValidationSummary()</b>
+                }
             }
-        }
-        @if (Model != null)
-        {
-            <table border="1" cellpadding="5" id="tableId">
-                <thead>
-                    <tr>
-                        @foreach (System.Data.DataColumn col in Model.Columns)
-                        {
-                            <th>@col.Caption</th>
-                        }
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (System.Data.DataRow row in Model.Rows)
-                    {
+            @if (Model != null)
+            {
+                <table border="1" cellpadding="5" id="tableId" class="table">
+                    <thead>
                         <tr>
-                            @foreach (var cell in row.ItemArray)
+                            @foreach (System.Data.DataColumn col in Model[0].Columns)
                             {
-                                <td>@cell.ToString()</td>
+                                <th>@col.Caption</th>
                             }
                         </tr>
-                    }
-                </tbody>
-            </table>
-        }
+                    </thead>
+                    <tbody>
+                        @foreach (System.Data.DataRow row in Model[0].Rows)
+                        {
+                            <tr>
+                                @foreach (var cell in row.ItemArray)
+                                {
+                                    <td>@cell.ToString()</td>
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
     </div>
+
+    <div id="tab2" class="tabcontent">
+        <div class="table-responsive">
+
+
+            @if (Model != null)
+            {
+                <table border="1" cellpadding="5" id="tableId1" class="table">
+                    <thead>
+                        <tr>
+                            @*@foreach (System.Data.DataColumn col in Model[1].Columns)
+                            {
+                                <th>@col.Caption</th>
+                            }*@
+                            @*@for (int i = 1; i < Model[1].Columns.Count; i++)
+                            {
+                                <th>@Model[1].Columns.Caption</th>
+                            }*@
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (System.Data.DataRow row in Model[1].Rows)
+                        {
+                            <tr>
+                                @foreach (var cell in row.ItemArray)
+                                {
+                                    <td>@cell.ToString()</td>
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
+    </div>
+
 </body>
 </html>
 <script>
+
     $(document).ready(function () {
+
+
         $('#tableId').DataTable({
             "oLanguage": {
                 "sSearch": "Tìm Kiếm", //search,
@@ -94,8 +175,57 @@
                 }
             ],
         });
+        $('#tableId1').DataTable({
+            "oLanguage": {
+                "sSearch": "Tìm Kiếm", //search,
+                "sProcessing": "Đang xử lý...",
+                "sLengthMenu": "Xem _MENU_ mục",
+                "sZeroRecords": "Không tìm thấy dòng nào phù hợp",
+                "sInfo": "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
+                "sInfoEmpty": "Đang xem 0 đến 0 trong tổng số 0 mục",
+                "sInfoFiltered": "(được lọc từ _MAX_ mục)",
+                "sInfoPostFix": "",
+                "sSearch": "Tìm:",
+                "sUrl": "",
+                "oPaginate": {
+                    "sFirst": "Đầu",
+                    "sPrevious": "Trước",
+                    "sNext": "Tiếp",
+                    "sLast": "Cuối"
+                }
+            },
+            pageLength: 50,
+            "bSort": false,
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'excel',
+                    title: '',
+                    text: 'Xuất file'
+                }
+            ],
+        });
     });
+    function openCity(evt, cityName) {
+        // Declare all variables
+        var i, tabcontent, tablinks;
 
+        // Get all elements with class="tabcontent" and hide them
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        // Get all elements with class="tablinks" and remove the class "active"
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        // Show the current tab, and add an "active" class to the button that opened the tab
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
 </script>
 
 

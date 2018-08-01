@@ -203,6 +203,7 @@
     <Compile Include="Models\ExcelPackageExtensions.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\PeopleViewModel.cs" />
+    <Compile Include="Models\SellinFirstTab.cs" />
     <Compile Include="Person.cs">
       <DependentUpon>DmsEntity.tt</DependentUpon>
     </Compile>
