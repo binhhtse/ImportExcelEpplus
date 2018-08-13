@@ -19,5 +19,30 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="SellinFirstTabs">
+      <EntityTypeMapping TypeName="DemoModel.SellinFirstTab">
+        <MappingFragment StoreEntitySet="SellinFirstTab">
+          <ScalarProperty Name="Tab" ColumnName="Tab" />
+          <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CurrentDate" ColumnName="CurrentDate" />
+          <ScalarProperty Name="PercentWeek" ColumnName="PercentWeek" />
+          <ScalarProperty Name="ActualWeek" ColumnName="ActualWeek" />
+          <ScalarProperty Name="TargetWeek" ColumnName="TargetWeek" />
+          <ScalarProperty Name="PercentTarget" ColumnName="PercentTarget" />
+          <ScalarProperty Name="GrowthLastMonth" ColumnName="GrowthLastMonth" />
+          <ScalarProperty Name="Growth" ColumnName="Growth" />
+          <ScalarProperty Name="Actual" ColumnName="Actual" />
+          <ScalarProperty Name="TargetDate" ColumnName="TargetDate" />
+          <ScalarProperty Name="TargetMonth" ColumnName="TargetMonth" />
+          <ScalarProperty Name="LastMonth" ColumnName="LastMonth" />
+          <ScalarProperty Name="Archive" ColumnName="Archive" />
+          <ScalarProperty Name="Channel" ColumnName="Channel" />
+          <ScalarProperty Name="KeyAccount" ColumnName="KeyAccount" />
+          <ScalarProperty Name="Region" ColumnName="Region" />
+          <ScalarProperty Name="Day" ColumnName="Day" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -27,5 +27,6 @@ namespace ReadExcel
     
         public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<Person> People { get; set; }
+        public virtual DbSet<SellinFirstTab> SellinFirstTabs { get; set; }
     }
 }

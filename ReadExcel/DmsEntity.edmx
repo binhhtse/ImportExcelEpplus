@@ -21,9 +21,37 @@
           <Property Name="Money" Type="nchar" MaxLength="10" />
           <Property Name="Address" Type="nchar" MaxLength="10" />
         </EntityType>
+        <EntityType Name="SellinFirstTab">
+          <Key>
+            <PropertyRef Name="Day" />
+            <PropertyRef Name="Region" />
+            <PropertyRef Name="KeyAccount" />
+            <PropertyRef Name="Channel" />
+          </Key>
+          <Property Name="Day" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Region" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="KeyAccount" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Channel" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Archive" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastMonth" Type="nvarchar" MaxLength="50" />
+          <Property Name="TargetMonth" Type="nvarchar" MaxLength="50" />
+          <Property Name="TargetDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="Actual" Type="nvarchar" MaxLength="50" />
+          <Property Name="Growth" Type="nvarchar" MaxLength="50" />
+          <Property Name="GrowthLastMonth" Type="nvarchar" MaxLength="50" />
+          <Property Name="PercentTarget" Type="nvarchar" MaxLength="50" />
+          <Property Name="TargetWeek" Type="nvarchar" MaxLength="50" />
+          <Property Name="ActualWeek" Type="nvarchar" MaxLength="50" />
+          <Property Name="PercentWeek" Type="nvarchar" MaxLength="50" />
+          <Property Name="CurrentDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="LastUpdated" Type="nvarchar" MaxLength="50" />
+          <Property Name="Tab" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityContainer Name="DemoModelStoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="People" EntityType="Self.People" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SellinFirstTab" EntityType="Self.SellinFirstTab" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -39,6 +67,7 @@
         <EntityContainer Name="DemoEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Accounts" EntityType="Self.Account" />
           <EntitySet Name="People" EntityType="DemoModel.Person" />
+          <EntitySet Name="SellinFirstTabs" EntityType="DemoModel.SellinFirstTab" />
         </EntityContainer>
         <EntityType Name="Person">
           <Key>
@@ -48,6 +77,33 @@
           <Property Name="Fullname" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="Money" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="Address" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SellinFirstTab">
+          <Key>
+            <PropertyRef Name="Day" />
+            <PropertyRef Name="Region" />
+            <PropertyRef Name="KeyAccount" />
+            <PropertyRef Name="Channel" />
+          </Key>
+          <Property Name="Day" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Region" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KeyAccount" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Channel" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Archive" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastMonth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TargetMonth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TargetDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Actual" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Growth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GrowthLastMonth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PercentTarget" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TargetWeek" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ActualWeek" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PercentWeek" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CurrentDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="LastUpdated" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Tab" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -70,6 +126,31 @@
                 <ScalarProperty Name="Money" ColumnName="Money" />
                 <ScalarProperty Name="Fullname" ColumnName="Fullname" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SellinFirstTabs">
+            <EntityTypeMapping TypeName="DemoModel.SellinFirstTab">
+              <MappingFragment StoreEntitySet="SellinFirstTab">
+                <ScalarProperty Name="Tab" ColumnName="Tab" />
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CurrentDate" ColumnName="CurrentDate" />
+                <ScalarProperty Name="PercentWeek" ColumnName="PercentWeek" />
+                <ScalarProperty Name="ActualWeek" ColumnName="ActualWeek" />
+                <ScalarProperty Name="TargetWeek" ColumnName="TargetWeek" />
+                <ScalarProperty Name="PercentTarget" ColumnName="PercentTarget" />
+                <ScalarProperty Name="GrowthLastMonth" ColumnName="GrowthLastMonth" />
+                <ScalarProperty Name="Growth" ColumnName="Growth" />
+                <ScalarProperty Name="Actual" ColumnName="Actual" />
+                <ScalarProperty Name="TargetDate" ColumnName="TargetDate" />
+                <ScalarProperty Name="TargetMonth" ColumnName="TargetMonth" />
+                <ScalarProperty Name="LastMonth" ColumnName="LastMonth" />
+                <ScalarProperty Name="Archive" ColumnName="Archive" />
+                <ScalarProperty Name="Channel" ColumnName="Channel" />
+                <ScalarProperty Name="KeyAccount" ColumnName="KeyAccount" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

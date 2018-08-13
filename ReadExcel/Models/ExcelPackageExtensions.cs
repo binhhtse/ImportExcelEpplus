@@ -25,7 +25,7 @@ namespace ReadExcel.Models
             foreach (var firstRowCell in workSheet.Cells[1, 1, 1, workSheet.Dimension.End.Column])
             {
                 Dt.Columns.Add(firstRowCell.Text);
-                Dt1.Columns.Add("");
+                //Dt1.Columns.Add("");
             }
             //for (var col = 1; col <= workSheet.Dimension.End.Column; col++)
             //{
@@ -37,6 +37,7 @@ namespace ReadExcel.Models
             //}
 
             bool isSepa = false;
+            int countRow = 0;
             for (var rowNumber = 3; rowNumber <= workSheet.Dimension.End.Row; rowNumber++)
             {
 
@@ -51,18 +52,36 @@ namespace ReadExcel.Models
                     //if (pos > -1)
                     //{
                     newRow[cell.Start.Column - 1] = cell.Text;
-                    newRow1[cell.Start.Column - 1] = cell.Text;
+                    //newRow1[cell.Start.Column - 1] = cell.Text;
                     //}
                     if (string.IsNullOrEmpty(cell.Text))
                     {
                         count++;
                     }
+                    if (countRow == 1)
+                    {
+                        Dt1.Columns.Add(cell.Text);
+                        
+                    }
+                    
+                }
+                foreach (var cell in row)
+                {
+                    if(countRow > 1)
+                    {
+                        newRow1[cell.Start.Column - 1] = cell.Text;
+                    }
+                }
+                if(countRow == 1)
+                {
+                    countRow++;
                 }
                 if (count > 15)
                 {
                     isSepa = true;
+                    countRow++;
                 }
-                if (isSepa == true)
+                if (isSepa == true && countRow > 1)
                 {
                     Dt1.Rows.Add(newRow1);
                 }
@@ -74,12 +93,19 @@ namespace ReadExcel.Models
             }
             for (int i = 0; i < 2; i++)
             {
-                DataRow recRow = Dt1.Rows[i];
-                recRow[i] = string.Empty;
+                DataRow recRow = Dt1.Rows[0];
+                recRow[0] = string.Empty;
                 recRow.Delete();
                 Dt1.AcceptChanges();
 
             }
+            
+                DataRow recRow1 = Dt.Rows[Dt.Rows.Count - 1];
+                recRow1[0] = string.Empty;
+                recRow1.Delete();
+                Dt.AcceptChanges();
+        
+            
             return new DataTable[] { Dt, Dt1 };
             //return Dt;
         }
@@ -163,7 +189,26 @@ namespace ReadExcel.Models
             try
             {
                 List<T> list = new List<T>();
+                
+                    T obj1 = new T();
+                    int j = 0;
+                    foreach (var prop in obj1.GetType().GetProperties())
+                    {
+                        try
+                        {
+                            PropertyInfo propertyInfo = obj1.GetType().GetProperty(prop.Name);
+                            //propertyInfo.SetValue(obj, Convert.ChangeType(row[prop.Name], propertyInfo.PropertyType), null);
+                            propertyInfo.SetValue(obj1, Convert.ChangeType(table.Columns[j].ToString(), propertyInfo.PropertyType), null);
+                            j++;
+                        }
+                        catch
+                        {
+                            continue;
+                        }
+                    }
 
+                    list.Add(obj1);
+                
                 foreach (var row in table.AsEnumerable())
                 {
                     T obj = new T();
@@ -173,7 +218,7 @@ namespace ReadExcel.Models
                         try
                         {
                             PropertyInfo propertyInfo = obj.GetType().GetProperty(prop.Name);
-                            //propertyInfo.SetValue(obj, Convert.ChangeType(row[prop.Name], propertyInfo.PropertyType), null);
+                          //propertyInfo.SetValue(obj, Convert.ChangeType(row[prop.Name], propertyInfo.PropertyType), null);
                             propertyInfo.SetValue(obj, Convert.ChangeType(row.ItemArray[i], propertyInfo.PropertyType), null);
                             i++;
                         }
@@ -208,6 +253,22 @@ namespace ReadExcel.Models
                 table.Rows.Add(row);
             }
             return table;
+        }
+
+        public static int CountWorkingDay(int year, int month)
+        {
+            int daysInMonth = 0;
+            int days = DateTime.DaysInMonth(year, month);
+            for (int i = 1; i <= days; i++)
+            {
+                DateTime day = new DateTime(year, month, i);
+                if (day.DayOfWeek != DayOfWeek.Sunday && day.DayOfWeek != DayOfWeek.Saturday)
+                {
+                    daysInMonth++;
+                }
+                
+            }
+            return daysInMonth;
         }
 
     }

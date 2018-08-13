@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Migrations;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Web;
 
 namespace ReadExcel.Repository
@@ -97,7 +99,20 @@ namespace ReadExcel.Repository
             db.Entry(entity).State = EntityState.Modified;
             db.SaveChanges();
         }
-
+        public void InsertOrUpdate(T entity)
+        {
+            try
+            {
+                table.AddOrUpdate<T>(entity);
+                db.SaveChanges();
+                //db.Set<T>().AddOrUpdate<T>(entity);
+            }
+            catch (Exception ex)
+            {
+                //TODO: Log exception
+                throw;
+            }
+        }
         public void DeleteRange(List<T> entities)
         {
             table.RemoveRange(entities);
@@ -117,6 +132,9 @@ namespace ReadExcel.Repository
             // Now find the product by primary key (detached entities are not cached)
             return table.Find(id);
         }
-
+        public IEnumerable<T> Search(Expression<Func<T, bool>> predicate)
+        {
+            return table.Where(predicate).ToList();
+        }
     }
 }

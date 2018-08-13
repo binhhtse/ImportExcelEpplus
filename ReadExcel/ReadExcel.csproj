@@ -210,6 +210,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\GenericRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />
+    <Compile Include="SellinFirstTab.cs">
+      <DependentUpon>DmsEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -284,6 +287,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\ReadExcelUsingEpplus.cshtml" />
     <Content Include="Views\Home\ReadExcel.cshtml" />
+    <Content Include="Views\Home\SearchSellIn.cshtml" />
+    <Content Include="Views\Home\SearchResultSellIn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
