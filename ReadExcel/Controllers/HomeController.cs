@@ -51,11 +51,12 @@ namespace ReadExcel.Controllers
         [HttpPost]
         public ActionResult ReadExcel(HttpPostedFileBase chooseFile)
         {
-            //if (Path.GetExtension(chooseFile.FileName) == ".xlsx" || Path.GetExtension(chooseFile.FileName) == ".xls")
-            //{
-            //    TempData["message"] = DMSEnum.Fail;
-            //    return RedirectToAction("ReadExcelUsingEpplus");
-            //}
+            var ext = Path.GetExtension(chooseFile.FileName);
+            if (Path.GetExtension(chooseFile.FileName) != ".xlsx" && Path.GetExtension(chooseFile.FileName) != ".xls")
+            {
+                TempData["message"] = DMSEnum.Fail;
+                return RedirectToAction("ReadExcelUsingEpplus");
+            }
             ExcelPackage package = new ExcelPackage(chooseFile.InputStream);
             DataTable[] Dt = ExcelPackageExtensions.ToDataTable(package);
             //List<Account> ls = sellInRepository.List.ToList();
