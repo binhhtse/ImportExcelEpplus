@@ -1,0 +1,338 @@
+﻿
+@{
+    ViewBag.Title = "ImportSellOut";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ImportSellOut</h2>
+<html>
+<head>
+    <style>
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+            /* Style the buttons that are used to open the tab content */
+            .tab button {
+                background-color: inherit;
+                float: left;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 14px 16px;
+                transition: 0.3s;
+            }
+
+                /* Change background color of buttons on hover */
+                .tab button:hover {
+                    background-color: #ddd;
+                }
+
+                /* Create an active/current tablink class */
+                .tab button.active {
+                    background-color: #ccc;
+                }
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            /*border: 1px solid #ccc;
+            border-top: none;*/
+        }
+    </style>
+    <title>Import Sell In</title>
+    <link href="~/Content/upload.css" rel="stylesheet" />
+    @*<link href="~/Content/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.dataTables.min.js"></script>*@
+
+    <link href="~/Content/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/jquery-ui.js"></script>
+
+
+</head>
+<body>
+    <div class="tab">
+        <button class="tablinks active" id="button1" onclick="openTab(event, 'tab1')">
+            Import revenue target
+        </button>
+        <button class="tablinks" onclick="openTab(event, 'tab2')">Import performed</button>
+
+    </div>
+    <hr />
+   
+    @foreach (var item in ViewContext.ViewData.ModelState)
+    {
+        if (item.Value.Errors.Any())
+        {
+            <div class="alert alert-success" id="success-alert">
+                <strong><b>@Html.ValidationSummary()</b></strong>
+            </div>
+
+        }
+    }
+
+    @if (@TempData["message"] != null)
+    {
+        <div class="alert alert-success" id="success-alert">
+            <strong><b> @TempData["message"]</b></strong>
+        </div>
+    }
+
+
+
+    <div id="tab1" class="tabcontent">
+        @using (Html.BeginForm("ImportTarget", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="form-group">
+                @*<input type="file" id="dataFile" name="upload" />*@
+                <div class="file-upload">
+                    <div class="file-select">
+                        <div class="file-select-button" id="fileName1">Choose File</div>
+                        <div class="file-select-name" id="noFile1">No file chosen...</div>
+                        <input type="file" name="chooseFile" id="chooseFile1">
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <input type="submit" name="btnupload" value="Upload" class="btn btn-primary" />
+            </div>
+        }
+    </div>
+
+    <div id="tab2" class="tabcontent">
+        @using (Html.BeginForm("ImportPerform", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="form-group">
+                @*<input type="file" id="dataFile" name="upload" />*@
+                <div class="file-upload">
+                    <div class="file-select">
+                        <div class="file-select-button" id="fileName2">Choose File</div>
+                        <div class="file-select-name" id="noFile2">No file chosen...</div>
+                        <input type="file" name="chooseFile" id="chooseFile2">
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <input type="submit" name="btnupload" value="Upload" class="btn btn-primary" />
+            </div>
+        }
+    </div>
+
+</body>
+</html>
+<script>
+
+    $(document).ready(function () {
+
+
+        $('#tableId').DataTable({
+            "oLanguage": {
+                "sSearch": "Tìm Kiếm", //search,
+                "sProcessing": "Đang xử lý...",
+                "sLengthMenu": "Xem _MENU_ mục",
+                "sZeroRecords": "Không tìm thấy dòng nào phù hợp",
+                "sInfo": "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
+                "sInfoEmpty": "Đang xem 0 đến 0 trong tổng số 0 mục",
+                "sInfoFiltered": "(được lọc từ _MAX_ mục)",
+                "sInfoPostFix": "",
+                "sSearch": "Tìm:",
+                "sUrl": "",
+                "oPaginate": {
+                    "sFirst": "Đầu",
+                    "sPrevious": "Trước",
+                    "sNext": "Tiếp",
+                    "sLast": "Cuối"
+                }
+            },
+            pageLength: 50,
+            "bSort": false,
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'excel',
+                    title: '',
+                    text: 'Xuất file'
+                }
+            ],
+            "columnDefs": [
+                {
+                    "targets": [16, 18],
+                    "visible": false
+
+                }
+
+            ],
+            initComplete: function () {
+                this.api().columns().every(function () {
+                    var column = this;
+                    var select = $('<select style="max-width:70px !important"><option value=""></option></select>')
+                        .appendTo($("#filters").find("th").eq(column.index()))
+                        .on('change', function () {
+                            var val = $.fn.dataTable.util.escapeRegex(
+                                $(this).val()
+                            );
+
+                            column
+                                .search(val ? '^' + val + '$' : '', true, false)
+                                .draw();
+                        });
+
+                    column.data().unique().sort().each(function (d, j) {
+                        select.append('<option value="' + d + '">' + d + '</option>')
+                    });
+                });
+            }
+        });
+        $('#tableId1').DataTable({
+            "oLanguage": {
+                "sSearch": "Tìm Kiếm", //search,
+                "sProcessing": "Đang xử lý...",
+                "sLengthMenu": "Xem _MENU_ mục",
+                "sZeroRecords": "Không tìm thấy dòng nào phù hợp",
+                "sInfo": "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
+                "sInfoEmpty": "Đang xem 0 đến 0 trong tổng số 0 mục",
+                "sInfoFiltered": "(được lọc từ _MAX_ mục)",
+                "sInfoPostFix": "",
+                "sSearch": "Tìm:",
+                "sUrl": "",
+                "oPaginate": {
+                    "sFirst": "Đầu",
+                    "sPrevious": "Trước",
+                    "sNext": "Tiếp",
+                    "sLast": "Cuối"
+                }
+            },
+            pageLength: 50,
+            "bSort": false,
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'excel',
+                    title: '',
+                    text: 'Xuất file'
+                }
+            ],
+            "columnDefs": [
+                {
+                    "targets": [16, 18],
+                    "visible": false
+
+                }
+
+
+            ],
+            initComplete: function () {
+                this.api().columns().every(function () {
+                    var column = this;
+                    var select = $('<select><option value=""></option></select>')
+                        .appendTo($(column.footer()).empty())
+                        .on('change', function () {
+                            var val = $.fn.dataTable.util.escapeRegex(
+                                $(this).val()
+                            );
+
+                            column
+                                .search(val ? '^' + val + '$' : '', true, false)
+                                .draw();
+                        });
+
+                    column.data().unique().sort().each(function (d, j) {
+                        select.append('<option value="' + d + '">' + d + '</option>')
+                    });
+                });
+            }
+        });
+
+
+        $("table").removeClass("dataTable");
+        openTab(event, 'tab1');
+        $("#button1").addClass("active");
+
+        var filename = $("#dataFile").val();
+        $("#tab2").removeClass('active');
+        if (/^\s*$/.test(filename)) {
+
+            $("#tab2").removeClass('active');
+
+        }
+        else {
+            $("#tab2").addClass('active');
+
+        }
+        $('#dataFile').bind('change', function () {
+            var filename = $("#dataFile").val();
+            if (/^\s*$/.test(filename)) {
+                $("#tab2").removeClass('disabled');
+            }
+            else {
+                $("#tab2").addClass('disabled');
+            }
+        });
+
+
+        $('#chooseFile1').bind('change', function () {
+            var filename = $("#chooseFile1").val();
+            if (/^\s*$/.test(filename)) {
+                $(".file-upload").removeClass('active');
+                $("#noFile1").text("No file chosen...");
+            }
+            else {
+                $(".file-upload").addClass('active');
+                $("#noFile1").text(filename.replace("C:\\fakepath\\", ""));
+            }
+        });
+        $('#chooseFile2').bind('change', function () {
+            var filename = $("#chooseFile2").val();
+            if (/^\s*$/.test(filename)) {
+                $(".file-upload").removeClass('active');
+                $("#noFile2").text("No file chosen...");
+            }
+            else {
+                $(".file-upload").addClass('active');
+                $("#noFile2").text(filename.replace("C:\\fakepath\\", ""));
+            }
+        });
+        $("#success-alert").fadeTo(2000, 500).slideUp(500, function () {
+            $("#success-alert").slideUp(500);
+        });
+
+    });
+
+    function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+
+        // Get all elements with class="tabcontent" and hide them
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        // Get all elements with class="tablinks" and remove the class "active"
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        // Show the current tab, and add an "active" class to the button that opened the tab
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.className += " active";
+
+    }
+
+
+
+</script>
+

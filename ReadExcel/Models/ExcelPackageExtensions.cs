@@ -61,18 +61,18 @@ namespace ReadExcel.Models
                     if (countRow == 1)
                     {
                         Dt1.Columns.Add(cell.Text);
-                        
+
                     }
-                    
+
                 }
                 foreach (var cell in row)
                 {
-                    if(countRow > 1)
+                    if (countRow > 1)
                     {
                         newRow1[cell.Start.Column - 1] = cell.Text;
                     }
                 }
-                if(countRow == 1)
+                if (countRow == 1)
                 {
                     countRow++;
                 }
@@ -93,23 +93,52 @@ namespace ReadExcel.Models
             }
             for (int i = 0; i < 2; i++)
             {
-                DataRow recRow = Dt1.Rows[0];
-                recRow[0] = string.Empty;
-                recRow.Delete();
-                Dt1.AcceptChanges();
+                if(Dt1.Rows.Count > 0)
+                {
+                    DataRow recRow = Dt1.Rows[0];
+                    recRow[0] = string.Empty;
+                    recRow.Delete();
+                    Dt1.AcceptChanges();
+                }
+                
 
             }
-            
-                DataRow recRow1 = Dt.Rows[Dt.Rows.Count - 1];
-                recRow1[0] = string.Empty;
-                recRow1.Delete();
-                Dt.AcceptChanges();
-        
-            
+           
+            DataRow recRow1 = Dt.Rows[Dt.Rows.Count - 1];
+            recRow1[0] = string.Empty;
+            recRow1.Delete();
+            Dt.AcceptChanges();
+
+
             return new DataTable[] { Dt, Dt1 };
             //return Dt;
         }
 
+        public static DataTable ConvertToDataTable(this ExcelPackage package)
+        {
+            ExcelWorksheet workSheet = package.Workbook.Worksheets[int.Parse(ConfigurationManager.AppSettings["SheetNumber"])];
+            DataTable Dt = new DataTable();
+            foreach (var firstRowCell in workSheet.Cells[1, 1, 1, workSheet.Dimension.End.Column])
+            {
+                Dt.Columns.Add(firstRowCell.Text);
+            }
+            for (var rowNumber = 2; rowNumber <= workSheet.Dimension.End.Row; rowNumber++)
+            {
+                var row = workSheet.Cells[rowNumber, 1, rowNumber, workSheet.Dimension.End.Column];
+                var newRow = Dt.NewRow();
+                foreach (var cell in row)
+                {
+                    var columnNumber = cell.Start.Column;
+                    newRow[cell.Start.Column - 1] = cell.Text;
+                }
+                Dt.Rows.Add(newRow);
+            }
+            //DataRow recRow = Dt.Rows[0];
+            //recRow[0] = string.Empty;
+            //recRow.Delete();
+            //Dt.AcceptChanges();
+            return Dt;
+        }
 
         public static IList<T> ConvertTo<T>(IList<DataRow> rows)
         {
@@ -189,26 +218,26 @@ namespace ReadExcel.Models
             try
             {
                 List<T> list = new List<T>();
-                
-                    T obj1 = new T();
-                    int j = 0;
-                    foreach (var prop in obj1.GetType().GetProperties())
-                    {
-                        try
-                        {
-                            PropertyInfo propertyInfo = obj1.GetType().GetProperty(prop.Name);
-                            //propertyInfo.SetValue(obj, Convert.ChangeType(row[prop.Name], propertyInfo.PropertyType), null);
-                            propertyInfo.SetValue(obj1, Convert.ChangeType(table.Columns[j].ToString(), propertyInfo.PropertyType), null);
-                            j++;
-                        }
-                        catch
-                        {
-                            continue;
-                        }
-                    }
 
-                    list.Add(obj1);
-                
+                T obj1 = new T();
+                int j = 0;
+                foreach (var prop in obj1.GetType().GetProperties())
+                {
+                    try
+                    {
+                        PropertyInfo propertyInfo = obj1.GetType().GetProperty(prop.Name);
+                        //propertyInfo.SetValue(obj, Convert.ChangeType(row[prop.Name], propertyInfo.PropertyType), null);
+                        propertyInfo.SetValue(obj1, Convert.ChangeType(table.Columns[j].ToString(), propertyInfo.PropertyType), null);
+                        j++;
+                    }
+                    catch
+                    {
+                        continue;
+                    }
+                }
+
+                list.Add(obj1);
+
                 foreach (var row in table.AsEnumerable())
                 {
                     T obj = new T();
@@ -218,9 +247,44 @@ namespace ReadExcel.Models
                         try
                         {
                             PropertyInfo propertyInfo = obj.GetType().GetProperty(prop.Name);
-                          //propertyInfo.SetValue(obj, Convert.ChangeType(row[prop.Name], propertyInfo.PropertyType), null);
+                            //propertyInfo.SetValue(obj, Convert.ChangeType(row[prop.Name], propertyInfo.PropertyType), null);
                             propertyInfo.SetValue(obj, Convert.ChangeType(row.ItemArray[i], propertyInfo.PropertyType), null);
                             i++;
+                        }
+                        catch
+                        {
+                            continue;
+                        }
+                    }
+
+                    list.Add(obj);
+                }
+
+                return list;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        public static List<T> DataTableToListBaseHeader<T>(this DataTable table) where T : class, new()
+        {
+            try
+            {
+                List<T> list = new List<T>();
+
+                foreach (var row in table.AsEnumerable())
+                {
+                    T obj = new T();
+                    int i = 0;
+                    foreach (var prop in obj.GetType().GetProperties())
+                    {
+                        try
+                        {
+                            PropertyInfo propertyInfo = obj.GetType().GetProperty(prop.Name);
+                            propertyInfo.SetValue(obj, Convert.ChangeType(row[prop.Name], propertyInfo.PropertyType), null);
+                            //propertyInfo.SetValue(obj, Convert.ChangeType(row.ItemArray[i], propertyInfo.PropertyType), null);
+                            //i++;
                         }
                         catch
                         {
@@ -266,7 +330,7 @@ namespace ReadExcel.Models
                 {
                     daysInMonth++;
                 }
-                
+
             }
             return daysInMonth;
         }

@@ -11,15 +11,15 @@ namespace ReadExcel.Repository
 {
     public class GenericRepository<T> : IRepository<T> where T : class
     {
-        protected DemoEntities db = null;
+        protected DemoEntities1 db = null;
         protected DbSet<T> table = null;
         public GenericRepository()
         {
-            this.db = new DemoEntities();
+            this.db = new DemoEntities1();
             table = db.Set<T>();
         }
 
-        public GenericRepository(DemoEntities db)
+        public GenericRepository(DemoEntities1 db)
         {
             this.db = db;
             table = db.Set<T>();
@@ -98,6 +98,42 @@ namespace ReadExcel.Repository
             //table.Attach(entity);
             db.Entry(entity).State = EntityState.Modified;
             db.SaveChanges();
+        }
+        public void Update(MT_SellOut entity, params Expression<Func<T, object>>[] updatedProperties)
+        {
+            using (var ctx = new DemoEntities1())
+            {
+                ctx.MT_SellOut.Attach(entity);
+                var entry = ctx.Entry(entity);
+                entry.Property(e => e.Perform).IsModified = true;
+                entry.Property(e => e.Rate).IsModified = true;
+                
+                ctx.SaveChanges();
+            }
+            //if (updatedProperties.Any())
+            //{
+
+            //    foreach (var property in updatedProperties)
+            //    {
+
+            //        entry.Property(property).IsModified = true;
+            //        db.SaveChanges();
+            //    }
+
+            //}
+            //else
+            //{
+
+            //    foreach (var property in entry.OriginalValues.PropertyNames)
+            //    {
+            //        var original = entry.OriginalValues.GetValue<object>(property);
+            //        var current = entry.CurrentValues.GetValue<object>(property);
+            //        if (original != null && !original.Equals(current))
+            //            entry.Property(property).IsModified = true;
+            //    }
+            //}
+            //var dbEntityEntry = db.Entry(entity);
+
         }
         public void InsertOrUpdate(T entity)
         {

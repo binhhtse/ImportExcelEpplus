@@ -5,7 +5,7 @@ using System.Web;
 
 namespace ReadExcel.Models
 {
-    public class SellinFirstTab
+    public class SellIn
     {
         public string Day { get; set; }
         public string Region { get; set; }

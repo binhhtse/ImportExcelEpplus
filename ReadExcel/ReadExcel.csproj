@@ -65,6 +65,10 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Bin\System.Web.Http.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -171,14 +175,30 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account.cs">
-      <DependentUpon>DmsEntity.tt</DependentUpon>
+      <DependentUpon>DemoEntities1.tt</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="DemoEntities1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DemoEntities1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DemoEntities1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DemoEntities1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DemoEntities1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DemoEntities1.edmx</DependentUpon>
+    </Compile>
     <Compile Include="DmsEntity.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -194,6 +214,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DmsEntity.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Employee.cs">
+      <DependentUpon>DemoEntities1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -202,23 +225,54 @@
     <Compile Include="Models\ExcelMap.cs" />
     <Compile Include="Models\ExcelPackageExtensions.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\PeopleViewModel.cs" />
     <Compile Include="Models\SellinFirstTab.cs" />
+    <Compile Include="Models\SellOutViewModel.cs" />
+    <Compile Include="MT_SellOut.cs">
+      <DependentUpon>DemoEntities1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Person.cs">
-      <DependentUpon>DmsEntity.tt</DependentUpon>
+      <DependentUpon>DemoEntities1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\GenericRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />
+    <Compile Include="SalesForce.cs">
+      <DependentUpon>DemoEntities1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SellIn.cs">
+      <DependentUpon>DemoEntities1.tt</DependentUpon>
+    </Compile>
     <Compile Include="SellinFirstTab.cs">
       <DependentUpon>DmsEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="SellOut.cs">
+      <DependentUpon>DemoEntities1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Employee_GetAll_Result.cs">
+      <DependentUpon>DemoEntities1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_Employee_GetList_Result.cs">
+      <DependentUpon>DemoEntities1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="Util\DMSEnum.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\jquery.dataTables.min.css" />
+    <Content Include="Content\upload.css" />
+    <Content Include="DemoEntities1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DemoEntities1.edmx</DependentUpon>
+      <LastGenOutput>DemoEntities1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DemoEntities1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DemoEntities1.edmx</DependentUpon>
+      <LastGenOutput>DemoEntities1.cs</LastGenOutput>
+    </Content>
     <Content Include="DmsEntity.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DmsEntity.edmx</DependentUpon>
@@ -241,6 +295,13 @@
     </EntityDeploy>
     <Content Include="DmsEntity.edmx.diagram">
       <DependentUpon>DmsEntity.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="DemoEntities1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DemoEntities1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="DemoEntities1.edmx.diagram">
+      <DependentUpon>DemoEntities1.edmx</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -289,6 +350,9 @@
     <Content Include="Views\Home\ReadExcel.cshtml" />
     <Content Include="Views\Home\SearchSellIn.cshtml" />
     <Content Include="Views\Home\SearchResultSellIn.cshtml" />
+    <Content Include="Views\Home\ImportPerform.cshtml" />
+    <Content Include="Views\Home\ImportSellOut.cshtml" />
+    <Content Include="Views\Home\SearchSellOut.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

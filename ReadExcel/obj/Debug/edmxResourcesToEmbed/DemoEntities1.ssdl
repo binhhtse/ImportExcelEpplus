@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DemoModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="Username" />
+    </Key>
+    <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="EmployeeCode" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="EmployeeName" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="ReferenceEmployeeCode" Type="nvarchar" MaxLength="40" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="255" />
+    <Property Name="Password" Type="nvarchar" MaxLength="800" />
+    <Property Name="Gender" Type="bit" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" />
+    <Property Name="DateOfBirth" Type="datetime" />
+    <Property Name="IdentityCard" Type="nvarchar" MaxLength="40" />
+    <Property Name="IdentityCardPlace" Type="nvarchar" MaxLength="120" />
+    <Property Name="IdentityCardDate" Type="datetime" />
+    <Property Name="IdentityCardAddress" Type="nvarchar" MaxLength="255" />
+    <Property Name="PaymentType" Type="nvarchar" MaxLength="40" />
+    <Property Name="TaxType" Type="nvarchar" MaxLength="40" />
+    <Property Name="TaxCode" Type="nvarchar" MaxLength="120" />
+    <Property Name="Website" Type="nvarchar" MaxLength="255" />
+    <Property Name="Email" Type="nvarchar" MaxLength="255" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="80" />
+    <Property Name="Phone2" Type="nvarchar" MaxLength="80" />
+    <Property Name="Address" Type="nvarchar" MaxLength="500" />
+    <Property Name="Address2" Type="nvarchar" MaxLength="100" />
+    <Property Name="Address3" Type="nvarchar" MaxLength="100" />
+    <Property Name="Address4" Type="nvarchar" MaxLength="100" />
+    <Property Name="SalesPerson" Type="bit" Nullable="false" />
+    <Property Name="DeliveryPerson" Type="bit" Nullable="false" />
+    <Property Name="CashCollector" Type="bit" Nullable="false" />
+    <Property Name="PostalCode" Type="nvarchar" MaxLength="40" />
+    <Property Name="Ward" Type="nvarchar" MaxLength="80" />
+    <Property Name="District" Type="nvarchar" MaxLength="80" />
+    <Property Name="City" Type="nvarchar" MaxLength="80" />
+    <Property Name="Province" Type="nvarchar" MaxLength="80" />
+    <Property Name="State" Type="nvarchar" MaxLength="80" />
+    <Property Name="Country" Type="nvarchar" MaxLength="80" />
+    <Property Name="RegionCode" Type="nvarchar" MaxLength="40" />
+    <Property Name="RegionL1" Type="nvarchar" MaxLength="40" />
+    <Property Name="RegionL2" Type="nvarchar" MaxLength="40" />
+    <Property Name="RegionL3" Type="nvarchar" MaxLength="40" />
+    <Property Name="RegionL4" Type="nvarchar" MaxLength="40" />
+    <Property Name="RegionL5" Type="nvarchar" MaxLength="40" />
+    <Property Name="RegionL6" Type="nvarchar" MaxLength="40" />
+    <Property Name="JobTitle" Type="nvarchar" MaxLength="50" />
+    <Property Name="ContractCode" Type="nvarchar" MaxLength="80" />
+    <Property Name="ContractExpiredDate" Type="datetime" />
+    <Property Name="HiredDate" Type="datetime" />
+    <Property Name="HealthAssuranceNumber" Type="nvarchar" MaxLength="255" />
+    <Property Name="EducationDegree" Type="nvarchar" MaxLength="40" />
+    <Property Name="College" Type="nvarchar" MaxLength="255" />
+    <Property Name="HighSchool" Type="nvarchar" MaxLength="255" />
+    <Property Name="Attribute1" Type="nvarchar" MaxLength="255" />
+    <Property Name="Attribute2" Type="nvarchar" MaxLength="255" />
+    <Property Name="Attribute3" Type="nvarchar" MaxLength="255" />
+    <Property Name="Attribute4" Type="nvarchar" MaxLength="255" />
+    <Property Name="Attribute5" Type="nvarchar" MaxLength="255" />
+    <Property Name="Leader" Type="nvarchar" MaxLength="40" />
+    <Property Name="Department" Type="nvarchar" MaxLength="50" />
+    <Property Name="WarehouseCode" Type="nvarchar" MaxLength="40" />
+    <Property Name="SalesGroup" Type="nvarchar" MaxLength="40" />
+    <Property Name="ContractType" Type="nvarchar" MaxLength="40" />
+    <Property Name="EmployeeGroup" Type="nvarchar" MaxLength="40" />
+    <Property Name="EmployeeType" Type="nvarchar" MaxLength="40" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="1000" />
+    <Property Name="CompanyCode" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="SalesOrgCode" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="Source" Type="nvarchar" MaxLength="1" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="LastUpdatedBy" Type="int" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="datetime2" Precision="7" />
+    <Property Name="LastUpdatedDateTime" Type="datetime2" Precision="7" />
+    <Property Name="RowVersion" Type="int" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
+    <Property Name="RowNumber" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MT_SellOut">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="Store" />
+    </Key>
+    <Property Name="SalesOrg" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CustomerCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="SalesRouteCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Store" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Target" Type="nvarchar" MaxLength="50" />
+    <Property Name="Perform" Type="nvarchar" MaxLength="50" />
+    <Property Name="Rate" Type="nvarchar" MaxLength="50" />
+    <Property Name="LineID" Type="int" />
+    <Property Name="CompanyCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="SalesForceLevel" Type="int" />
+  </EntityType>
+  <EntityType Name="People">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Fullname" Type="nchar" MaxLength="10" />
+    <Property Name="Money" Type="nchar" MaxLength="10" />
+    <Property Name="Address" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="SalesForce">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="SalesForceCode" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="SalesForceLevel" Type="int" Nullable="false" />
+    <Property Name="SalesForceName" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="SalesForceName2" Type="nvarchar" MaxLength="255" />
+    <Property Name="SalesForceName3" Type="nvarchar" MaxLength="255" />
+    <Property Name="Ordinal" Type="int" Nullable="false" />
+    <Property Name="ParentCode" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="Status" Type="nvarchar" MaxLength="1" Nullable="false" />
+    <Property Name="CompanyCode" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="SalesOrgCode" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="Source" Type="nvarchar" MaxLength="1" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="LastUpdatedBy" Type="int" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="datetime2" Precision="7" />
+    <Property Name="LastUpdatedDateTime" Type="datetime2" Precision="7" />
+    <Property Name="RowVersion" Type="int" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
+    <Property Name="EmployeeCode" Type="nvarchar" MaxLength="40" />
+    <Property Name="Employee_ID" Type="uniqueidentifier" />
+    <Property Name="RowNumber" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SellIn">
+    <Key>
+      <PropertyRef Name="Day" />
+      <PropertyRef Name="Region" />
+      <PropertyRef Name="KeyAccount" />
+      <PropertyRef Name="Channel" />
+    </Key>
+    <Property Name="Day" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Region" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="KeyAccount" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Channel" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Archive" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastMonth" Type="nvarchar" MaxLength="50" />
+    <Property Name="TargetMonth" Type="nvarchar" MaxLength="50" />
+    <Property Name="TargetDate" Type="nvarchar" MaxLength="50" />
+    <Property Name="Actual" Type="nvarchar" MaxLength="50" />
+    <Property Name="Growth" Type="nvarchar" MaxLength="50" />
+    <Property Name="GrowthLastMonth" Type="nvarchar" MaxLength="50" />
+    <Property Name="PercentTarget" Type="nvarchar" MaxLength="50" />
+    <Property Name="TargetWeek" Type="nvarchar" MaxLength="50" />
+    <Property Name="ActualWeek" Type="nvarchar" MaxLength="50" />
+    <Property Name="PercentWeek" Type="nvarchar" MaxLength="50" />
+    <Property Name="CurrentDate" Type="nvarchar" MaxLength="50" />
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="LastUpdated" Type="nvarchar" MaxLength="50" />
+    <Property Name="Tab" Type="nvarchar" MaxLength="50" />
+    <Property Name="CompanyCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="SalesOrg" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="SellOut">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="Chain" />
+    </Key>
+    <Property Name="ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Chain" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Target" Type="nvarchar" MaxLength="50" />
+    <Property Name="Perform" Type="nvarchar" MaxLength="50" />
+    <Property Name="Rate" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_dbo_SalesForce_dbo_Employee_Employee_ID">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="SalesForce" Type="Self.SalesForce" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SalesForce">
+        <PropertyRef Name="Employee_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="sp_Employee_GetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_Employee_GetList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="DemoModel1StoreContainer">
+    <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MT_SellOut" EntityType="Self.MT_SellOut" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="People" EntityType="Self.People" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SalesForce" EntityType="Self.SalesForce" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SellIn" EntityType="Self.SellIn" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SellOut" EntityType="Self.SellOut" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_dbo_SalesForce_dbo_Employee_Employee_ID" Association="Self.FK_dbo_SalesForce_dbo_Employee_Employee_ID">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="SalesForce" EntitySet="SalesForce" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

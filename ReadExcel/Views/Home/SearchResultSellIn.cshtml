@@ -9,6 +9,10 @@
 <html>
 <head>
     <style>
+        .dataTables_filter, .dataTables_info {
+            display: none !important;
+        }
+
         .tab {
             overflow: hidden;
             border: 1px solid #ccc;
@@ -58,23 +62,41 @@
         <button class="tablinks" onclick="openTab(event, 'tab2')">Tab2</button>
 
     </div>
-    <br/>
+    <br />
     <div class="row">
-        <div class='col-sm-6'>
+        <div class="col-sm-6">
             <div class="form-group">
                 @using (Html.BeginForm("SearchResultSellIn", "Home", FormMethod.Post))
                 {
-                    <div class="form-group">
+
+                    <div class="col-md-6 input-group">
                         <input type="text" name="bday" value="07/23/2018" id="datepicker" class="form-control" />
-                        @*<input type="date" name="bday"  value="07/23/2018">*@
-                        <input type="submit" class="btn btn-default" value="Search" />
+                        <label class="input-group-addon btn" for="testdate">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </label>
                     </div>
+                    <input type="submit" class="btn btn-primary" value="Search" />
+
                 }
 
             </div>
+            @*<div class="col-md-6 input-group">
+                    <select name="myInput" class="form-control">
+                        <option class="form-control" value="metro">Volvo</option>
+                        <option class="form-control" value="saab">Saab</option>
+                        <option class="form-control" value="opel">Opel</option>
+                        <option class="form-control" value="audi">Audi</option>
+                    </select>
+                </div>
+                <input type="text" id="myInput" />
+                <input type="text" id="myInput1" />*@
         </div>
 
     </div>
+    @*<input type="text" id="myInput" />*@
+
+
+
     <div id="tab1" class="tabcontent">
         <div class="table-responsive">
 
@@ -88,8 +110,8 @@
             }
             @if (Model != null)
             {
-
-                <table border="1" id="tableId" class="table table-striped table-bordered table-hover table-condensed">
+                @*<input id="filters" />*@
+                <table border="1" id="tableId" class="table table-striped table-bordered table-hover table-condensed" style="width:100%">
                     <thead>
                         <tr id="filters">
                             <th style="display:none"></th>
@@ -97,14 +119,14 @@
                             <th style="max-width:90px !important">Filter</th>
 
                         </tr>
-                        <tr style="background-color:yellow">
+                        <tr style="background-color:yellow; text-align:center">
                             @*@foreach (System.Data.DataColumn col in Model[0].Columns)
                                 {
                                     <th>@col.Caption</th>
                                 }*@
                             <th rowspan="2">Day</th>
                             <th rowspan="2">Region</th>
-                            <th rowspan="2">Key Account</th>
+                            <th rowspan="2" name="key">Key Account</th>
                             <th rowspan="2">Channel</th>
                             <th rowspan="2">Performed</th>
                             <th rowspan="2">Last Month</th>
@@ -134,9 +156,20 @@
                         @foreach (System.Data.DataRow row in Model[0].Rows)
                         {
                             <tr>
+                                @{int countRow = 0;}
+
                                 @foreach (var cell in row.ItemArray)
                                 {
-                                    <td>@cell.ToString()</td>
+                                    if (countRow > 3 && countRow < 17)
+                                    {
+                                        <td class="text-right">@cell.ToString()</td>
+                                    }
+                                    else
+                                    {
+                                        <td>@cell.ToString()</td>
+                                    }
+                                    countRow++;
+
                                 }
                             </tr>
                         }
@@ -170,7 +203,7 @@
                                 }*@
                             <th rowspan="2">Day</th>
                             <th rowspan="2">Region</th>
-                            <th rowspan="2">Key Account</th>
+                            <th rowspan="2" name="key">Key Account</th>
                             <th rowspan="2">Channel</th>
                             <th rowspan="2">Performed</th>
                             <th rowspan="2">Last Month</th>
@@ -199,9 +232,20 @@
                         @foreach (System.Data.DataRow row in Model[1].Rows)
                         {
                             <tr>
+                                @{int countRow = 0;}
+
                                 @foreach (var cell in row.ItemArray)
                                 {
-                                    <td>@cell.ToString()</td>
+                                    if (countRow > 3 && countRow < 17)
+                                    {
+                                        <td class="text-right">@cell.ToString()</td>
+                                    }
+                                    else
+                                    {
+                                        <td>@cell.ToString()</td>
+                                    }
+                                    countRow++;
+
                                 }
                             </tr>
                         }
@@ -237,9 +281,17 @@
                     "sLast": "Cuối"
                 }
             },
+            //"sScrollX": true,
+            "columnDefs": [
+                { "width": "100px", "targets": 2 }
+            ],
+            //"scrollY": "200px",
+            //"scrollCollapse": true,
+            //"paging": false,
             pageLength: 50,
             "bSort": false,
             dom: 'Bfrtip',
+            //bFilter: false,
             buttons: [
                 {
                     extend: 'excel',
@@ -249,7 +301,7 @@
             ],
             "columnDefs": [
                 {
-                    "targets": [16, 18],
+                    "targets": [16, 18, 19, 20],
                     "visible": false
 
                 }
@@ -295,8 +347,13 @@
                     "sLast": "Cuối"
                 }
             },
+            //"scrollX": true,
+            //"scrollY": "200px",
+            //"scrollCollapse": true,
+            //"paging": false,
             pageLength: 50,
             "bSort": false,
+            //bFilter: false,
             dom: 'Bfrtip',
             buttons: [
                 {
@@ -307,7 +364,7 @@
             ],
             "columnDefs": [
                 {
-                    "targets": [16, 18],
+                    "targets": [3, 16, 18, 19, 20],
                     "visible": false
 
                 }
@@ -342,9 +399,26 @@
         $("#button1").addClass("active");
 
         $('#datepicker').datepicker({
-            defaultDate: "07/23/2018"
+            defaultDate: "07/23/2018",
+            format: 'dd/mm/yyyy'
         });
+        var table = $('#tableId').DataTable();
 
+        // #myInput is a <input type="text"> element
+
+        $("select").change(function () {
+            var end = this.value;
+            var firstDropVal = $('#pick').val();
+            table.search(this.value).draw();
+        });
+        $('#myInput').on('keyup', function () {
+            table.search("METRO").draw();
+            $('#myInput1').on('keyup', function () {
+
+                table.search($('#myInput1').val()).draw();
+            });
+        });
+        $('th[name=key]').width(150);
     });
 
     function openTab(evt, tabName) {

@@ -1,0 +1,633 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DemoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="EmployeeCode" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="EmployeeName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="ReferenceEmployeeCode" Type="nvarchar" MaxLength="40" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="255" />
+          <Property Name="Password" Type="nvarchar" MaxLength="800" />
+          <Property Name="Gender" Type="bit" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="DateOfBirth" Type="datetime" />
+          <Property Name="IdentityCard" Type="nvarchar" MaxLength="40" />
+          <Property Name="IdentityCardPlace" Type="nvarchar" MaxLength="120" />
+          <Property Name="IdentityCardDate" Type="datetime" />
+          <Property Name="IdentityCardAddress" Type="nvarchar" MaxLength="255" />
+          <Property Name="PaymentType" Type="nvarchar" MaxLength="40" />
+          <Property Name="TaxType" Type="nvarchar" MaxLength="40" />
+          <Property Name="TaxCode" Type="nvarchar" MaxLength="120" />
+          <Property Name="Website" Type="nvarchar" MaxLength="255" />
+          <Property Name="Email" Type="nvarchar" MaxLength="255" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="80" />
+          <Property Name="Phone2" Type="nvarchar" MaxLength="80" />
+          <Property Name="Address" Type="nvarchar" MaxLength="500" />
+          <Property Name="Address2" Type="nvarchar" MaxLength="100" />
+          <Property Name="Address3" Type="nvarchar" MaxLength="100" />
+          <Property Name="Address4" Type="nvarchar" MaxLength="100" />
+          <Property Name="SalesPerson" Type="bit" Nullable="false" />
+          <Property Name="DeliveryPerson" Type="bit" Nullable="false" />
+          <Property Name="CashCollector" Type="bit" Nullable="false" />
+          <Property Name="PostalCode" Type="nvarchar" MaxLength="40" />
+          <Property Name="Ward" Type="nvarchar" MaxLength="80" />
+          <Property Name="District" Type="nvarchar" MaxLength="80" />
+          <Property Name="City" Type="nvarchar" MaxLength="80" />
+          <Property Name="Province" Type="nvarchar" MaxLength="80" />
+          <Property Name="State" Type="nvarchar" MaxLength="80" />
+          <Property Name="Country" Type="nvarchar" MaxLength="80" />
+          <Property Name="RegionCode" Type="nvarchar" MaxLength="40" />
+          <Property Name="RegionL1" Type="nvarchar" MaxLength="40" />
+          <Property Name="RegionL2" Type="nvarchar" MaxLength="40" />
+          <Property Name="RegionL3" Type="nvarchar" MaxLength="40" />
+          <Property Name="RegionL4" Type="nvarchar" MaxLength="40" />
+          <Property Name="RegionL5" Type="nvarchar" MaxLength="40" />
+          <Property Name="RegionL6" Type="nvarchar" MaxLength="40" />
+          <Property Name="JobTitle" Type="nvarchar" MaxLength="50" />
+          <Property Name="ContractCode" Type="nvarchar" MaxLength="80" />
+          <Property Name="ContractExpiredDate" Type="datetime" />
+          <Property Name="HiredDate" Type="datetime" />
+          <Property Name="HealthAssuranceNumber" Type="nvarchar" MaxLength="255" />
+          <Property Name="EducationDegree" Type="nvarchar" MaxLength="40" />
+          <Property Name="College" Type="nvarchar" MaxLength="255" />
+          <Property Name="HighSchool" Type="nvarchar" MaxLength="255" />
+          <Property Name="Attribute1" Type="nvarchar" MaxLength="255" />
+          <Property Name="Attribute2" Type="nvarchar" MaxLength="255" />
+          <Property Name="Attribute3" Type="nvarchar" MaxLength="255" />
+          <Property Name="Attribute4" Type="nvarchar" MaxLength="255" />
+          <Property Name="Attribute5" Type="nvarchar" MaxLength="255" />
+          <Property Name="Leader" Type="nvarchar" MaxLength="40" />
+          <Property Name="Department" Type="nvarchar" MaxLength="50" />
+          <Property Name="WarehouseCode" Type="nvarchar" MaxLength="40" />
+          <Property Name="SalesGroup" Type="nvarchar" MaxLength="40" />
+          <Property Name="ContractType" Type="nvarchar" MaxLength="40" />
+          <Property Name="EmployeeGroup" Type="nvarchar" MaxLength="40" />
+          <Property Name="EmployeeType" Type="nvarchar" MaxLength="40" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="1000" />
+          <Property Name="CompanyCode" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="SalesOrgCode" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="Source" Type="nvarchar" MaxLength="1" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="LastUpdatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="datetime2" Precision="7" />
+          <Property Name="LastUpdatedDateTime" Type="datetime2" Precision="7" />
+          <Property Name="RowVersion" Type="int" Nullable="false" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="RowNumber" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MT_SellOut">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Store" />
+          </Key>
+          <Property Name="SalesOrg" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CustomerCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="SalesRouteCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Store" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Target" Type="nvarchar" MaxLength="50" />
+          <Property Name="Perform" Type="nvarchar" MaxLength="50" />
+          <Property Name="Rate" Type="nvarchar" MaxLength="50" />
+          <Property Name="LineID" Type="int" />
+          <Property Name="CompanyCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="SalesForceLevel" Type="int" />
+        </EntityType>
+        <EntityType Name="People">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Fullname" Type="nchar" MaxLength="10" />
+          <Property Name="Money" Type="nchar" MaxLength="10" />
+          <Property Name="Address" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="SalesForce">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SalesForceCode" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="SalesForceLevel" Type="int" Nullable="false" />
+          <Property Name="SalesForceName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="SalesForceName2" Type="nvarchar" MaxLength="255" />
+          <Property Name="SalesForceName3" Type="nvarchar" MaxLength="255" />
+          <Property Name="Ordinal" Type="int" Nullable="false" />
+          <Property Name="ParentCode" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="CompanyCode" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="SalesOrgCode" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="Source" Type="nvarchar" MaxLength="1" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="LastUpdatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="datetime2" Precision="7" />
+          <Property Name="LastUpdatedDateTime" Type="datetime2" Precision="7" />
+          <Property Name="RowVersion" Type="int" Nullable="false" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="EmployeeCode" Type="nvarchar" MaxLength="40" />
+          <Property Name="Employee_ID" Type="uniqueidentifier" />
+          <Property Name="RowNumber" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SellIn">
+          <Key>
+            <PropertyRef Name="Day" />
+            <PropertyRef Name="Region" />
+            <PropertyRef Name="KeyAccount" />
+            <PropertyRef Name="Channel" />
+          </Key>
+          <Property Name="Day" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Region" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="KeyAccount" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Channel" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Archive" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastMonth" Type="nvarchar" MaxLength="50" />
+          <Property Name="TargetMonth" Type="nvarchar" MaxLength="50" />
+          <Property Name="TargetDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="Actual" Type="nvarchar" MaxLength="50" />
+          <Property Name="Growth" Type="nvarchar" MaxLength="50" />
+          <Property Name="GrowthLastMonth" Type="nvarchar" MaxLength="50" />
+          <Property Name="PercentTarget" Type="nvarchar" MaxLength="50" />
+          <Property Name="TargetWeek" Type="nvarchar" MaxLength="50" />
+          <Property Name="ActualWeek" Type="nvarchar" MaxLength="50" />
+          <Property Name="PercentWeek" Type="nvarchar" MaxLength="50" />
+          <Property Name="CurrentDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="LastUpdated" Type="nvarchar" MaxLength="50" />
+          <Property Name="Tab" Type="nvarchar" MaxLength="50" />
+          <Property Name="CompanyCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="SalesOrg" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SellOut">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Chain" />
+          </Key>
+          <Property Name="ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Chain" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Target" Type="nvarchar" MaxLength="50" />
+          <Property Name="Perform" Type="nvarchar" MaxLength="50" />
+          <Property Name="Rate" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_dbo_SalesForce_dbo_Employee_Employee_ID">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="SalesForce" Type="Self.SalesForce" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SalesForce">
+              <PropertyRef Name="Employee_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="sp_Employee_GetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_Employee_GetList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="DemoModelStoreContainer">
+          <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MT_SellOut" EntityType="Self.MT_SellOut" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="People" EntityType="Self.People" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SalesForce" EntityType="Self.SalesForce" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SellIn" EntityType="Self.SellIn" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SellOut" EntityType="Self.SellOut" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_SalesForce_dbo_Employee_Employee_ID" Association="Self.FK_dbo_SalesForce_dbo_Employee_Employee_ID">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="SalesForce" EntitySet="SalesForce" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DemoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="EmployeeCode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EmployeeName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ReferenceEmployeeCode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="Boolean" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfBirth" Type="DateTime" />
+          <Property Name="IdentityCard" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="IdentityCardPlace" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
+          <Property Name="IdentityCardDate" Type="DateTime" />
+          <Property Name="IdentityCardAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PaymentType" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="TaxType" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="TaxCode" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
+          <Property Name="Website" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="Phone2" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Address2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Address3" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Address4" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SalesPerson" Type="Boolean" Nullable="false" />
+          <Property Name="DeliveryPerson" Type="Boolean" Nullable="false" />
+          <Property Name="CashCollector" Type="Boolean" Nullable="false" />
+          <Property Name="PostalCode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="Ward" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="District" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="Province" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="RegionCode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="RegionL1" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="RegionL2" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="RegionL3" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="RegionL4" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="RegionL5" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="RegionL6" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="JobTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ContractCode" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="ContractExpiredDate" Type="DateTime" />
+          <Property Name="HiredDate" Type="DateTime" />
+          <Property Name="HealthAssuranceNumber" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="EducationDegree" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="College" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="HighSchool" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Attribute1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Attribute2" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Attribute3" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Attribute4" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Attribute5" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Leader" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WarehouseCode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="SalesGroup" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="ContractType" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeGroup" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeType" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="Remark" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyCode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SalesOrgCode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Source" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="LastUpdatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="DateTime" />
+          <Property Name="LastUpdatedDateTime" Type="DateTime" />
+          <Property Name="RowVersion" Type="Int32" Nullable="false" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <Property Name="RowNumber" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="SalesForces" Relationship="Self.FK_dbo_SalesForce_dbo_Employee_Employee_ID" FromRole="Employee" ToRole="SalesForce" />
+        </EntityType>
+        <EntityType Name="MT_SellOut">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Store" />
+          </Key>
+          <Property Name="SalesOrg" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CustomerCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SalesRouteCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Store" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Target" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Perform" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Rate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LineID" Type="Int32" />
+          <Property Name="CompanyCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SalesForceLevel" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Fullname" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Money" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SalesForce">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="SalesForceCode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SalesForceLevel" Type="Int32" Nullable="false" />
+          <Property Name="SalesForceName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SalesForceName2" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SalesForceName3" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Ordinal" Type="Int32" Nullable="false" />
+          <Property Name="ParentCode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CompanyCode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SalesOrgCode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Source" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="LastUpdatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="DateTime" />
+          <Property Name="LastUpdatedDateTime" Type="DateTime" />
+          <Property Name="RowVersion" Type="Int32" Nullable="false" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <Property Name="EmployeeCode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="Employee_ID" Type="Guid" />
+          <Property Name="RowNumber" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_dbo_SalesForce_dbo_Employee_Employee_ID" FromRole="SalesForce" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="SellIn">
+          <Key>
+            <PropertyRef Name="Day" />
+            <PropertyRef Name="Region" />
+            <PropertyRef Name="KeyAccount" />
+            <PropertyRef Name="Channel" />
+          </Key>
+          <Property Name="Day" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Region" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="KeyAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Channel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Archive" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastMonth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TargetMonth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TargetDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Actual" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Growth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GrowthLastMonth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PercentTarget" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TargetWeek" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ActualWeek" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PercentWeek" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CurrentDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="LastUpdated" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Tab" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SalesOrg" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SellOut">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Chain" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Chain" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Target" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Perform" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Rate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_dbo_SalesForce_dbo_Employee_Employee_ID">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="SalesForce" Type="Self.SalesForce" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SalesForce">
+              <PropertyRef Name="Employee_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DemoEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="Self.Account" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="MT_SellOut" EntityType="Self.MT_SellOut" />
+          <EntitySet Name="People" EntityType="Self.Person" />
+          <EntitySet Name="SalesForces" EntityType="Self.SalesForce" />
+          <EntitySet Name="SellIns" EntityType="Self.SellIn" />
+          <EntitySet Name="SellOuts" EntityType="Self.SellOut" />
+          <AssociationSet Name="FK_dbo_SalesForce_dbo_Employee_Employee_ID" Association="Self.FK_dbo_SalesForce_dbo_Employee_Employee_ID">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="SalesForce" EntitySet="SalesForces" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DemoModelStoreContainer" CdmEntityContainer="DemoEntities1">
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="DemoModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="DemoModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="ReferenceEmployeeCode" ColumnName="ReferenceEmployeeCode" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="IdentityCard" ColumnName="IdentityCard" />
+                <ScalarProperty Name="IdentityCardPlace" ColumnName="IdentityCardPlace" />
+                <ScalarProperty Name="IdentityCardDate" ColumnName="IdentityCardDate" />
+                <ScalarProperty Name="IdentityCardAddress" ColumnName="IdentityCardAddress" />
+                <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+                <ScalarProperty Name="TaxType" ColumnName="TaxType" />
+                <ScalarProperty Name="TaxCode" ColumnName="TaxCode" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Phone2" ColumnName="Phone2" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Address3" ColumnName="Address3" />
+                <ScalarProperty Name="Address4" ColumnName="Address4" />
+                <ScalarProperty Name="SalesPerson" ColumnName="SalesPerson" />
+                <ScalarProperty Name="DeliveryPerson" ColumnName="DeliveryPerson" />
+                <ScalarProperty Name="CashCollector" ColumnName="CashCollector" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="Ward" ColumnName="Ward" />
+                <ScalarProperty Name="District" ColumnName="District" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="RegionCode" ColumnName="RegionCode" />
+                <ScalarProperty Name="RegionL1" ColumnName="RegionL1" />
+                <ScalarProperty Name="RegionL2" ColumnName="RegionL2" />
+                <ScalarProperty Name="RegionL3" ColumnName="RegionL3" />
+                <ScalarProperty Name="RegionL4" ColumnName="RegionL4" />
+                <ScalarProperty Name="RegionL5" ColumnName="RegionL5" />
+                <ScalarProperty Name="RegionL6" ColumnName="RegionL6" />
+                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+                <ScalarProperty Name="ContractCode" ColumnName="ContractCode" />
+                <ScalarProperty Name="ContractExpiredDate" ColumnName="ContractExpiredDate" />
+                <ScalarProperty Name="HiredDate" ColumnName="HiredDate" />
+                <ScalarProperty Name="HealthAssuranceNumber" ColumnName="HealthAssuranceNumber" />
+                <ScalarProperty Name="EducationDegree" ColumnName="EducationDegree" />
+                <ScalarProperty Name="College" ColumnName="College" />
+                <ScalarProperty Name="HighSchool" ColumnName="HighSchool" />
+                <ScalarProperty Name="Attribute1" ColumnName="Attribute1" />
+                <ScalarProperty Name="Attribute2" ColumnName="Attribute2" />
+                <ScalarProperty Name="Attribute3" ColumnName="Attribute3" />
+                <ScalarProperty Name="Attribute4" ColumnName="Attribute4" />
+                <ScalarProperty Name="Attribute5" ColumnName="Attribute5" />
+                <ScalarProperty Name="Leader" ColumnName="Leader" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="WarehouseCode" ColumnName="WarehouseCode" />
+                <ScalarProperty Name="SalesGroup" ColumnName="SalesGroup" />
+                <ScalarProperty Name="ContractType" ColumnName="ContractType" />
+                <ScalarProperty Name="EmployeeGroup" ColumnName="EmployeeGroup" />
+                <ScalarProperty Name="EmployeeType" ColumnName="EmployeeType" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="SalesOrgCode" ColumnName="SalesOrgCode" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="LastUpdatedDateTime" ColumnName="LastUpdatedDateTime" />
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="RowNumber" ColumnName="RowNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MT_SellOut">
+            <EntityTypeMapping TypeName="DemoModel.MT_SellOut">
+              <MappingFragment StoreEntitySet="MT_SellOut">
+                <ScalarProperty Name="SalesOrg" ColumnName="SalesOrg" />
+                <ScalarProperty Name="CustomerCode" ColumnName="CustomerCode" />
+                <ScalarProperty Name="SalesRouteCode" ColumnName="SalesRouteCode" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Store" ColumnName="Store" />
+                <ScalarProperty Name="Target" ColumnName="Target" />
+                <ScalarProperty Name="Perform" ColumnName="Perform" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="LineID" ColumnName="LineID" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="SalesForceLevel" ColumnName="SalesForceLevel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="People">
+            <EntityTypeMapping TypeName="DemoModel.Person">
+              <MappingFragment StoreEntitySet="People">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+                <ScalarProperty Name="Money" ColumnName="Money" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalesForces">
+            <EntityTypeMapping TypeName="DemoModel.SalesForce">
+              <MappingFragment StoreEntitySet="SalesForce">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SalesForceCode" ColumnName="SalesForceCode" />
+                <ScalarProperty Name="SalesForceLevel" ColumnName="SalesForceLevel" />
+                <ScalarProperty Name="SalesForceName" ColumnName="SalesForceName" />
+                <ScalarProperty Name="SalesForceName2" ColumnName="SalesForceName2" />
+                <ScalarProperty Name="SalesForceName3" ColumnName="SalesForceName3" />
+                <ScalarProperty Name="Ordinal" ColumnName="Ordinal" />
+                <ScalarProperty Name="ParentCode" ColumnName="ParentCode" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="SalesOrgCode" ColumnName="SalesOrgCode" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="LastUpdatedDateTime" ColumnName="LastUpdatedDateTime" />
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
+                <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
+                <ScalarProperty Name="RowNumber" ColumnName="RowNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SellIns">
+            <EntityTypeMapping TypeName="DemoModel.SellIn">
+              <MappingFragment StoreEntitySet="SellIn">
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="KeyAccount" ColumnName="KeyAccount" />
+                <ScalarProperty Name="Channel" ColumnName="Channel" />
+                <ScalarProperty Name="Archive" ColumnName="Archive" />
+                <ScalarProperty Name="LastMonth" ColumnName="LastMonth" />
+                <ScalarProperty Name="TargetMonth" ColumnName="TargetMonth" />
+                <ScalarProperty Name="TargetDate" ColumnName="TargetDate" />
+                <ScalarProperty Name="Actual" ColumnName="Actual" />
+                <ScalarProperty Name="Growth" ColumnName="Growth" />
+                <ScalarProperty Name="GrowthLastMonth" ColumnName="GrowthLastMonth" />
+                <ScalarProperty Name="PercentTarget" ColumnName="PercentTarget" />
+                <ScalarProperty Name="TargetWeek" ColumnName="TargetWeek" />
+                <ScalarProperty Name="ActualWeek" ColumnName="ActualWeek" />
+                <ScalarProperty Name="PercentWeek" ColumnName="PercentWeek" />
+                <ScalarProperty Name="CurrentDate" ColumnName="CurrentDate" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="Tab" ColumnName="Tab" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="SalesOrg" ColumnName="SalesOrg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SellOuts">
+            <EntityTypeMapping TypeName="DemoModel.SellOut">
+              <MappingFragment StoreEntitySet="SellOut">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Chain" ColumnName="Chain" />
+                <ScalarProperty Name="Target" ColumnName="Target" />
+                <ScalarProperty Name="Perform" ColumnName="Perform" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

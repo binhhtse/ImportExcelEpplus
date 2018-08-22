@@ -3,16 +3,55 @@
     ViewBag.Title = "ReadExcelUsingEpplus";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<br/>
+<br />
 
 
+<link href="~/Content/upload.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
 @using (Html.BeginForm("ReadExcel", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <div class="form-group">
-        <input type="file" id="dataFile" name="upload" />
+        @if (@TempData["message"] != null)
+        {
+            <div class="alert alert-warning" id="success-alert">
+                <strong><b> @TempData["message"]</b></strong>
+            </div>
+        }
+        @*<input type="file" id="dataFile" name="upload" />*@
+        <div class="file-upload">
+            <div class="file-select">
+                <div class="file-select-button" id="fileName">Choose File</div>
+                <div class="file-select-name" id="noFile">No file chosen...</div>
+                <input type="file" name="chooseFile" id="chooseFile">
+            </div>
+        </div>
     </div>
-    
+
+
+
     <div class="form-group">
-        <input type="submit" name="btnupload" value="Upload" class="btn btn-default" /> 
+        <input type="submit" name="btnupload" value="Upload" class="btn btn-primary" />
     </div>
 }
+<script>
+
+    $(document).ready(function () {
+        $('#chooseFile').bind('change', function () {
+            var filename = $("#chooseFile").val();
+            if (/^\s*$/.test(filename)) {
+                $(".file-upload").removeClass('active');
+                $("#noFile").text("No file chosen...");
+            }
+            else {
+                $(".file-upload").addClass('active');
+                $("#noFile").text(filename.replace("C:\\fakepath\\", ""));
+            }
+        });
+        $("#success-alert").fadeTo(2000, 500).slideUp(500, function () {
+            $("#success-alert").slideUp(500);
+        });
+
+
+
+    });
+</script>

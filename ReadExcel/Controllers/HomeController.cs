@@ -12,6 +12,7 @@ using log4net;
 using ReadExcel.Repository;
 using AutoMapper;
 using System.Globalization;
+using ReadExcel.Util;
 
 namespace ReadExcel.Controllers
 {
@@ -19,7 +20,9 @@ namespace ReadExcel.Controllers
     {
         private static readonly ILog Log =
               LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        GenericRepository<SellinFirstTab> userRepository = new GenericRepository<SellinFirstTab>();
+        GenericRepository<SellIn> sellInRepository = new GenericRepository<SellIn>();
+        GenericRepository<MT_SellOut> sellOutRepository = new GenericRepository<MT_SellOut>();
+        GenericRepository<SalesForce> salesForceRepository = new GenericRepository<SalesForce>();
         public ActionResult Index()
         {
             return View();
@@ -46,46 +49,59 @@ namespace ReadExcel.Controllers
         }
 
         [HttpPost]
-        public ActionResult ReadExcel(HttpPostedFileBase upload)
+        public ActionResult ReadExcel(HttpPostedFileBase chooseFile)
         {
-            //if (Path.GetExtension(upload.FileName) == ".xlsx" || Path.GetExtension(upload.FileName) == ".xls")
-
+            //if (Path.GetExtension(chooseFile.FileName) == ".xlsx" || Path.GetExtension(chooseFile.FileName) == ".xls")
             //{
-            ExcelPackage package = new ExcelPackage(upload.InputStream);
+            //    TempData["message"] = DMSEnum.Fail;
+            //    return RedirectToAction("ReadExcelUsingEpplus");
+            //}
+            ExcelPackage package = new ExcelPackage(chooseFile.InputStream);
             DataTable[] Dt = ExcelPackageExtensions.ToDataTable(package);
-            //List<Account> ls = userRepository.List.ToList();
+            //List<Account> ls = sellInRepository.List.ToList();
 
             //List<object> lst = Dt.AsEnumerable().ToList<object>();
 
             //List<Person> employeeList = Dt.DataTableToList<Person>();
 
-            List<SellinFirstTab> tab1 = Dt[0].DataTableToList<SellinFirstTab>();
-            List<SellinFirstTab> tab2 = Dt[1].DataTableToList<SellinFirstTab>();
+            List<SellIn> tab1 = Dt[0].DataTableToList<SellIn>();
+            List<SellIn> tab2 = Dt[1].DataTableToList<SellIn>();
             String date = tab1.ElementAt(tab1.Count - 1).Day; //   07/22/2013
             int numberOfWork = 0;
             int month = 0;
             int year = 0;
-            if (date.Length == 9)
+            if(date.Length != 9 && date.Length != 10)
             {
-                 month = int.Parse(date.Substring(0,1));
-                 year = int.Parse(date.Substring(5, 4));
+                TempData["message"] = DMSEnum.Fail;
+                return RedirectToAction("ReadExcelUsingEpplus");
             }
-            else
+            if (date.Length == 9) //7/22/2013
             {
-                 month = int.Parse(date.Substring(0, 2));
-                 year = int.Parse(date.Substring(6, 4));
+                month = int.Parse(date.Substring(0, 1));
+                year = int.Parse(date.Substring(5, 4));
+            }
+            else //07/22/2013
+            {
+                month = int.Parse(date.Substring(0, 2));
+                year = int.Parse(date.Substring(6, 4));
             }
             numberOfWork = ExcelPackageExtensions.CountWorkingDay(year, month);
             for (int i = 1; i < tab1.Count; i++)
             {
-
-                if (tab1.ElementAt(i).TargetMonth.Trim() == "0" || tab1.ElementAt(i).TargetMonth.Trim() == "-" )
+                var day = tab1.ElementAt(i).Day.ToString();
+                if(day.Length == 9)
+                {
+                    day = "0" + day;
+                }
+                tab1.ElementAt(i).Day = DateTime.ParseExact(day, "MM/dd/yyyy", CultureInfo.InvariantCulture)
+                        .ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
+                if (tab1.ElementAt(i).TargetMonth.Trim() == "0" || tab1.ElementAt(i).TargetMonth.Trim() == "-")
                 {
                     tab1.ElementAt(i).TargetDate = "0";
                 }
                 else
                 {
-                    var targetDate = (double.Parse(tab1.ElementAt(i).TargetMonth) / numberOfWork) ;
+                    var targetDate = (double.Parse(tab1.ElementAt(i).TargetMonth) / numberOfWork);
                     tab1.ElementAt(i).TargetDate = String.Format("{0:0.00}", targetDate);
                 }
                 if (tab1.ElementAt(i).Archive.Trim() == "0" || tab1.ElementAt(i).Archive.Trim() == "-" ||
@@ -131,10 +147,18 @@ namespace ReadExcel.Controllers
 
                 tab1.ElementAt(i).LastUpdated = DateTime.Now.ToShortDateString();
                 tab1.ElementAt(i).Tab = "1";
+                tab1.ElementAt(i).CompanyCode = DMSEnum.CompanyCode;
+                tab1.ElementAt(i).SalesOrg = DMSEnum.MTSalesOrg;
             }
             for (int i = 1; i < tab2.Count; i++)
             {
-
+                var day = tab2.ElementAt(i).Day.ToString();
+                if (day.Length == 9)
+                {
+                    day = "0" + day;
+                }
+                tab2.ElementAt(i).Day = DateTime.ParseExact(day, "MM/dd/yyyy", CultureInfo.InvariantCulture)
+                        .ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
                 if (tab2.ElementAt(i).TargetMonth.Trim() == "0" || tab2.ElementAt(i).TargetMonth.Trim() == "-")
                 {
                     tab2.ElementAt(i).TargetDate = "0";
@@ -186,8 +210,10 @@ namespace ReadExcel.Controllers
                 }
                 tab2.ElementAt(i).LastUpdated = DateTime.Now.ToShortDateString();
                 tab2.ElementAt(i).Tab = "2";
+                tab2.ElementAt(i).CompanyCode = DMSEnum.CompanyCode;
+                tab2.ElementAt(i).SalesOrg = DMSEnum.MTSalesOrg;
             }
-            //userRepository.BatchInsert(tab1);
+            //sellInRepository.BatchInsert(tab1);
             DataTable Dt1 = ExcelPackageExtensions.ToDataTable(tab1);
             DataTable Dt2 = ExcelPackageExtensions.ToDataTable(tab2);
 
@@ -207,20 +233,24 @@ namespace ReadExcel.Controllers
             //ModelDt[1].DataTableToList<SellinFirstTab>();State.AddModelError("Error", "Ex: This login failed " + employeeList.ElementAt(0).Fullname);
             //ModelState.AddModelError("Error", "Ex: This login failed 1");
 
-            var searchResults = userRepository.Search(p => p.Growth == "0" );
-            //userRepository.BatchInsert(tab1);
-            //userRepository.BatchInsert(tab2);
-            List<SellinFirstTab> ls = userRepository.List.ToList();
+            var searchResults = sellInRepository.Search(p => p.Growth == "0");
+            //sellInRepository.BatchInsert(tab1);
+            //sellInRepository.BatchInsert(tab2);
+            List<SellIn> ls = sellInRepository.List.ToList();
             foreach (var item in tab1)
             {
-                userRepository.InsertOrUpdate(item);
+                sellInRepository.InsertOrUpdate(item);
             }
             foreach (var item in tab2)
             {
-                userRepository.InsertOrUpdate(item);
+                sellInRepository.InsertOrUpdate(item);
+            }
+            if(TotalDT != null)
+            {
+                TempData["message"] = DMSEnum.Success;
             }
             return View(TotalDT);
-           
+
         }
 
         public ActionResult SearchSellIn()
@@ -230,16 +260,119 @@ namespace ReadExcel.Controllers
         [HttpPost]
         public ActionResult SearchResultSellIn(DateTime bday)
         {
-            string date = bday.Date.ToShortDateString();
-            var searchResults = userRepository.Search(p => p.Day == date);
-            List<SellinFirstTab> tab1 = searchResults.Where(x => x.Tab == "1").ToList();
-            List<SellinFirstTab> tab2 = searchResults.Where(x => x.Tab == "2").ToList();
+            //string date = bday.Date.ToShortDateString();
+            string date = String.Format("{0:dd/MM/yyyy}", bday);
+            var searchResults = sellInRepository.Search(p => p.Day == date);
+            List<SellIn> tab1 = searchResults.Where(x => x.Tab == "1").ToList();
+            List<SellIn> tab2 = searchResults.Where(x => x.Tab == "2").ToList();
 
             DataTable Dt1 = ExcelPackageExtensions.ToDataTable(tab1);
             DataTable Dt2 = ExcelPackageExtensions.ToDataTable(tab2);
 
             DataTable[] TotalDT = { Dt1, Dt2 };
             return View(TotalDT);
+        }
+
+        public ActionResult ImportSellOut()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ImportTarget(HttpPostedFileBase chooseFile)
+        {
+            ExcelPackage package = new ExcelPackage(chooseFile.InputStream);
+            DataTable Dt = ExcelPackageExtensions.ConvertToDataTable(package);
+
+
+            List<MT_SellOut> lstTarget = Dt.DataTableToListBaseHeader<MT_SellOut>();
+            //lstTarget.RemoveAt(0);
+            int lineID = 0;
+            foreach (var item in lstTarget)
+            {
+                item.LineID = lineID;
+                item.CompanyCode = DMSEnum.CompanyCode;
+                sellOutRepository.InsertOrUpdate(item);
+                lineID++;
+            }
+            TempData["message"] = DMSEnum.Success;
+            return RedirectToAction("ImportSellOut", "Home", ViewBag.message);
+        }
+        [HttpPost]
+        public ActionResult ImportPerform(HttpPostedFileBase chooseFile)
+        {
+            ExcelPackage package = new ExcelPackage(chooseFile.InputStream);
+            DataTable Dt = ExcelPackageExtensions.ConvertToDataTable(package);
+            var db = new DemoEntities1();
+            var lstEmp = db.sp_Employee_GetAll();
+            List<SellOutViewModel> empViewModel = lstEmp.Select(c => new SellOutViewModel
+            {
+                EmployeeCode = c.EmployeeCode,
+                EmployeeName = c.EmployeeName,
+                SalesForceCode = c.SalesForceCode,
+                Parentcode = c.Parentcode,
+                SalesForceName = c.SalesForceName,
+                SalesForceLevel = c.SalesForceLevel
+              
+            }).ToList();
+            
+            DataTable Dt11 = ExcelPackageExtensions.ToDataTable(empViewModel);
+            List<MT_SellOut> lstTarget = Dt.DataTableToListBaseHeader<MT_SellOut>();
+
+            foreach (var item in lstTarget)
+            {
+                sellOutRepository.Update(item, x => x.Perform);
+            }
+            
+            lstTarget = sellOutRepository.List.ToList();
+            foreach (var item in lstTarget)
+            {
+                item.Rate = Math.Round((Double.Parse(item.Perform) / Double.Parse(item.Target) * 100)).ToString();
+                sellOutRepository.Update(item, x => x.Rate);
+            }
+            var lstSalesForce = salesForceRepository.List.ToList();
+            var result = lstSalesForce.Join(lstTarget,
+                            dep => dep.EmployeeCode,
+                             e => e.ID,
+                            (e, dep) => new { e, dep })
+                        //.Where(item => item.dep.EmployeeCode == item.e.ID)
+                        .Select(i => new MT_SellOut
+                        {
+                            //EmployeeCode = i.e.EmployeeCode,
+
+                            //SalesForceCode = i.e.SalesForceCode,
+
+                            //SalesForceName = i.e.SalesForceName,
+                            //SalesForceLevel = i.e.SalesForceLevel,
+                            SalesOrg = i.dep.SalesOrg,
+                            CustomerCode = i.dep.CustomerCode,
+                            SalesRouteCode = i.dep.SalesRouteCode,
+                            ID = i.dep.ID,
+                            Name = i.dep.Name,
+                            Store = i.dep.Store,
+                            Target = i.dep.Target,
+                            Perform = i.dep.Perform,
+                            Rate = i.dep.Rate,
+                            LineID = i.dep.LineID,
+                            SalesForceLevel = i.e.SalesForceLevel
+                        }
+                        ).OrderBy(x => x.LineID)
+                        //.ThenBy(x => x.SalesForceLevel)
+                        .ToList();
+            //var aa = result.OrderBy(x=>x.LineID).ToList();
+            DataTable Dt1 = ExcelPackageExtensions.ToDataTable(result);
+            foreach (var item in result)
+            {
+                sellOutRepository.InsertOrUpdate(item);
+            }
+            return View(Dt1);
+        }
+
+        public ActionResult SearchSellOut()
+        {
+            var lstSellOut = sellOutRepository.List.OrderBy(x=>x.LineID).ToList();
+            DataTable Dt = ExcelPackageExtensions.ToDataTable(lstSellOut);
+            return View("ImportPerform", Dt);
         }
     }
 }
