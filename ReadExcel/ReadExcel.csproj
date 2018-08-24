@@ -222,9 +222,11 @@
     </Compile>
     <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CountryModel.cs" />
     <Compile Include="Models\ExcelMap.cs" />
     <Compile Include="Models\ExcelPackageExtensions.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\SalesForcVIewModel.cs" />
     <Compile Include="Models\SellinFirstTab.cs" />
     <Compile Include="Models\SellOutViewModel.cs" />
     <Compile Include="MT_SellOut.cs">
@@ -353,6 +355,10 @@
     <Content Include="Views\Home\ImportPerform.cshtml" />
     <Content Include="Views\Home\ImportSellOut.cshtml" />
     <Content Include="Views\Home\SearchSellOut.cshtml" />
+    <Content Include="Templete\SellOut\CHITIEU_SAMPLE.xlsx" />
+    <Content Include="Templete\SellOut\KETQUA_SAMPLE.xlsx" />
+    <Content Include="Templete\SellOut\THUCHIEN_SAMPLE.xlsx" />
+    <Content Include="Templete\SellIn\SELLIN_SAMPLE.xlsx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

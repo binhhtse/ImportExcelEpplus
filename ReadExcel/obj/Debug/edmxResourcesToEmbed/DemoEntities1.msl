@@ -87,24 +87,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="MT_SellOut">
-      <EntityTypeMapping TypeName="DemoModel1.MT_SellOut">
-        <MappingFragment StoreEntitySet="MT_SellOut">
-          <ScalarProperty Name="SalesOrg" ColumnName="SalesOrg" />
-          <ScalarProperty Name="CustomerCode" ColumnName="CustomerCode" />
-          <ScalarProperty Name="SalesRouteCode" ColumnName="SalesRouteCode" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Store" ColumnName="Store" />
-          <ScalarProperty Name="Target" ColumnName="Target" />
-          <ScalarProperty Name="Perform" ColumnName="Perform" />
-          <ScalarProperty Name="Rate" ColumnName="Rate" />
-          <ScalarProperty Name="LineID" ColumnName="LineID" />
-          <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
-          <ScalarProperty Name="SalesForceLevel" ColumnName="SalesForceLevel" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="People">
       <EntityTypeMapping TypeName="DemoModel1.Person">
         <MappingFragment StoreEntitySet="People">
@@ -207,5 +189,24 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <EntitySetMapping Name="MT_SellOut">
+      <EntityTypeMapping TypeName="DemoModel1.MT_SellOut">
+        <MappingFragment StoreEntitySet="MT_SellOut">
+          <ScalarProperty Name="ParentCode" ColumnName="ParentCode" />
+          <ScalarProperty Name="SalesForceLevel" ColumnName="SalesForceLevel" />
+          <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+          <ScalarProperty Name="LineID" ColumnName="LineID" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+          <ScalarProperty Name="Perform" ColumnName="Perform" />
+          <ScalarProperty Name="Target" ColumnName="Target" />
+          <ScalarProperty Name="Store" ColumnName="Store" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SalesRouteCode" ColumnName="SalesRouteCode" />
+          <ScalarProperty Name="CustomerCode" ColumnName="CustomerCode" />
+          <ScalarProperty Name="SalesOrg" ColumnName="SalesOrg" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

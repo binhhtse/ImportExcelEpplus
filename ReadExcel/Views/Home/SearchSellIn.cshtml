@@ -1,4 +1,4 @@
-﻿
+﻿@model ReadExcel.Models.SalesForcVIewModel
 @{
     ViewBag.Title = "SearchSellIn";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -59,34 +59,56 @@
             <div class="col-sm-6">
                 <div class="form-group">
                     @using (Html.BeginForm("SearchResultSellIn", "Home", FormMethod.Post))
-    {
-                <div class="col-md-6 input-group">
-                    <input type="text" name="bday" value="07/23/2018" id="datepicker" class="form-control" />
-                    <label class="input-group-addon btn" for="testdate">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </label>
-                </div>
-                <input type="submit" class="btn btn-primary" value="Search" />
-}
+                    {
+                        <div class="col-md-6 input-group">
+                            <input type="text" name="bday" value="07/23/2018" id="datepicker" class="form-control" />
+                            <label class="input-group-addon btn" for="testdate">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </label>
+                        </div>
+                        <input type="submit" class="btn btn-primary" value="Search" />
+                    }
 
                 </div>
             </div>
 
         </div>
-
+      
     </div>
 
 
 </body>
 </html>
 <script>
+    function GetCity(_stateId) {
+        var procemessage = "<option value='0'> Please wait...</option>";
+        $("#ddlcity").html(procemessage).show();
+        var url = "/Home/GetEmpByParentID";
 
+        $.ajax({
+            url: url,
+            data: { parentCode: _stateId, level: 3 },
+            cache: false,
+            type: "POST",
+            success: function (data) {
+                var markup = "<option value='0'>Select</option>";
+                for (var x = 0; x < data.length; x++) {
+                    markup += "<option value=" + data[x].Value + ">" + data[x].Text + "</option>";
+                }
+                $("#ddlcity").html(markup).show();
+            },
+            error: function (reponse) {
+                alert("error : " + reponse);
+            }
+        });
+
+    }
     $(document).ready(function () {
         $('#datepicker').datepicker({
             //defaultDate: "23/07/2018",
             //dateFormat: 'dd/mm/yy'
         });
-
+        
 
 
 

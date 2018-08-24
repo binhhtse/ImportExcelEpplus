@@ -46,8 +46,8 @@
     <title>Import Sell In</title>
     <link href="~/Content/upload.css" rel="stylesheet" />
     @*<link href="~/Content/jquery.dataTables.min.css" rel="stylesheet" />
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/jquery.dataTables.min.js"></script>*@
+        <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+        <script src="~/Scripts/jquery.dataTables.min.js"></script>*@
 
     <link href="~/Content/jquery-ui.css" rel="stylesheet" />
     <link href="~/Content/jquery.dataTables.min.css" rel="stylesheet" />
@@ -66,7 +66,7 @@
 
     </div>
     <hr />
-   
+
     @foreach (var item in ViewContext.ViewData.ModelState)
     {
         if (item.Value.Errors.Any())
@@ -85,7 +85,7 @@
         </div>
     }
 
-
+    
 
     <div id="tab1" class="tabcontent">
         @using (Html.BeginForm("ImportTarget", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -134,7 +134,7 @@
 </body>
 </html>
 <script>
-
+   
     $(document).ready(function () {
 
 

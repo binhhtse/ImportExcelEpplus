@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DemoModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DemoModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Account">
           <Key>
             <PropertyRef Name="Username" />
@@ -106,6 +106,7 @@
           <Property Name="LineID" Type="int" />
           <Property Name="CompanyCode" Type="nvarchar" MaxLength="50" />
           <Property Name="SalesForceLevel" Type="int" />
+          <Property Name="ParentCode" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="People">
           <Key>
@@ -211,8 +212,7 @@
             <End Role="SalesForce" EntitySet="SalesForce" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DemoModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -300,24 +300,6 @@
           <Property Name="Deleted" Type="Boolean" Nullable="false" />
           <Property Name="RowNumber" Type="Int64" Nullable="false" />
           <NavigationProperty Name="SalesForces" Relationship="Self.FK_dbo_SalesForce_dbo_Employee_Employee_ID" FromRole="Employee" ToRole="SalesForce" />
-        </EntityType>
-        <EntityType Name="MT_SellOut">
-          <Key>
-            <PropertyRef Name="ID" />
-            <PropertyRef Name="Store" />
-          </Key>
-          <Property Name="SalesOrg" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="CustomerCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SalesRouteCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Store" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Target" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Perform" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Rate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="LineID" Type="Int32" />
-          <Property Name="CompanyCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SalesForceLevel" Type="Int32" />
         </EntityType>
         <EntityType Name="Person">
           <Key>
@@ -412,7 +394,6 @@
         <EntityContainer Name="DemoEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Accounts" EntityType="Self.Account" />
           <EntitySet Name="Employees" EntityType="Self.Employee" />
-          <EntitySet Name="MT_SellOut" EntityType="Self.MT_SellOut" />
           <EntitySet Name="People" EntityType="Self.Person" />
           <EntitySet Name="SalesForces" EntityType="Self.SalesForce" />
           <EntitySet Name="SellIns" EntityType="Self.SellIn" />
@@ -423,6 +404,7 @@
           </AssociationSet>
           <FunctionImport Name="sp_Employee_GetAll" ReturnType="Collection(DemoModel1.sp_Employee_GetAll_Result)" />
           <FunctionImport Name="sp_Employee_GetList" ReturnType="Collection(DemoModel1.sp_Employee_GetList_Result)" />
+          <EntitySet Name="MT_SellOut" EntityType="DemoModel1.MT_SellOut" />
         </EntityContainer>
         <ComplexType Name="sp_Employee_GetAll_Result">
           <Property Type="String" Name="EmployeeCode" Nullable="true" MaxLength="40" />
@@ -442,6 +424,25 @@
           <Property Type="Int32" Name="SalesForceLevel" Nullable="true" />
           <Property Type="Binary" Name="level" Nullable="true" />
         </ComplexType>
+        <EntityType Name="MT_SellOut">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Store" />
+          </Key>
+          <Property Name="SalesOrg" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SalesRouteCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Store" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Target" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Perform" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Rate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LineID" Type="Int32" />
+          <Property Name="CompanyCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SalesForceLevel" Type="Int32" />
+          <Property Name="ParentCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -531,24 +532,6 @@
                 <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
                 <ScalarProperty Name="Deleted" ColumnName="Deleted" />
                 <ScalarProperty Name="RowNumber" ColumnName="RowNumber" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="MT_SellOut">
-            <EntityTypeMapping TypeName="DemoModel1.MT_SellOut">
-              <MappingFragment StoreEntitySet="MT_SellOut">
-                <ScalarProperty Name="SalesOrg" ColumnName="SalesOrg" />
-                <ScalarProperty Name="CustomerCode" ColumnName="CustomerCode" />
-                <ScalarProperty Name="SalesRouteCode" ColumnName="SalesRouteCode" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Store" ColumnName="Store" />
-                <ScalarProperty Name="Target" ColumnName="Target" />
-                <ScalarProperty Name="Perform" ColumnName="Perform" />
-                <ScalarProperty Name="Rate" ColumnName="Rate" />
-                <ScalarProperty Name="LineID" ColumnName="LineID" />
-                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
-                <ScalarProperty Name="SalesForceLevel" ColumnName="SalesForceLevel" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -654,6 +637,25 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="MT_SellOut">
+            <EntityTypeMapping TypeName="DemoModel1.MT_SellOut">
+              <MappingFragment StoreEntitySet="MT_SellOut">
+                <ScalarProperty Name="ParentCode" ColumnName="ParentCode" />
+                <ScalarProperty Name="SalesForceLevel" ColumnName="SalesForceLevel" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="LineID" ColumnName="LineID" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Perform" ColumnName="Perform" />
+                <ScalarProperty Name="Target" ColumnName="Target" />
+                <ScalarProperty Name="Store" ColumnName="Store" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SalesRouteCode" ColumnName="SalesRouteCode" />
+                <ScalarProperty Name="CustomerCode" ColumnName="CustomerCode" />
+                <ScalarProperty Name="SalesOrg" ColumnName="SalesOrg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

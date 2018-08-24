@@ -26,5 +26,6 @@ namespace ReadExcel
         public Nullable<int> LineID { get; set; }
         public string CompanyCode { get; set; }
         public Nullable<int> SalesForceLevel { get; set; }
+        public string ParentCode { get; set; }
     }
 }

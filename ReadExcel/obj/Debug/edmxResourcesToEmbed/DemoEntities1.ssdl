@@ -101,6 +101,7 @@
     <Property Name="LineID" Type="int" />
     <Property Name="CompanyCode" Type="nvarchar" MaxLength="50" />
     <Property Name="SalesForceLevel" Type="int" />
+    <Property Name="ParentCode" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="People">
     <Key>

@@ -23,6 +23,7 @@ namespace ReadExcel.Controllers
         GenericRepository<SellIn> sellInRepository = new GenericRepository<SellIn>();
         GenericRepository<MT_SellOut> sellOutRepository = new GenericRepository<MT_SellOut>();
         GenericRepository<SalesForce> salesForceRepository = new GenericRepository<SalesForce>();
+        GenericRepository<Employee> employeeeRepository = new GenericRepository<Employee>();
         public ActionResult Index()
         {
             return View();
@@ -71,7 +72,7 @@ namespace ReadExcel.Controllers
             int numberOfWork = 0;
             int month = 0;
             int year = 0;
-            if(date.Length != 9 && date.Length != 10)
+            if (date.Length != 9 && date.Length != 10)
             {
                 TempData["message"] = DMSEnum.Fail;
                 return RedirectToAction("ReadExcelUsingEpplus");
@@ -90,7 +91,7 @@ namespace ReadExcel.Controllers
             for (int i = 1; i < tab1.Count; i++)
             {
                 var day = tab1.ElementAt(i).Day.ToString();
-                if(day.Length == 9)
+                if (day.Length == 9)
                 {
                     day = "0" + day;
                 }
@@ -246,7 +247,7 @@ namespace ReadExcel.Controllers
             {
                 sellInRepository.InsertOrUpdate(item);
             }
-            if(TotalDT != null)
+            if (TotalDT != null)
             {
                 TempData["message"] = DMSEnum.Success;
             }
@@ -256,6 +257,10 @@ namespace ReadExcel.Controllers
 
         public ActionResult SearchSellIn()
         {
+           
+            //SalesForcVIewModel obj = new SalesForcVIewModel();
+            //obj.StateModel = new List<Parent>();
+            //obj.StateModel = GetAllParrent();
             return View();
         }
         [HttpPost]
@@ -314,9 +319,9 @@ namespace ReadExcel.Controllers
                 Parentcode = c.Parentcode,
                 SalesForceName = c.SalesForceName,
                 SalesForceLevel = c.SalesForceLevel
-              
+
             }).ToList();
-            
+
             DataTable Dt11 = ExcelPackageExtensions.ToDataTable(empViewModel);
             List<MT_SellOut> lstTarget = Dt.DataTableToListBaseHeader<MT_SellOut>();
 
@@ -324,7 +329,7 @@ namespace ReadExcel.Controllers
             {
                 sellOutRepository.Update(item, x => x.Perform);
             }
-            
+
             lstTarget = sellOutRepository.List.ToList();
             foreach (var item in lstTarget)
             {
@@ -355,7 +360,8 @@ namespace ReadExcel.Controllers
                             Perform = i.dep.Perform,
                             Rate = i.dep.Rate,
                             LineID = i.dep.LineID,
-                            SalesForceLevel = i.e.SalesForceLevel
+                            SalesForceLevel = i.e.SalesForceLevel,
+                            ParentCode = i.e.ParentCode
                         }
                         ).OrderBy(x => x.LineID)
                         //.ThenBy(x => x.SalesForceLevel)
@@ -371,9 +377,97 @@ namespace ReadExcel.Controllers
 
         public ActionResult SearchSellOut()
         {
-            var lstSellOut = sellOutRepository.List.OrderBy(x=>x.LineID).ToList();
-            DataTable Dt = ExcelPackageExtensions.ToDataTable(lstSellOut);
-            return View("ImportPerform", Dt);
+            //var lstSellOut = sellOutRepository.List.OrderBy(x => x.LineID).ToList();
+            //DataTable Dt = ExcelPackageExtensions.ToDataTable(lstSellOut);
+            //return View("ImportPerform", Dt);
+            SalesForcVIewModel obj = new SalesForcVIewModel();
+            obj.StateModel = new List<Parent>();
+            obj.StateModel = GetAllParrent();
+            return View(obj);
+        }
+        [HttpPost]
+        public ActionResult DownloadSellIn()
+        {
+            string filename = @"~/Templete/SellIn/SELLIN_SAMPLE";
+            string a = @"C:\Users\Rekkless\Downloads\ReadExcel-master\ReadExcel-master\ReadExcel\Templete\SellIn\SELLIN_SAMPLE.xlsx";
+            string wanted_path = Path.GetDirectoryName(Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory()));
+           
+
+            FileInfo fileInfo = new FileInfo(a);
+
+            if (fileInfo.Exists)
+            {
+                Response.Clear();
+                Response.AddHeader("Content -Disposition", "attachment; filename=" + fileInfo.Name);
+                Response.AddHeader("Content-Length", fileInfo.Length.ToString());
+                Response.ContentType = "application/octet-stream";
+                Response.Flush();
+                Response.TransmitFile(fileInfo.FullName);
+                Response.End();
+            }
+            return View("ReadExcelUsingEpplus");
+        }
+        // Collection for state
+
+        /// <summary>
+        /// colection of parent
+        /// </summary>
+        /// <returns></returns>
+        public List<Parent> GetAllParrent()
+        {
+            var lstEmp = employeeeRepository.List.ToList();
+            List<State> objstate = new List<State>();
+            var lstP = salesForceRepository.List.Where(x => x.SalesForceLevel == 2);
+            var result = lstP.Join(lstEmp,
+                           dep => dep.EmployeeCode,
+                            e => e.EmployeeCode,
+                           (e, dep) => new { e, dep })
+                       //.Where(item => item.dep.EmployeeCode == item.e.ID)
+                       .Select(i => new Parent
+                       {
+                            
+                           Id = i.e.SalesForceCode,
+                           ParName = i.dep.EmployeeName
+                       }
+                       ).Distinct()
+                      
+                       .ToList();
+           
+           
+            return result;
+        }
+        public List<Children> GetAllChildren()
+        {
+            var lstEmp = employeeeRepository.List.ToList();
+            var lstP = salesForceRepository.List.ToList();
+            var result = lstP.Join(lstEmp,
+                           dep => dep.EmployeeCode,
+                            e => e.EmployeeCode,
+                           (e, dep) => new { e, dep })
+                       //.Where(item => item.dep.EmployeeCode == item.e.ID)
+                       .Select(i => new Children
+                       {
+
+                           Id = i.e.SalesForceCode,
+                           ParentId = i.e.ParentCode,
+                           ChilName = i.dep.EmployeeName
+                       }
+                       ).Distinct()
+
+                       .ToList();
+
+
+            return result;
+        }
+        //collection for city
+      
+        [HttpPost]
+        public ActionResult GetEmpByParentID(string parentCode, int level)
+        {
+            List<Children> objcity = new List<Children>();
+            objcity = GetAllChildren().Where(m => m.ParentId == parentCode).ToList();
+            SelectList obgcity = new SelectList(objcity, "Id", "ChilName", 0);
+            return Json(obgcity);
         }
     }
 }
