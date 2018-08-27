@@ -10,9 +10,8 @@
 namespace ReadExcel
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class MT_SellOut
+    public partial class sp_GetAllChildrenForParent_Result
     {
         public string SalesOrg { get; set; }
         public string CustomerCode { get; set; }

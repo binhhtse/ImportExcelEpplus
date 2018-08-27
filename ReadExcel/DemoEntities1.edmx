@@ -107,6 +107,7 @@
           <Property Name="CompanyCode" Type="nvarchar" MaxLength="50" />
           <Property Name="SalesForceLevel" Type="int" />
           <Property Name="ParentCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="SalesForceCode" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="People">
           <Key>
@@ -199,6 +200,9 @@
         </Association>
         <Function Name="sp_Employee_GetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_Employee_GetList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_GetAllChildrenForParent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Code" Type="nvarchar" Mode="In" />
+        </Function>
         <EntityContainer Name="DemoModel1StoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
@@ -405,6 +409,9 @@
           <FunctionImport Name="sp_Employee_GetAll" ReturnType="Collection(DemoModel1.sp_Employee_GetAll_Result)" />
           <FunctionImport Name="sp_Employee_GetList" ReturnType="Collection(DemoModel1.sp_Employee_GetList_Result)" />
           <EntitySet Name="MT_SellOut" EntityType="DemoModel1.MT_SellOut" />
+          <FunctionImport Name="sp_GetAllChildrenForParent" ReturnType="Collection(DemoModel1.sp_GetAllChildrenForParent_Result)">
+            <Parameter Name="Code" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_Employee_GetAll_Result">
           <Property Type="String" Name="EmployeeCode" Nullable="true" MaxLength="40" />
@@ -442,7 +449,24 @@
           <Property Name="CompanyCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SalesForceLevel" Type="Int32" />
           <Property Name="ParentCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SalesForceCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
+        <ComplexType Name="sp_GetAllChildrenForParent_Result">
+          <Property Type="String" Name="SalesOrg" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CustomerCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SalesRouteCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ID" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Store" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Target" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Perform" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Rate" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="LineID" Nullable="true" />
+          <Property Type="String" Name="CompanyCode" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="SalesForceLevel" Nullable="true" />
+          <Property Type="String" Name="ParentCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SalesForceCode" Nullable="true" MaxLength="50" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -640,6 +664,7 @@
           <EntitySetMapping Name="MT_SellOut">
             <EntityTypeMapping TypeName="DemoModel1.MT_SellOut">
               <MappingFragment StoreEntitySet="MT_SellOut">
+                <ScalarProperty Name="SalesForceCode" ColumnName="SalesForceCode" />
                 <ScalarProperty Name="ParentCode" ColumnName="ParentCode" />
                 <ScalarProperty Name="SalesForceLevel" ColumnName="SalesForceLevel" />
                 <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
@@ -656,6 +681,26 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetAllChildrenForParent" FunctionName="DemoModel1.Store.sp_GetAllChildrenForParent">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DemoModel1.sp_GetAllChildrenForParent_Result">
+                <ScalarProperty Name="SalesOrg" ColumnName="SalesOrg" />
+                <ScalarProperty Name="CustomerCode" ColumnName="CustomerCode" />
+                <ScalarProperty Name="SalesRouteCode" ColumnName="SalesRouteCode" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Store" ColumnName="Store" />
+                <ScalarProperty Name="Target" ColumnName="Target" />
+                <ScalarProperty Name="Perform" ColumnName="Perform" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="LineID" ColumnName="LineID" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="SalesForceLevel" ColumnName="SalesForceLevel" />
+                <ScalarProperty Name="ParentCode" ColumnName="ParentCode" />
+                <ScalarProperty Name="SalesForceCode" ColumnName="SalesForceCode" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

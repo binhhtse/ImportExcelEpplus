@@ -102,6 +102,7 @@
     <Property Name="CompanyCode" Type="nvarchar" MaxLength="50" />
     <Property Name="SalesForceLevel" Type="int" />
     <Property Name="ParentCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="SalesForceCode" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="People">
     <Key>
@@ -194,6 +195,9 @@
   </Association>
   <Function Name="sp_Employee_GetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="sp_Employee_GetList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_GetAllChildrenForParent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Code" Type="nvarchar" Mode="In" />
+  </Function>
   <EntityContainer Name="DemoModel1StoreContainer">
     <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />

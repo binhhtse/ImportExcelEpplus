@@ -7,8 +7,8 @@
 <h2>ImportPerform</h2>
 <html>
 <head>
-  
-    <link href="~/Content/upload.css" rel="stylesheet" />
+
+    <link href="~/Content/upload.css" type='text/css' rel="stylesheet" />
     <link href="~/Content/jquery-ui.css" rel="stylesheet" />
     <link href="~/Content/jquery.dataTables.min.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
@@ -17,33 +17,36 @@
 
 </head>
 <body>
-  
+
     <br />
 
-    
-        <div class="table-responsive">
 
-            @using (Html.BeginForm())
-            {
-                @Html.DropDownListFor(m => m.StateModel, new SelectList(Model.StateModel, "Id", "ParName"), new { @class = "form-control", @id = "ddlstate", @style = "width:200px;", @onchange = "GetCity(this.value,'#ddlcity');" })
-                <br />
+    <div class="table-responsive">
 
-                <div class="form-group">
-                    <select id="ddlcity" class="form-control" name="ddlcity" style="width: 200px" onchange="GetCity(this.value, '#ddlcity1');"></select>
-                </div>
-                <div class="form-group">
-                    <select id="ddlcity1" class="form-control" name="ddlcity" style="width: 200px" onchange="GetCity(this.value, '#ddlcity2');"></select>
-                </div>
-                <div class="form-group">
-                    <select id="ddlcity2" class="form-control" name="ddlcity" style="width: 200px" onchange="GetCity(this.value, '#ddlcity3');"></select>
-                </div>
-                <div class="form-group">
-                    <select id="ddlcity3" class="form-control" name="ddlcity" style="width: 200px" onchange="GetCity(this.value, '#ddlcity4');"></select>
-                </div>
+        @using (Html.BeginForm("GetAllChildren", "Home", FormMethod.Post))
+    {
+        @Html.DropDownListFor(m => m.StateModel, new SelectList(Model.StateModel, "Id", "ParName"), new { @class = "form-control", @id = "ddlstate" ,@style = "width:200px;", @onchange = "GetCity(this.value,'#ddlcity');" })
+        <br />
 
-                <br /><br />
-            }
+        <div class="form-group">
+            <select id="ddlcity" class="form-control" name="ddlcity" style="width: 200px" onchange="GetCity(this.value, '#ddlcity1');"></select>
         </div>
+        <div class="form-group">
+            <select id="ddlcity1" class="form-control" name="ddlcity1" style="width: 200px" onchange="GetCity(this.value, '#ddlcity2');"></select>
+        </div>
+        @*<div class="form-group">
+            <select id="ddlcity2" class="form-control" name="ddlcity" style="width: 200px" onchange="GetCity(this.value, '#ddlcity3');"></select>
+        </div>
+        <div class="form-group">
+            <select id="ddlcity3" class="form-control" name="ddlcity" style="width: 200px" onchange="GetCity(this.value, '#ddlcity4');"></select>
+        </div>*@
+
+        <br /><br />
+        <div class="form-group">
+            <input type="submit" name="btnupload" value="Search" class="btn btn-primary" />
+        </div>
+}
+    </div>
    
 
 
@@ -62,7 +65,7 @@
             cache: false,
             type: "POST",
             success: function (data) {
-               
+
                 var markup = "<option value='0'>Select</option>";
                 for (var x = 0; x < data.length; x++) {
                     markup += "<option value=" + data[x].Value + ">" + data[x].Text + "</option>";

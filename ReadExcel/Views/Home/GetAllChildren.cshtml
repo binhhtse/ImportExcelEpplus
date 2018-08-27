@@ -1,4 +1,4 @@
-﻿
+﻿@model ReadExcel.Models.MultiModel
 @{
     ViewBag.Title = "ImportPerform";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,7 +7,7 @@
 <h2>ImportPerform</h2>
 <html>
 <head>
- 
+
     <title>Import Sell In</title>
     <link href="~/Content/upload.css" type='text/css' rel="stylesheet" />
     <link href="~/Content/jquery-ui.css" rel="stylesheet" />
@@ -20,18 +20,36 @@
 <body>
 
     <br />
+    <div class="table-responsive">
 
+        @using (Html.BeginForm("GetAllChildren", "Home", FormMethod.Post))
+        {
+            @Html.DropDownListFor(m => m.SalesForce.StateModel, new SelectList(Model.SalesForce.StateModel, "Id", "ParName"), new { @class = "form-control", @id = "ddlstate", @style = "width:200px;", @onchange = "GetCity(this.value,'#ddlcity');" })
+            <br />
+
+            <div class="form-group">
+                <select id="ddlcity" class="form-control" name="ddlcity" style="width: 200px" onchange="GetCity(this.value, '#ddlcity1');"></select>
+            </div>
+            <div class="form-group">
+                <select id="ddlcity1" class="form-control" name="ddlcity1" style="width: 200px" onchange="GetCity(this.value, '#ddlcity2');"></select>
+            </div>
+            @*<div class="form-group">
+                    <select id="ddlcity2" class="form-control" name="ddlcity" style="width: 200px" onchange="GetCity(this.value, '#ddlcity3');"></select>
+                </div>
+                <div class="form-group">
+                    <select id="ddlcity3" class="form-control" name="ddlcity" style="width: 200px" onchange="GetCity(this.value, '#ddlcity4');"></select>
+                </div>*@
+
+            <br /><br />
+            <div class="form-group">
+                <input type="submit" name="btnupload" value="Search" class="btn btn-primary" />
+            </div>
+        }
+    </div>
 
     <div class="table-responsive">
 
-        @foreach (var item in ViewContext.ViewData.ModelState)
-        {
-            if (item.Value.Errors.Any())
-            {
 
-                @*<b>@Html.ValidationSummary()</b>*@
-            }
-        }
         @if (Model != null)
         {
 
@@ -40,7 +58,7 @@
 
                     <tr style="background-color:yellow">
 
-                        @foreach (System.Data.DataColumn col in Model.Columns)
+                        @foreach (System.Data.DataColumn col in Model.Dt.Columns)
                         {
                             <th>@col.Caption</th>
                         }
@@ -54,7 +72,7 @@
 
                 </thead>
                 <tbody>
-                    @foreach (System.Data.DataRow row in Model.Rows)
+                    @foreach (System.Data.DataRow row in Model.Dt.Rows)
                     {
                         <tr>
                             @{int countRow = 0;}
@@ -113,14 +131,37 @@
                     </tfoot>*@
             </table>
         }
-       
+
     </div>
 
 
 </body>
 </html>
 <script>
-   
+    function GetCity(_stateId, id) {
+        var procemessage = "<option value='0'> Please wait...</option>";
+        //$("#ddlcity").html(procemessage).show();
+        var url = "/Home/GetEmpByParentID";
+
+        $.ajax({
+            url: url,
+            data: { parentCode: _stateId, level: 3 },
+            cache: false,
+            type: "POST",
+            success: function (data) {
+
+                var markup = "<option value='0'>Select</option>";
+                for (var x = 0; x < data.length; x++) {
+                    markup += "<option value=" + data[x].Value + ">" + data[x].Text + "</option>";
+                }
+                $(id).html(markup).show();
+            },
+            error: function (reponse) {
+                alert("error : " + reponse);
+            }
+        });
+
+    }
     $(document).ready(function () {
 
 
@@ -155,7 +196,7 @@
             ],
             "columnDefs": [
                 {
-                    "targets": [0, 1, 2, 9, 10, 11],
+                    "targets": [3, 4, 5, h, 7, 8, 12],
                     "visible": false
 
                 }
@@ -167,12 +208,32 @@
 
 
         $("table").removeClass("dataTable");
-
+        openTab(event, 'tab1');
         $("#button1").addClass("active");
 
 
     });
 
+    function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+
+        // Get all elements with class="tabcontent" and hide them
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        // Get all elements with class="tablinks" and remove the class "active"
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        // Show the current tab, and add an "active" class to the button that opened the tab
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.className += " active";
+
+    }
 
 
 

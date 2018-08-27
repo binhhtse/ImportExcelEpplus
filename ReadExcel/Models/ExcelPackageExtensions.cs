@@ -47,8 +47,7 @@ namespace ReadExcel.Models
                 int count = 0;
                 foreach (var cell in row)
                 {
-                    var columnNumber = cell.Start.Column;
-                    int pos = Array.IndexOf(Selection, columnNumber);
+                    
                     //if (pos > -1)
                     //{
                     newRow[cell.Start.Column - 1] = cell.Text;

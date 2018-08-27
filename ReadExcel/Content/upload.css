@@ -20,9 +20,9 @@
         color: #EE4E44;
     }
 /****** Datatable search bar ******/
-.dataTables_filter, .dataTables_info {
+/*.dataTables_filter, .dataTables_info {
     display: none !important;
-}
+}*/
 /****** CODE ******/
 
 .file-upload {

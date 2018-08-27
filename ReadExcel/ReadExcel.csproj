@@ -226,6 +226,7 @@
     <Compile Include="Models\ExcelMap.cs" />
     <Compile Include="Models\ExcelPackageExtensions.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\MultiModel.cs" />
     <Compile Include="Models\SalesForcVIewModel.cs" />
     <Compile Include="Models\SellinFirstTab.cs" />
     <Compile Include="Models\SellOutViewModel.cs" />
@@ -254,6 +255,9 @@
       <DependentUpon>DemoEntities1.tt</DependentUpon>
     </Compile>
     <Compile Include="sp_Employee_GetList_Result.cs">
+      <DependentUpon>DemoEntities1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_GetAllChildrenForParent_Result.cs">
       <DependentUpon>DemoEntities1.tt</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
@@ -359,6 +363,7 @@
     <Content Include="Templete\SellOut\KETQUA_SAMPLE.xlsx" />
     <Content Include="Templete\SellOut\THUCHIEN_SAMPLE.xlsx" />
     <Content Include="Templete\SellIn\SELLIN_SAMPLE.xlsx" />
+    <Content Include="Views\Home\GetAllChildren.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

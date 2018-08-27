@@ -94,9 +94,14 @@ namespace ReadExcel.Controllers
                 if (day.Length == 9)
                 {
                     day = "0" + day;
+                    tab1.ElementAt(i).Day = DateTime.ParseExact(day, "MM/dd/yyyy", CultureInfo.InvariantCulture)
+                       .ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
+                }else if(day.Length == 10)
+                {
+                    tab1.ElementAt(i).Day = DateTime.ParseExact(day, "MM/dd/yyyy", CultureInfo.InvariantCulture)
+                       .ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
                 }
-                tab1.ElementAt(i).Day = DateTime.ParseExact(day, "MM/dd/yyyy", CultureInfo.InvariantCulture)
-                        .ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
+               
                 if (tab1.ElementAt(i).TargetMonth.Trim() == "0" || tab1.ElementAt(i).TargetMonth.Trim() == "-")
                 {
                     tab1.ElementAt(i).TargetDate = "0";
@@ -147,7 +152,7 @@ namespace ReadExcel.Controllers
                     tab1.ElementAt(i).PercentWeek = String.Format("{0:0.00}", percentWeek);
                 }
 
-                tab1.ElementAt(i).LastUpdated = DateTime.Now.ToShortDateString();
+                tab1.ElementAt(i).LastUpdated = DateTime.Now.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
                 tab1.ElementAt(i).Tab = "1";
                 tab1.ElementAt(i).CompanyCode = DMSEnum.CompanyCode;
                 tab1.ElementAt(i).SalesOrg = DMSEnum.MTSalesOrg;
@@ -210,7 +215,7 @@ namespace ReadExcel.Controllers
                     var percentWeek = (double.Parse(tab2.ElementAt(i).ActualWeek) / double.Parse(tab2.ElementAt(i).TargetWeek)) * 100;
                     tab2.ElementAt(i).PercentWeek = String.Format("{0:0.00}", percentWeek);
                 }
-                tab2.ElementAt(i).LastUpdated = DateTime.Now.ToShortDateString();
+                tab2.ElementAt(i).LastUpdated = DateTime.Now.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
                 tab2.ElementAt(i).Tab = "2";
                 tab2.ElementAt(i).CompanyCode = DMSEnum.CompanyCode;
                 tab2.ElementAt(i).SalesOrg = DMSEnum.MTSalesOrg;
@@ -361,7 +366,8 @@ namespace ReadExcel.Controllers
                             Rate = i.dep.Rate,
                             LineID = i.dep.LineID,
                             SalesForceLevel = i.e.SalesForceLevel,
-                            ParentCode = i.e.ParentCode
+                            ParentCode = i.e.ParentCode,
+                            SalesForceCode = i.e.SalesForceCode
                         }
                         ).OrderBy(x => x.LineID)
                         //.ThenBy(x => x.SalesForceLevel)
@@ -398,11 +404,13 @@ namespace ReadExcel.Controllers
             if (fileInfo.Exists)
             {
                 Response.Clear();
-                Response.AddHeader("Content -Disposition", "attachment; filename=" + fileInfo.Name);
+                Response.AddHeader("Content -Disposition", "attachment; filename=a.xlsx");
                 Response.AddHeader("Content-Length", fileInfo.Length.ToString());
                 Response.ContentType = "application/octet-stream";
                 Response.Flush();
-                Response.TransmitFile(fileInfo.FullName);
+                //Response.TransmitFile(fileInfo.FullName);
+                 Response.TransmitFile(Server.MapPath("~/Templete/SellIn/SELLIN_SAMPLE.xlsx"));
+
                 Response.End();
             }
             return View("ReadExcelUsingEpplus");
@@ -468,6 +476,23 @@ namespace ReadExcel.Controllers
             objcity = GetAllChildren().Where(m => m.ParentId == parentCode).ToList();
             SelectList obgcity = new SelectList(objcity, "Id", "ChilName", 0);
             return Json(obgcity);
+        }
+        [HttpPost]
+        public ActionResult GetAllChildren(FormCollection form)
+        {
+            SalesForcVIewModel obj = new SalesForcVIewModel();
+            obj.StateModel = new List<Parent>();
+            obj.StateModel = GetAllParrent();
+            ///
+            string strDDLValue = Request.Form["StateModel"].ToString();
+            strDDLValue = "MB-RSM-BTB";
+            var db = new DemoEntities1();
+            var lstEmp = db.sp_GetAllChildrenForParent(strDDLValue).ToList();
+            DataTable Dt = ExcelPackageExtensions.ToDataTable(lstEmp);
+            MultiModel model = new MultiModel();
+            model.Dt = Dt;
+            model.SalesForce = obj;
+            return View(model);
         }
     }
 }
