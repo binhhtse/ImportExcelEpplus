@@ -1,10 +1,9 @@
 ﻿@model ReadExcel.Models.SalesForcVIewModel
 @{
-    ViewBag.Title = "ImportPerform";
+    ViewBag.Title = "Search Sell Out";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>ImportPerform</h2>
+<h2>Search Sell Out</h2>
 <html>
 <head>
 
@@ -22,32 +21,34 @@
 
 
     <div class="table-responsive">
-
+        
         @using (Html.BeginForm("GetAllChildren", "Home", FormMethod.Post))
-    {
-        @Html.DropDownListFor(m => m.StateModel, new SelectList(Model.StateModel, "Id", "ParName"), new { @class = "form-control", @id = "ddlstate" ,@style = "width:200px;", @onchange = "GetCity(this.value,'#ddlcity');" })
-        <br />
+        {
+            <div class="row">
+                <div class="col-sm-4">
+                    RSM
+                    @Html.DropDownListFor(m => m.StateModel, new SelectList(Model.StateModel, "Id", "ParName"), "Select",
+                         new { @class = "form-control", @id = "ddlstate", @style = "width:200px;", @onchange = "GetCity(this.value,'#ddlcity');" })
 
-        <div class="form-group">
-            <select id="ddlcity" class="form-control" name="ddlcity" style="width: 200px" onchange="GetCity(this.value, '#ddlcity1');"></select>
-        </div>
-        <div class="form-group">
-            <select id="ddlcity1" class="form-control" name="ddlcity1" style="width: 200px" onchange="GetCity(this.value, '#ddlcity2');"></select>
-        </div>
-        @*<div class="form-group">
-            <select id="ddlcity2" class="form-control" name="ddlcity" style="width: 200px" onchange="GetCity(this.value, '#ddlcity3');"></select>
-        </div>
-        <div class="form-group">
-            <select id="ddlcity3" class="form-control" name="ddlcity" style="width: 200px" onchange="GetCity(this.value, '#ddlcity4');"></select>
-        </div>*@
+                </div>
 
-        <br /><br />
-        <div class="form-group">
-            <input type="submit" name="btnupload" value="Search" class="btn btn-primary" />
-        </div>
-}
+
+                <div class="col-sm-4">
+                    ASM <select id="ddlcity" class="form-control" name="ddlcity" style="width: 200px" onchange="GetCity(this.value, '#ddlcity1');"></select>
+                </div>
+                <div class="col-sm-4">
+                    NVBH <select id="ddlcity1" class="form-control" name="ddlcity1" style="width: 200px" onchange="GetCity(this.value, '#ddlcity2');"></select>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-sm-3">
+                    <input type="submit" name="btnupload" value="Search" class="btn btn-primary" />
+                </div>
+            </div>
+        }
     </div>
-   
+
 
 
 

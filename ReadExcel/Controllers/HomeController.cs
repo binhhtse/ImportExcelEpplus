@@ -472,10 +472,10 @@ namespace ReadExcel.Controllers
         [HttpPost]
         public ActionResult GetEmpByParentID(string parentCode, int level)
         {
-            List<Children> objcity = new List<Children>();
-            objcity = GetAllChildren().Where(m => m.ParentId == parentCode).ToList();
-            SelectList obgcity = new SelectList(objcity, "Id", "ChilName", 0);
-            return Json(obgcity);
+            List<Children> obj = new List<Children>();
+            obj = GetAllChildren().Where(m => m.ParentId == parentCode).ToList();
+            SelectList lst = new SelectList(obj, "Id", "ChilName", 0);
+            return Json(lst);
         }
         [HttpPost]
         public ActionResult GetAllChildren(FormCollection form)
@@ -489,9 +489,11 @@ namespace ReadExcel.Controllers
             var db = new DemoEntities1();
             var lstEmp = db.sp_GetAllChildrenForParent(strDDLValue).ToList();
             DataTable Dt = ExcelPackageExtensions.ToDataTable(lstEmp);
-            MultiModel model = new MultiModel();
-            model.Dt = Dt;
-            model.SalesForce = obj;
+            MultiModel model = new MultiModel
+            {
+                Dt = Dt,
+                SalesForce = obj
+            };
             return View(model);
         }
     }
