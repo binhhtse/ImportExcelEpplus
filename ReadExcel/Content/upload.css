@@ -24,7 +24,9 @@
     display: none !important;
 }*/
 /****** CODE ******/
-
+ th {
+    text-align:center !important;
+}
 .file-upload {
     display: block;
     text-align: center;

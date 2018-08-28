@@ -24,6 +24,7 @@ namespace ReadExcel.Controllers
         GenericRepository<MT_SellOut> sellOutRepository = new GenericRepository<MT_SellOut>();
         GenericRepository<SalesForce> salesForceRepository = new GenericRepository<SalesForce>();
         GenericRepository<Employee> employeeeRepository = new GenericRepository<Employee>();
+        DemoEntities1 db = new DemoEntities1();
         public ActionResult Index()
         {
             return View();
@@ -484,10 +485,16 @@ namespace ReadExcel.Controllers
             obj.StateModel = new List<Parent>();
             obj.StateModel = GetAllParrent();
             ///
-            string strDDLValue = Request.Form["StateModel"].ToString();
+            var value = Request.Form["SalesForce.StateModel"] ?? Request.Form["StateModel"];
+            int level = 2;
+            if (Request.Form["ddlcity"] != null)
+            {
+                level = 3;
+            }
+            string strDDLValue = value.ToString();
             strDDLValue = "MB-RSM-BTB";
-            var db = new DemoEntities1();
-            var lstEmp = db.sp_GetAllChildrenForParent(strDDLValue).ToList();
+            
+            var lstEmp = db.sp_GetAllChildrenForParent(strDDLValue,level).ToList();
             DataTable Dt = ExcelPackageExtensions.ToDataTable(lstEmp);
             MultiModel model = new MultiModel
             {

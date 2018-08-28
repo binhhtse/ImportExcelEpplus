@@ -21,14 +21,14 @@
 
 
     <div class="table-responsive">
-        
+
         @using (Html.BeginForm("GetAllChildren", "Home", FormMethod.Post))
         {
             <div class="row">
                 <div class="col-sm-4">
                     RSM
                     @Html.DropDownListFor(m => m.StateModel, new SelectList(Model.StateModel, "Id", "ParName"), "Select",
-                         new { @class = "form-control", @id = "ddlstate", @style = "width:200px;", @onchange = "GetCity(this.value,'#ddlcity');" })
+                              new { @class = "form-control", @id = "ddlstate", @style = "width:200px;", @onchange = "GetCity(this.value,'#ddlcity');" })
 
                 </div>
 
@@ -37,7 +37,7 @@
                     ASM <select id="ddlcity" class="form-control" name="ddlcity" style="width: 200px" onchange="GetCity(this.value, '#ddlcity1');"></select>
                 </div>
                 <div class="col-sm-4">
-                    NVBH <select id="ddlcity1" class="form-control" name="ddlcity1" style="width: 200px" onchange="GetCity(this.value, '#ddlcity2');"></select>
+                    SS <select id="ddlcity1" class="form-control" name="ddlcity1" style="width: 200px" onchange="GetCity(this.value, '#ddlcity2');"></select>
                 </div>
             </div>
             <br />
@@ -48,7 +48,7 @@
             </div>
         }
     </div>
-
+  
 
 
 

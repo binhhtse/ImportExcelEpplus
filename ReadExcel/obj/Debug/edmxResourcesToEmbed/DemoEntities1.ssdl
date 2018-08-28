@@ -197,6 +197,7 @@
   <Function Name="sp_Employee_GetList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="sp_GetAllChildrenForParent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Code" Type="nvarchar" Mode="In" />
+    <Parameter Name="level" Type="int" Mode="In" />
   </Function>
   <EntityContainer Name="DemoModel1StoreContainer">
     <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />

@@ -24,32 +24,33 @@
 
         @using (Html.BeginForm("GetAllChildren", "Home", FormMethod.Post))
         {
-        <div class="row">
-            <div class="col-sm-4">RSM
-                @Html.DropDownListFor(m => m.SalesForce.StateModel,new SelectList(Model.SalesForce.StateModel, "Id", "ParName"), "Select",
-               new { @class = "form-control", @id = "ddlstate", @style = "width:200px;", @onchange = "GetCity(this.value,'#ddlcity');" })
+            <div class="row">
+                <div class="col-sm-4">
+                    RSM
+                    @Html.DropDownListFor(m => m.SalesForce.StateModel, new SelectList(Model.SalesForce.StateModel, "Id", "ParName"), "Select",
+                                                      new { @class = "form-control", @id = "ddlstate", @style = "width:200px;", @onchange = "GetValueDD(this.value,'#ddlcity');" })
 
+                </div>
+
+
+                <div class="col-sm-4">
+                    ASM <select id="ddlcity" class="form-control" name="ddlcity" style="width: 200px" onchange="GetValueDD(this.value, '#ddlcity1');"></select>
+                </div>
+                <div class="col-sm-4">
+                    SS <select id="ddlcity1" class="form-control" name="ddlcity1" style="width: 200px" onchange="GetValueDD(this.value, '#ddlcity2');"></select>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-sm-3">
+                    <input type="submit" name="btnupload" value="Search" class="btn btn-primary" />
+                </div>
             </div>
 
 
-            <div class="col-sm-4">
-               ASM <select id="ddlcity" class="form-control" name="ddlcity" style="width: 200px" onchange="GetCity(this.value, '#ddlcity1');"></select>
-            </div>
-            <div class="col-sm-4">
-               NVBH <select id="ddlcity1" class="form-control" name="ddlcity1" style="width: 200px" onchange="GetCity(this.value, '#ddlcity2');"></select>
-            </div>
-        </div>
-          <br/> 
-        <div class="row">
-            <div class="col-sm-3">
-                <input type="submit" name="btnupload" value="Search" class="btn btn-primary" />
-            </div>
-        </div>
-
-            
         }
     </div>
-    <br/>
+    <br />
     <div class="table-responsive">
 
 
@@ -63,42 +64,57 @@
 
                         @foreach (System.Data.DataColumn col in Model.Dt.Columns)
                         {
-                            <th>@col.Caption</th>
+                            <th style="">@col.Caption</th>
                         }
-
-
-
-
-
                     </tr>
-
-
                 </thead>
                 <tbody>
                     @foreach (System.Data.DataRow row in Model.Dt.Rows)
                     {
                         <tr>
-                            @{int countRow = 0;}
+                            @{int countColumn = 0;}
                             @foreach (var cell in row.ItemArray)
                             {
                                 var a = row.ItemArray[11].ToString();
                                 if (a == "2")
                                 {
-                                    if (countRow > 5 && countRow < 10)
+                                    if (countColumn > 5 && countColumn < 10)
                                     {
-                                        <td class="text-right" style="background-color:yellow">@cell.ToString()</td>
+                                        <td class="text-right" style="font-weight:bold;background-color:yellow">@cell.ToString()</td>
+                                        
                                     }
                                     else
                                     {
-                                        <td style="background-color:yellow">@cell.ToString()</td>
+                                        <td style="font-weight:bold;background-color:yellow">@cell.ToString()</td>
                                     }
+
 
                                 }
                                 else if (a == "3")
                                 {
-                                    if (countRow > 5 && countRow < 10)
+                                    if (countColumn > 5 && countColumn < 10)
                                     {
-                                        <td class="text-right" style="font-weight:bold">@cell.ToString()</td>
+
+                                        if (countColumn == 8)
+                                        {
+                                            if (int.Parse(row.ItemArray[8].ToString()) > 100)
+                                            {
+                                                <td class="text-right" style="font-weight:bold;color:forestgreen">@cell.ToString()</td>
+                                            }
+                                            else if (int.Parse(row.ItemArray[8].ToString()) > 90 && int.Parse(row.ItemArray[8].ToString()) < 100)
+                                            {
+                                                <td class="text-right" style="font-weight:bold;color:yellow">@cell.ToString()</td>
+                                            }
+                                            else
+                                            {
+                                                <td class="text-right" style="font-weight:bold;color:red">@cell.ToString()</td>
+                                            }
+
+                                        }
+                                        else
+                                        {
+                                            <td class="text-right" style="font-weight:bold">@cell.ToString()</td>
+                                        }
                                     }
                                     else
                                     {
@@ -108,9 +124,28 @@
                                 }
                                 else
                                 {
-                                    if (countRow > 5 && countRow < 10)
+                                    if (countColumn > 5 && countColumn < 10)
                                     {
-                                        <td class="text-right">@cell.ToString()</td>
+                                        if (countColumn == 8)
+                                        {
+                                            if (int.Parse(row.ItemArray[8].ToString()) > 100)
+                                            {
+                                                <td class="text-right" style="font-weight:bold;color:forestgreen">@cell.ToString()</td>
+                                            }
+                                            else if (int.Parse(row.ItemArray[8].ToString()) > 90 && int.Parse(row.ItemArray[8].ToString()) < 100)
+                                            {
+                                                <td class="text-right" style="font-weight:bold;color:yellow">@cell.ToString()</td>
+                                            }
+                                            else
+                                            {
+                                                <td class="text-right" style="font-weight:bold;color:red">@cell.ToString()</td>
+                                            }
+
+                                        }
+                                        else
+                                        {
+                                            <td class="text-right" style="font-weight:bold">@cell.ToString()</td>
+                                        }
                                     }
                                     else
                                     {
@@ -119,7 +154,7 @@
 
                                 }
                                 @*<td>@cell.ToString()</td>*@
-                                countRow++;
+                                countColumn++;
                             }
                         </tr>
                     }
@@ -141,7 +176,7 @@
 </body>
 </html>
 <script>
-    function GetCity(_stateId, id) {
+    function GetValueDD(_stateId, id) {
         var procemessage = "<option value='0'> Please wait...</option>";
         //$("#ddlcity").html(procemessage).show();
         var url = "/Home/GetEmpByParentID";
@@ -199,7 +234,7 @@
             ],
             "columnDefs": [
                 {
-                    "targets": [0,1,2,9,10,11,12,13],
+                    "targets": [0, 1, 2, 9, 10, 11, 12, 13],
                     "visible": false
 
                 }

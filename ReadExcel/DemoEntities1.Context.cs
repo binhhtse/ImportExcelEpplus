@@ -45,13 +45,17 @@ namespace ReadExcel
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Employee_GetList_Result>("sp_Employee_GetList");
         }
     
-        public virtual ObjectResult<sp_GetAllChildrenForParent_Result> sp_GetAllChildrenForParent(string code)
+        public virtual ObjectResult<sp_GetAllChildrenForParent_Result> sp_GetAllChildrenForParent(string code, Nullable<int> level)
         {
             var codeParameter = code != null ?
                 new ObjectParameter("Code", code) :
                 new ObjectParameter("Code", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetAllChildrenForParent_Result>("sp_GetAllChildrenForParent", codeParameter);
+            var levelParameter = level.HasValue ?
+                new ObjectParameter("level", level) :
+                new ObjectParameter("level", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetAllChildrenForParent_Result>("sp_GetAllChildrenForParent", codeParameter, levelParameter);
         }
     }
 }
