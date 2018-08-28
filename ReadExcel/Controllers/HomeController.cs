@@ -20,7 +20,7 @@ namespace ReadExcel.Controllers
     {
         private static readonly ILog Log =
               LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        GenericRepository<SellIn> sellInRepository = new GenericRepository<SellIn>();
+        GenericRepository<MT_SellIn> sellInRepository = new GenericRepository<MT_SellIn>();
         GenericRepository<MT_SellOut> sellOutRepository = new GenericRepository<MT_SellOut>();
         GenericRepository<SalesForce> salesForceRepository = new GenericRepository<SalesForce>();
         GenericRepository<Employee> employeeeRepository = new GenericRepository<Employee>();
@@ -67,8 +67,8 @@ namespace ReadExcel.Controllers
 
             //List<Person> employeeList = Dt.DataTableToList<Person>();
 
-            List<SellIn> tab1 = Dt[0].DataTableToList<SellIn>();
-            List<SellIn> tab2 = Dt[1].DataTableToList<SellIn>();
+            List<MT_SellIn> tab1 = Dt[0].DataTableToList<MT_SellIn>();
+            List<MT_SellIn> tab2 = Dt[1].DataTableToList<MT_SellIn>();
             String date = tab1.ElementAt(tab1.Count - 1).Day; //   07/22/2013
             int numberOfWork = 0;
             int month = 0;
@@ -244,7 +244,7 @@ namespace ReadExcel.Controllers
             var searchResults = sellInRepository.Search(p => p.Growth == "0");
             //sellInRepository.BatchInsert(tab1);
             //sellInRepository.BatchInsert(tab2);
-            List<SellIn> ls = sellInRepository.List.ToList();
+            List<MT_SellIn> ls = sellInRepository.List.ToList();
             foreach (var item in tab1)
             {
                 sellInRepository.InsertOrUpdate(item);
@@ -275,8 +275,8 @@ namespace ReadExcel.Controllers
             //string date = bday.Date.ToShortDateString();
             string date = String.Format("{0:dd/MM/yyyy}", bday);
             var searchResults = sellInRepository.Search(p => p.Day == date);
-            List<SellIn> tab1 = searchResults.Where(x => x.Tab == "1").ToList();
-            List<SellIn> tab2 = searchResults.Where(x => x.Tab == "2").ToList();
+            List<MT_SellIn> tab1 = searchResults.Where(x => x.Tab == "1").ToList();
+            List<MT_SellIn> tab2 = searchResults.Where(x => x.Tab == "2").ToList();
 
             DataTable Dt1 = ExcelPackageExtensions.ToDataTable(tab1);
             DataTable Dt2 = ExcelPackageExtensions.ToDataTable(tab2);

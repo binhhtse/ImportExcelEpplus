@@ -230,6 +230,9 @@
     <Compile Include="Models\SalesForcVIewModel.cs" />
     <Compile Include="Models\SellinFirstTab.cs" />
     <Compile Include="Models\SellOutViewModel.cs" />
+    <Compile Include="MT_SellIn.cs">
+      <DependentUpon>DemoEntities1.tt</DependentUpon>
+    </Compile>
     <Compile Include="MT_SellOut.cs">
       <DependentUpon>DemoEntities1.tt</DependentUpon>
     </Compile>
@@ -240,9 +243,6 @@
     <Compile Include="Repository\GenericRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="SalesForce.cs">
-      <DependentUpon>DemoEntities1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SellIn.cs">
       <DependentUpon>DemoEntities1.tt</DependentUpon>
     </Compile>
     <Compile Include="SellinFirstTab.cs">

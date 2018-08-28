@@ -84,6 +84,35 @@
     <Property Name="Deleted" Type="bit" Nullable="false" />
     <Property Name="RowNumber" Type="bigint" Nullable="false" />
   </EntityType>
+  <EntityType Name="MT_SellIn">
+    <Key>
+      <PropertyRef Name="Day" />
+      <PropertyRef Name="Region" />
+      <PropertyRef Name="KeyAccount" />
+      <PropertyRef Name="Channel" />
+    </Key>
+    <Property Name="Day" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Region" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="KeyAccount" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Channel" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Archive" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastMonth" Type="nvarchar" MaxLength="50" />
+    <Property Name="TargetMonth" Type="nvarchar" MaxLength="50" />
+    <Property Name="TargetDate" Type="nvarchar" MaxLength="50" />
+    <Property Name="Actual" Type="nvarchar" MaxLength="50" />
+    <Property Name="Growth" Type="nvarchar" MaxLength="50" />
+    <Property Name="GrowthLastMonth" Type="nvarchar" MaxLength="50" />
+    <Property Name="PercentTarget" Type="nvarchar" MaxLength="50" />
+    <Property Name="TargetWeek" Type="nvarchar" MaxLength="50" />
+    <Property Name="ActualWeek" Type="nvarchar" MaxLength="50" />
+    <Property Name="PercentWeek" Type="nvarchar" MaxLength="50" />
+    <Property Name="CurrentDate" Type="nvarchar" MaxLength="50" />
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="LastUpdated" Type="nvarchar" MaxLength="50" />
+    <Property Name="Tab" Type="nvarchar" MaxLength="50" />
+    <Property Name="CompanyCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="SalesOrg" Type="nvarchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="MT_SellOut">
     <Key>
       <PropertyRef Name="ID" />
@@ -139,35 +168,6 @@
     <Property Name="Employee_ID" Type="uniqueidentifier" />
     <Property Name="RowNumber" Type="bigint" Nullable="false" />
   </EntityType>
-  <EntityType Name="SellIn">
-    <Key>
-      <PropertyRef Name="Day" />
-      <PropertyRef Name="Region" />
-      <PropertyRef Name="KeyAccount" />
-      <PropertyRef Name="Channel" />
-    </Key>
-    <Property Name="Day" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Region" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="KeyAccount" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Channel" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Archive" Type="nvarchar" MaxLength="50" />
-    <Property Name="LastMonth" Type="nvarchar" MaxLength="50" />
-    <Property Name="TargetMonth" Type="nvarchar" MaxLength="50" />
-    <Property Name="TargetDate" Type="nvarchar" MaxLength="50" />
-    <Property Name="Actual" Type="nvarchar" MaxLength="50" />
-    <Property Name="Growth" Type="nvarchar" MaxLength="50" />
-    <Property Name="GrowthLastMonth" Type="nvarchar" MaxLength="50" />
-    <Property Name="PercentTarget" Type="nvarchar" MaxLength="50" />
-    <Property Name="TargetWeek" Type="nvarchar" MaxLength="50" />
-    <Property Name="ActualWeek" Type="nvarchar" MaxLength="50" />
-    <Property Name="PercentWeek" Type="nvarchar" MaxLength="50" />
-    <Property Name="CurrentDate" Type="nvarchar" MaxLength="50" />
-    <Property Name="ID" Type="int" Nullable="false" />
-    <Property Name="LastUpdated" Type="nvarchar" MaxLength="50" />
-    <Property Name="Tab" Type="nvarchar" MaxLength="50" />
-    <Property Name="CompanyCode" Type="nvarchar" MaxLength="50" />
-    <Property Name="SalesOrg" Type="nvarchar" MaxLength="50" />
-  </EntityType>
   <EntityType Name="SellOut">
     <Key>
       <PropertyRef Name="ID" />
@@ -202,10 +202,10 @@
   <EntityContainer Name="DemoModel1StoreContainer">
     <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MT_SellIn" EntityType="Self.MT_SellIn" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MT_SellOut" EntityType="Self.MT_SellOut" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="People" EntityType="Self.People" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SalesForce" EntityType="Self.SalesForce" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="SellIn" EntityType="Self.SellIn" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SellOut" EntityType="Self.SellOut" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_dbo_SalesForce_dbo_Employee_Employee_ID" Association="Self.FK_dbo_SalesForce_dbo_Employee_Employee_ID">
       <End Role="Employee" EntitySet="Employee" />

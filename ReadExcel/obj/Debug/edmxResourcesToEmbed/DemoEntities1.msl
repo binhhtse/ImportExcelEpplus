@@ -124,33 +124,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="SellIns">
-      <EntityTypeMapping TypeName="DemoModel1.SellIn">
-        <MappingFragment StoreEntitySet="SellIn">
-          <ScalarProperty Name="Day" ColumnName="Day" />
-          <ScalarProperty Name="Region" ColumnName="Region" />
-          <ScalarProperty Name="KeyAccount" ColumnName="KeyAccount" />
-          <ScalarProperty Name="Channel" ColumnName="Channel" />
-          <ScalarProperty Name="Archive" ColumnName="Archive" />
-          <ScalarProperty Name="LastMonth" ColumnName="LastMonth" />
-          <ScalarProperty Name="TargetMonth" ColumnName="TargetMonth" />
-          <ScalarProperty Name="TargetDate" ColumnName="TargetDate" />
-          <ScalarProperty Name="Actual" ColumnName="Actual" />
-          <ScalarProperty Name="Growth" ColumnName="Growth" />
-          <ScalarProperty Name="GrowthLastMonth" ColumnName="GrowthLastMonth" />
-          <ScalarProperty Name="PercentTarget" ColumnName="PercentTarget" />
-          <ScalarProperty Name="TargetWeek" ColumnName="TargetWeek" />
-          <ScalarProperty Name="ActualWeek" ColumnName="ActualWeek" />
-          <ScalarProperty Name="PercentWeek" ColumnName="PercentWeek" />
-          <ScalarProperty Name="CurrentDate" ColumnName="CurrentDate" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
-          <ScalarProperty Name="Tab" ColumnName="Tab" />
-          <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
-          <ScalarProperty Name="SalesOrg" ColumnName="SalesOrg" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="SellOuts">
       <EntityTypeMapping TypeName="DemoModel1.SellOut">
         <MappingFragment StoreEntitySet="SellOut">
@@ -229,5 +202,32 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <EntitySetMapping Name="MT_SellIn">
+      <EntityTypeMapping TypeName="DemoModel1.MT_SellIn">
+        <MappingFragment StoreEntitySet="MT_SellIn">
+          <ScalarProperty Name="SalesOrg" ColumnName="SalesOrg" />
+          <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+          <ScalarProperty Name="Tab" ColumnName="Tab" />
+          <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CurrentDate" ColumnName="CurrentDate" />
+          <ScalarProperty Name="PercentWeek" ColumnName="PercentWeek" />
+          <ScalarProperty Name="ActualWeek" ColumnName="ActualWeek" />
+          <ScalarProperty Name="TargetWeek" ColumnName="TargetWeek" />
+          <ScalarProperty Name="PercentTarget" ColumnName="PercentTarget" />
+          <ScalarProperty Name="GrowthLastMonth" ColumnName="GrowthLastMonth" />
+          <ScalarProperty Name="Growth" ColumnName="Growth" />
+          <ScalarProperty Name="Actual" ColumnName="Actual" />
+          <ScalarProperty Name="TargetDate" ColumnName="TargetDate" />
+          <ScalarProperty Name="TargetMonth" ColumnName="TargetMonth" />
+          <ScalarProperty Name="LastMonth" ColumnName="LastMonth" />
+          <ScalarProperty Name="Archive" ColumnName="Archive" />
+          <ScalarProperty Name="Channel" ColumnName="Channel" />
+          <ScalarProperty Name="KeyAccount" ColumnName="KeyAccount" />
+          <ScalarProperty Name="Region" ColumnName="Region" />
+          <ScalarProperty Name="Day" ColumnName="Day" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

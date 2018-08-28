@@ -12,7 +12,7 @@ namespace ReadExcel
     using System;
     using System.Collections.Generic;
     
-    public partial class SellIn
+    public partial class MT_SellIn
     {
         public string Day { get; set; }
         public string Region { get; set; }
