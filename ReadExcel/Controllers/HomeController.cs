@@ -345,8 +345,7 @@ namespace ReadExcel.Controllers
             }
             ExcelPackage package = new ExcelPackage(chooseFile.InputStream);
             DataTable Dt = ExcelPackageExtensions.ConvertToDataTable(package);
-            List<MT_SellOut> lstTarget = Dt.DataTableToListBaseHeader<MT_SellOut>();
-
+         
             if (Dt.Columns.Count > 8)
             {
                 TempData["message"] = "Vui lòng chọn templete sell out để có thể import!";
@@ -362,7 +361,6 @@ namespace ReadExcel.Controllers
                 TempData["message"] = "Vui lòng chọn templete out in để có thể import!";
                 return RedirectToAction("ImportSellOut", "Home", ViewBag.message);
             }
-
             var db = new DemoEntities1();
             var lstEmp = db.sp_Employee_GetAll();
             List<SellOutViewModel> empViewModel = lstEmp.Select(c => new SellOutViewModel
