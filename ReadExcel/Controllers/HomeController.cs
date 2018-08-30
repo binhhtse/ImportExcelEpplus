@@ -351,7 +351,7 @@ namespace ReadExcel.Controllers
                 TempData["message"] = "Vui lòng chọn templete sell out để có thể import!";
                 return RedirectToAction("ImportSellOut", "Home", ViewBag.message);
             }
-
+            List<MT_SellOut> lstTarget = Dt.DataTableToListBaseHeader<MT_SellOut>();
 
 
             String salesOrg = lstTarget.ElementAt(0).SalesOrg;
@@ -375,7 +375,7 @@ namespace ReadExcel.Controllers
             }).ToList();
 
             DataTable Dt11 = ExcelPackageExtensions.ToDataTable(empViewModel);
-            List<MT_SellOut> lstTarget = Dt.DataTableToListBaseHeader<MT_SellOut>();
+           
 
             foreach (var item in lstTarget)
             {
