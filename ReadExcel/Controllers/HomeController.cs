@@ -67,6 +67,12 @@ namespace ReadExcel.Controllers
 
             //List<Person> employeeList = Dt.DataTableToList<Person>();
 
+            if (Dt[0].Columns.Count != 8)
+            {
+                TempData["message"] = "Vui lòng chọn templete sell in để có thể import!";
+                return RedirectToAction("ReadExcelUsingEpplus", "Home", ViewBag.message);
+            }
+
             List<MT_SellIn> tab1 = Dt[0].DataTableToList<MT_SellIn>();
             List<MT_SellIn> tab2 = Dt[1].DataTableToList<MT_SellIn>();
             String date = tab1.ElementAt(tab1.Count - 1).Day; //   07/22/2013
@@ -547,14 +553,14 @@ namespace ReadExcel.Controllers
             selectedList.Add(form["dd1"]);
             selectedList.Add(form["dd2"]);
             selectedList.Add(form["dd3"]);
-            int level = 2;
+            int level = 3;
             if (Request.Form["ddlcity"] != null)
             {
                 level = 3;
               
             }
             string strDDLValue = value.ToString();
-            strDDLValue = "MB-RSM-BTB";
+            //strDDLValue = "MB-RSM-BTB";
             
             var lstEmp = db.sp_GetAllChildrenForParent(strDDLValue,level).Select(i => new MT_SellOut
             {
