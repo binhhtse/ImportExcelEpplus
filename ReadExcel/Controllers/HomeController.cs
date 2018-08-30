@@ -548,12 +548,16 @@ namespace ReadExcel.Controllers
             List<string> selectedList = new List<string>();
             obj.StateModel = new List<Parent>();
             obj.StateModel = GetAllParrent();
+            int level = 3;
             ///
             var value = Request.Form["SalesForce.StateModel"] ?? Request.Form["StateModel"];
             selectedList.Add(form["dd1"]);
             selectedList.Add(form["dd2"]);
             selectedList.Add(form["dd3"]);
-            int level = 3;
+            if(value != null && value != "")
+            {
+                level = 2;
+            }
             if (Request.Form["ddlcity"] != null)
             {
                 level = 3;
@@ -564,12 +568,7 @@ namespace ReadExcel.Controllers
             
             var lstEmp = db.sp_GetAllChildrenForParent(strDDLValue,level).Select(i => new MT_SellOut
             {
-                //EmployeeCode = i.e.EmployeeCode,
-
-                //SalesForceCode = i.e.SalesForceCode,
-
-                //SalesForceName = i.e.SalesForceName,
-                //SalesForceLevel = i.e.SalesForceLevel,
+               
                 Day = i.Day,
                 SalesOrg = i.SalesOrg,
                 CustomerCode = i.CustomerCode,
@@ -586,7 +585,6 @@ namespace ReadExcel.Controllers
                 SalesForceCode = i.SalesForceCode
             }
                         ).OrderBy(x => x.LineID)
-                        //.ThenBy(x => x.SalesForceLevel)
                         .ToList(); ;
             DataTable Dt = ExcelPackageExtensions.ToDataTable(lstEmp);
             MultiModel model = new MultiModel
