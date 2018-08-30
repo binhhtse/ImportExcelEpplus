@@ -56,7 +56,7 @@ namespace ReadExcel.Controllers
             var ext = Path.GetExtension(chooseFile.FileName);
             if (Path.GetExtension(chooseFile.FileName) != ".xlsx" && Path.GetExtension(chooseFile.FileName) != ".xls")
             {
-                TempData["message"] = DMSEnum.Fail;
+                TempData["message"] = "Định dạng file excel không hợp lệ";
                 return RedirectToAction("ReadExcelUsingEpplus");
             }
             ExcelPackage package = new ExcelPackage(chooseFile.InputStream);
@@ -75,7 +75,7 @@ namespace ReadExcel.Controllers
             int year = 0;
             if (date.Length != 9 && date.Length != 10)
             {
-                TempData["message"] = DMSEnum.Fail;
+                TempData["message"] = "Vui lòng chọn templete sell in để có thể import!";
                 return RedirectToAction("ReadExcelUsingEpplus");
             }
             if (date.Length == 9) //7/22/2013
@@ -293,11 +293,36 @@ namespace ReadExcel.Controllers
         [HttpPost]
         public ActionResult ImportTarget(HttpPostedFileBase chooseFile)
         {
+            //string message = ValidationSellOut(chooseFile);
+            //if (!string.IsNullOrEmpty(message))
+            //{
+            //    return RedirectToAction("ImportSellOut", "Home", message);
+            //}
+            if (Path.GetExtension(chooseFile.FileName) != ".xlsx" && Path.GetExtension(chooseFile.FileName) != ".xls")
+            {
+                TempData["message"] = "Định dạng file excel không hợp lệ";
+                return RedirectToAction("ImportSellOut", "Home", ViewBag.message);
+            }
             ExcelPackage package = new ExcelPackage(chooseFile.InputStream);
             DataTable Dt = ExcelPackageExtensions.ConvertToDataTable(package);
 
-
+            
             List<MT_SellOut> lstTarget = Dt.DataTableToListBaseHeader<MT_SellOut>();
+            if (Dt.Columns.Count > 8)
+            {
+                TempData["message"] = "Vui lòng chọn templete sell out để có thể import!";
+                return RedirectToAction("ImportSellOut", "Home", ViewBag.message);
+            }
+            
+
+
+            String salesOrg = lstTarget.ElementAt(0).SalesOrg;
+
+            if (salesOrg != "1100" && salesOrg != "1500")
+            {
+                TempData["message"] = "Vui lòng chọn templete out in để có thể import!";
+                return RedirectToAction("ImportSellOut", "Home", ViewBag.message);
+            }
             //lstTarget.RemoveAt(0);
             int lineID = 0;
             foreach (var item in lstTarget)
@@ -313,8 +338,31 @@ namespace ReadExcel.Controllers
         [HttpPost]
         public ActionResult ImportPerform(HttpPostedFileBase chooseFile)
         {
+            if (Path.GetExtension(chooseFile.FileName) != ".xlsx" && Path.GetExtension(chooseFile.FileName) != ".xls")
+            {
+                TempData["message"] = "Định dạng file excel không hợp lệ";
+                return RedirectToAction("ImportSellOut", "Home", ViewBag.message);
+            }
             ExcelPackage package = new ExcelPackage(chooseFile.InputStream);
             DataTable Dt = ExcelPackageExtensions.ConvertToDataTable(package);
+            List<MT_SellOut> lstTarget = Dt.DataTableToListBaseHeader<MT_SellOut>();
+
+            if (Dt.Columns.Count > 8)
+            {
+                TempData["message"] = "Vui lòng chọn templete sell out để có thể import!";
+                return RedirectToAction("ImportSellOut", "Home", ViewBag.message);
+            }
+
+
+
+            String salesOrg = lstTarget.ElementAt(0).SalesOrg;
+
+            if (salesOrg != "1100" && salesOrg != "1500")
+            {
+                TempData["message"] = "Vui lòng chọn templete out in để có thể import!";
+                return RedirectToAction("ImportSellOut", "Home", ViewBag.message);
+            }
+
             var db = new DemoEntities1();
             var lstEmp = db.sp_Employee_GetAll();
             List<SellOutViewModel> empViewModel = lstEmp.Select(c => new SellOutViewModel
@@ -553,5 +601,31 @@ namespace ReadExcel.Controllers
             SelectList lst = new SelectList(obj, "Id", "ChilName", 0);
             return Json(lst);
         }
+
+       //public string ValidationSellOut(HttpPostedFileBase chooseFile)
+       // {
+       //     ExcelPackage package = new ExcelPackage(chooseFile.InputStream);
+       //     DataTable Dt = ExcelPackageExtensions.ConvertToDataTable(package);
+       //     string message = "";
+       //     if (Dt.Columns.Count > 8)
+       //     {
+       //         message = "Vui lòng chọn templete sell out để có thể import!";
+                
+       //     }
+       //     if (Path.GetExtension(chooseFile.FileName) != ".xlsx" && Path.GetExtension(chooseFile.FileName) != ".xls")
+       //     {
+       //         message = "Định dạng file excel không hợp lệ";
+              
+       //     }
+       //     List<MT_SellOut> lstTarget = Dt.DataTableToListBaseHeader<MT_SellOut>();
+       //     String salesOrg = lstTarget.ElementAt(0).SalesOrg;
+
+       //     if (salesOrg != "1100" && salesOrg != "1500")
+       //     {
+       //         message = "Vui lòng chọn templete out in để có thể import!";
+               
+       //     }
+       //     return  message;
+       // }
     }
 }
