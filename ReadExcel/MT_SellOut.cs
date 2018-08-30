@@ -14,6 +14,7 @@ namespace ReadExcel
     
     public partial class MT_SellOut
     {
+        public string Day { get; set; }
         public string SalesOrg { get; set; }
         public string CustomerCode { get; set; }
         public string SalesRouteCode { get; set; }

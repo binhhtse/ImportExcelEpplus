@@ -12,8 +12,14 @@
         .dataTables_filter, .dataTables_info {
             display: none !important;
         }
-
-      
+        #tableId th {
+            text-align: center;
+            vertical-align: middle;
+        }
+        #tableId1 th {
+            text-align: center;
+            vertical-align: middle;
+        }
     </style>
     <title>Import Sell In</title>
     <link href="~/Content/upload.css" type='text/css' rel="stylesheet" />
@@ -26,8 +32,8 @@
 </head>
 <body>
     <div class="tab">
-        <button class="tablinks active" id="button1" onclick="openTab(event, 'tab1')">Tab1</button>
-        <button class="tablinks" onclick="openTab(event, 'tab2')">Tab2</button>
+        <button class="tablinks active" id="button1" onclick="openTab(event, 'tab1')">Doanh thu theo chuỗi</button>
+        <button class="tablinks" onclick="openTab(event, 'tab2')">Danh thu theo ngành hàng</button>
 
     </div>
     <br />

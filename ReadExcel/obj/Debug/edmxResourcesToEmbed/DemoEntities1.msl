@@ -162,26 +162,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <EntitySetMapping Name="MT_SellOut">
-      <EntityTypeMapping TypeName="DemoModel1.MT_SellOut">
-        <MappingFragment StoreEntitySet="MT_SellOut">
-          <ScalarProperty Name="SalesForceCode" ColumnName="SalesForceCode" />
-          <ScalarProperty Name="ParentCode" ColumnName="ParentCode" />
-          <ScalarProperty Name="SalesForceLevel" ColumnName="SalesForceLevel" />
-          <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
-          <ScalarProperty Name="LineID" ColumnName="LineID" />
-          <ScalarProperty Name="Rate" ColumnName="Rate" />
-          <ScalarProperty Name="Perform" ColumnName="Perform" />
-          <ScalarProperty Name="Target" ColumnName="Target" />
-          <ScalarProperty Name="Store" ColumnName="Store" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="SalesRouteCode" ColumnName="SalesRouteCode" />
-          <ScalarProperty Name="CustomerCode" ColumnName="CustomerCode" />
-          <ScalarProperty Name="SalesOrg" ColumnName="SalesOrg" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <FunctionImportMapping FunctionImportName="sp_GetAllChildrenForParent" FunctionName="DemoModel1.Store.sp_GetAllChildrenForParent">
       <ResultMapping>
         <ComplexTypeMapping TypeName="DemoModel1.sp_GetAllChildrenForParent_Result">
@@ -199,6 +179,7 @@
           <ScalarProperty Name="SalesForceLevel" ColumnName="SalesForceLevel" />
           <ScalarProperty Name="ParentCode" ColumnName="ParentCode" />
           <ScalarProperty Name="SalesForceCode" ColumnName="SalesForceCode" />
+          <ScalarProperty Name="Day" ColumnName="Day" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -225,6 +206,27 @@
           <ScalarProperty Name="Channel" ColumnName="Channel" />
           <ScalarProperty Name="KeyAccount" ColumnName="KeyAccount" />
           <ScalarProperty Name="Region" ColumnName="Region" />
+          <ScalarProperty Name="Day" ColumnName="Day" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MT_SellOut">
+      <EntityTypeMapping TypeName="DemoModel1.MT_SellOut">
+        <MappingFragment StoreEntitySet="MT_SellOut">
+          <ScalarProperty Name="SalesForceCode" ColumnName="SalesForceCode" />
+          <ScalarProperty Name="ParentCode" ColumnName="ParentCode" />
+          <ScalarProperty Name="SalesForceLevel" ColumnName="SalesForceLevel" />
+          <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+          <ScalarProperty Name="LineID" ColumnName="LineID" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+          <ScalarProperty Name="Perform" ColumnName="Perform" />
+          <ScalarProperty Name="Target" ColumnName="Target" />
+          <ScalarProperty Name="Store" ColumnName="Store" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SalesRouteCode" ColumnName="SalesRouteCode" />
+          <ScalarProperty Name="CustomerCode" ColumnName="CustomerCode" />
+          <ScalarProperty Name="SalesOrg" ColumnName="SalesOrg" />
           <ScalarProperty Name="Day" ColumnName="Day" />
         </MappingFragment>
       </EntityTypeMapping>

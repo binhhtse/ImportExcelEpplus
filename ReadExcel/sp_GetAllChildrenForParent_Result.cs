@@ -27,5 +27,6 @@ namespace ReadExcel
         public Nullable<int> SalesForceLevel { get; set; }
         public string ParentCode { get; set; }
         public string SalesForceCode { get; set; }
+        public string Day { get; set; }
     }
 }

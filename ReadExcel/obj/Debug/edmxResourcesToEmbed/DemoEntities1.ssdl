@@ -118,6 +118,7 @@
       <PropertyRef Name="ID" />
       <PropertyRef Name="Store" />
     </Key>
+    <Property Name="Day" Type="nvarchar" MaxLength="50" />
     <Property Name="SalesOrg" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="CustomerCode" Type="nvarchar" MaxLength="50" />
     <Property Name="SalesRouteCode" Type="nvarchar" MaxLength="50" />

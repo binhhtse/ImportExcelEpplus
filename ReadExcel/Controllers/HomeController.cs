@@ -343,6 +343,13 @@ namespace ReadExcel.Controllers
                 sellOutRepository.Update(item, x => x.Rate);
             }
             var lstSalesForce = salesForceRepository.List.ToList();
+            string day = DateTime.Now.ToShortDateString();
+            if (day.Length == 9)
+            {
+                day = "0" + day;
+               
+            }
+           
             var result = lstSalesForce.Join(lstTarget,
                             dep => dep.EmployeeCode,
                              e => e.ID,
@@ -356,6 +363,8 @@ namespace ReadExcel.Controllers
 
                             //SalesForceName = i.e.SalesForceName,
                             //SalesForceLevel = i.e.SalesForceLevel,
+                            Day = DateTime.ParseExact(day, "MM/dd/yyyy", CultureInfo.InvariantCulture)
+                       .ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
                             SalesOrg = i.dep.SalesOrg,
                             CustomerCode = i.dep.CustomerCode,
                             SalesRouteCode = i.dep.SalesRouteCode,
@@ -374,11 +383,13 @@ namespace ReadExcel.Controllers
                         //.ThenBy(x => x.SalesForceLevel)
                         .ToList();
             //var aa = result.OrderBy(x=>x.LineID).ToList();
-            DataTable Dt1 = ExcelPackageExtensions.ToDataTable(result);
+            
             foreach (var item in result)
             {
+               
                 sellOutRepository.InsertOrUpdate(item);
             }
+            DataTable Dt1 = ExcelPackageExtensions.ToDataTable(result);
             return View(Dt1);
         }
 
@@ -482,26 +493,65 @@ namespace ReadExcel.Controllers
         public ActionResult GetAllChildren(FormCollection form)
         {
             SalesForcVIewModel obj = new SalesForcVIewModel();
+            List<string> selectedList = new List<string>();
             obj.StateModel = new List<Parent>();
             obj.StateModel = GetAllParrent();
             ///
             var value = Request.Form["SalesForce.StateModel"] ?? Request.Form["StateModel"];
+            selectedList.Add(form["dd1"]);
+            selectedList.Add(form["dd2"]);
+            selectedList.Add(form["dd3"]);
             int level = 2;
             if (Request.Form["ddlcity"] != null)
             {
                 level = 3;
+              
             }
             string strDDLValue = value.ToString();
             strDDLValue = "MB-RSM-BTB";
             
-            var lstEmp = db.sp_GetAllChildrenForParent(strDDLValue,level).ToList();
+            var lstEmp = db.sp_GetAllChildrenForParent(strDDLValue,level).Select(i => new MT_SellOut
+            {
+                //EmployeeCode = i.e.EmployeeCode,
+
+                //SalesForceCode = i.e.SalesForceCode,
+
+                //SalesForceName = i.e.SalesForceName,
+                //SalesForceLevel = i.e.SalesForceLevel,
+                Day = i.Day,
+                SalesOrg = i.SalesOrg,
+                CustomerCode = i.CustomerCode,
+                SalesRouteCode = i.SalesRouteCode,
+                ID = i.ID,
+                Name = i.Name,
+                Store = i.Store,
+                Target = i.Target,
+                Perform = i.Perform,
+                Rate = i.Rate,
+                LineID = i.LineID,
+                SalesForceLevel = i.SalesForceLevel,
+                ParentCode = i.ParentCode,
+                SalesForceCode = i.SalesForceCode
+            }
+                        ).OrderBy(x => x.LineID)
+                        //.ThenBy(x => x.SalesForceLevel)
+                        .ToList(); ;
             DataTable Dt = ExcelPackageExtensions.ToDataTable(lstEmp);
             MultiModel model = new MultiModel
             {
                 Dt = Dt,
-                SalesForce = obj
+                SalesForce = obj,
+                SelectedList = selectedList
             };
             return View(model);
+        }
+        [HttpPost]
+        public ActionResult GetSelect()
+        {
+            List<Children> obj = new List<Children>();
+            obj = GetAllChildren().Where(m => m.ParentId == "MB-RSM-BTB").ToList();
+            SelectList lst = new SelectList(obj, "Id", "ChilName", 0);
+            return Json(lst);
         }
     }
 }

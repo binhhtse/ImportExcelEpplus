@@ -25,20 +25,61 @@
         @using (Html.BeginForm("GetAllChildren", "Home", FormMethod.Post))
         {
             <div class="row">
-                <div class="col-sm-4">
-                    RSM
-                    @Html.DropDownListFor(m => m.SalesForce.StateModel, new SelectList(Model.SalesForce.StateModel, "Id", "ParName"), "Select",
-                                                      new { @class = "form-control", @id = "ddlstate", @style = "width:200px;", @onchange = "GetValueDD(this.value,'#ddlcity');" })
+                @if (Model.SelectedList.ElementAt(0).Length > 0)
+                {
+                    var s = Model.SelectedList.ElementAt(0).ToString();
+                    <div class="col-sm-4">
+                        Miền
+                        @Html.DropDownListFor(m => m.SalesForce.StateModel, new SelectList(Model.SalesForce.StateModel, "Id", "ParName"), s,
+                                            new { @class = "form-control", @id = "ddlstate", @style = "width:200px;", @onchange = "GetValueDD(this.value,'#ddlcity');" })
 
-                </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-sm-4">
+                        Miền
+                        @Html.DropDownListFor(m => m.SalesForce.StateModel, new SelectList(Model.SalesForce.StateModel, "Id", "ParName"), " ",
+                                                       new { @class = "form-control", @id = "ddlstate", @style = "width:200px;", @onchange = "GetValueDD(this.value,'#ddlcity');" })
+
+                    </div>
+                }
+
+                @if (Model.SelectedList.ElementAt(1).Length > 0)
+                {
+                    var s = Model.SelectedList.ElementAt(1).ToString();
+                    <div class="col-sm-4">
+                        Vùng <select id="ddlcity" class="form-control" name="ddlcity" style="width: 200px" onchange="GetValueDD(this.value, '#ddlcity1');">
+                            <option value="0"> @s</option>
+                        </select>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-sm-4">
+                        Vùng <select id="ddlcity" class="form-control" name="ddlcity" style="width: 200px" onchange="GetValueDD(this.value, '#ddlcity1');"></select>
+                    </div>
+                }
+                @if (Model.SelectedList.ElementAt(2).Length > 0)
+                {
+                    var s = Model.SelectedList.ElementAt(2).ToString();
+                    <div class="col-sm-4">
+                        SS <select id="ddlcity1" class="form-control" name="ddlcity1" style="width: 200px" onchange="GetValueDD(this.value, '#ddlcity2');">
+                            <option value="0"> @s</option>
+                        </select>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-sm-4">
+                        SS <select id="ddlcity1" class="form-control" name="ddlcity1" style="width: 200px" onchange="GetValueDD(this.value, '#ddlcity2');"></select>
+                    </div>
+                }
 
 
-                <div class="col-sm-4">
-                    ASM <select id="ddlcity" class="form-control" name="ddlcity" style="width: 200px" onchange="GetValueDD(this.value, '#ddlcity1');"></select>
-                </div>
-                <div class="col-sm-4">
-                    SS <select id="ddlcity1" class="form-control" name="ddlcity1" style="width: 200px" onchange="GetValueDD(this.value, '#ddlcity2');"></select>
-                </div>
+                @*<div class="col-sm-4">
+                        SS <select id="ddlcity1" class="form-control" name="ddlcity1" style="width: 200px" onchange="GetValueDD(this.value, '#ddlcity2');"></select>
+                    </div>*@
             </div>
             <br />
             <div class="row">
@@ -46,7 +87,9 @@
                     <input type="submit" name="btnupload" value="Search" class="btn btn-primary" />
                 </div>
             </div>
-
+            <input type="hidden" id="dd1" name="dd1" />
+            <input type="hidden" id="dd2" name="dd2" />
+            <input type="hidden" id="dd3" name="dd3" />
 
         }
     </div>
@@ -75,13 +118,13 @@
                             @{int countColumn = 0;}
                             @foreach (var cell in row.ItemArray)
                             {
-                                var a = row.ItemArray[11].ToString();
+                                var a = row.ItemArray[12].ToString();
                                 if (a == "2")
                                 {
                                     if (countColumn > 5 && countColumn < 10)
                                     {
                                         <td class="text-right" style="font-weight:bold;background-color:yellow">@cell.ToString()</td>
-                                        
+
                                     }
                                     else
                                     {
@@ -95,13 +138,13 @@
                                     if (countColumn > 5 && countColumn < 10)
                                     {
 
-                                        if (countColumn == 8)
+                                        if (countColumn == 9)
                                         {
-                                            if (int.Parse(row.ItemArray[8].ToString()) > 100)
+                                            if (int.Parse(row.ItemArray[9].ToString()) > 100)
                                             {
                                                 <td class="text-right" style="font-weight:bold;color:forestgreen">@cell.ToString()</td>
                                             }
-                                            else if (int.Parse(row.ItemArray[8].ToString()) > 90 && int.Parse(row.ItemArray[8].ToString()) < 100)
+                                            else if (int.Parse(row.ItemArray[9].ToString()) > 90 && int.Parse(row.ItemArray[9].ToString()) < 100)
                                             {
                                                 <td class="text-right" style="font-weight:bold;color:yellow">@cell.ToString()</td>
                                             }
@@ -126,13 +169,13 @@
                                 {
                                     if (countColumn > 5 && countColumn < 10)
                                     {
-                                        if (countColumn == 8)
+                                        if (countColumn == 9)
                                         {
-                                            if (int.Parse(row.ItemArray[8].ToString()) > 100)
+                                            if (int.Parse(row.ItemArray[9].ToString()) > 100)
                                             {
                                                 <td class="text-right" style="font-weight:bold;color:forestgreen">@cell.ToString()</td>
                                             }
-                                            else if (int.Parse(row.ItemArray[8].ToString()) > 90 && int.Parse(row.ItemArray[8].ToString()) < 100)
+                                            else if (int.Parse(row.ItemArray[9].ToString()) > 90 && int.Parse(row.ItemArray[9].ToString()) < 100)
                                             {
                                                 <td class="text-right" style="font-weight:bold;color:yellow">@cell.ToString()</td>
                                             }
@@ -176,6 +219,15 @@
 </body>
 </html>
 <script>
+    $("#ddlstate").on("change", function () {
+        $("#dd1").val($(this).find("option:selected").text());
+    });
+    $("#ddlcity").on("change", function () {
+        $("#dd2").val($(this).find("option:selected").text());
+    });
+    $("#ddlcity1").on("change", function () {
+        $("#dd3").val($(this).find("option:selected").text());
+    });
     function GetValueDD(_stateId, id) {
         var procemessage = "<option value='0'> Please wait...</option>";
         //$("#ddlcity").html(procemessage).show();
@@ -188,7 +240,7 @@
             type: "POST",
             success: function (data) {
 
-                var markup = "<option value='0'>Select</option>";
+                var markup = "<option value='0'></option>";
                 for (var x = 0; x < data.length; x++) {
                     markup += "<option value=" + data[x].Value + ">" + data[x].Text + "</option>";
                 }
@@ -234,7 +286,7 @@
             ],
             "columnDefs": [
                 {
-                    "targets": [0, 1, 2, 9, 10, 11, 12, 13],
+                    "targets": [1, 2, 3, 10, 11, 12, 13, 14],
                     "visible": false
 
                 }
@@ -243,35 +295,15 @@
 
         });
 
-
-
+        var table = $('#tableId').DataTable();
+        //table.colReorder.move(1, 0);
         $("table").removeClass("dataTable");
-        openTab(event, 'tab1');
-        $("#button1").addClass("active");
+
 
 
     });
 
-    function openTab(evt, tabName) {
-        var i, tabcontent, tablinks;
 
-        // Get all elements with class="tabcontent" and hide them
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-        }
-
-        // Get all elements with class="tablinks" and remove the class "active"
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-
-        // Show the current tab, and add an "active" class to the button that opened the tab
-        document.getElementById(tabName).style.display = "block";
-        evt.currentTarget.className += " active";
-
-    }
 
 
 

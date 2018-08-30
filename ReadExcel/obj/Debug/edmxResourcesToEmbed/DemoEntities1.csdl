@@ -158,12 +158,12 @@
     </AssociationSet>
     <FunctionImport Name="sp_Employee_GetAll" ReturnType="Collection(DemoModel1.sp_Employee_GetAll_Result)" />
     <FunctionImport Name="sp_Employee_GetList" ReturnType="Collection(DemoModel1.sp_Employee_GetList_Result)" />
-    <EntitySet Name="MT_SellOut" EntityType="DemoModel1.MT_SellOut" />
     <FunctionImport Name="sp_GetAllChildrenForParent" ReturnType="Collection(DemoModel1.sp_GetAllChildrenForParent_Result)">
       <Parameter Name="Code" Mode="In" Type="String" />
       <Parameter Name="level" Mode="In" Type="Int32" />
     </FunctionImport>
     <EntitySet Name="MT_SellIn" EntityType="DemoModel1.MT_SellIn" />
+    <EntitySet Name="MT_SellOut" EntityType="DemoModel1.MT_SellOut" />
   </EntityContainer>
   <ComplexType Name="sp_Employee_GetAll_Result">
     <Property Type="String" Name="EmployeeCode" Nullable="true" MaxLength="40" />
@@ -183,26 +183,6 @@
     <Property Type="Int32" Name="SalesForceLevel" Nullable="true" />
     <Property Type="Binary" Name="level" Nullable="true" />
   </ComplexType>
-  <EntityType Name="MT_SellOut">
-    <Key>
-      <PropertyRef Name="ID" />
-      <PropertyRef Name="Store" />
-    </Key>
-    <Property Name="SalesOrg" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="CustomerCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="SalesRouteCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Store" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Target" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Perform" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Rate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="LineID" Type="Int32" />
-    <Property Name="CompanyCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="SalesForceLevel" Type="Int32" />
-    <Property Name="ParentCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="SalesForceCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-  </EntityType>
   <ComplexType Name="sp_GetAllChildrenForParent_Result">
     <Property Type="String" Name="SalesOrg" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="CustomerCode" Nullable="true" MaxLength="50" />
@@ -218,6 +198,7 @@
     <Property Type="Int32" Name="SalesForceLevel" Nullable="true" />
     <Property Type="String" Name="ParentCode" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="SalesForceCode" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Day" Nullable="true" MaxLength="50" />
   </ComplexType>
   <EntityType Name="MT_SellIn">
     <Key>
@@ -247,5 +228,26 @@
     <Property Name="Tab" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="CompanyCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="SalesOrg" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="MT_SellOut">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="Store" />
+    </Key>
+    <Property Name="Day" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SalesOrg" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CustomerCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SalesRouteCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Store" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Target" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Perform" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Rate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LineID" Type="Int32" />
+    <Property Name="CompanyCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SalesForceLevel" Type="Int32" />
+    <Property Name="ParentCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SalesForceCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>

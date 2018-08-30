@@ -10,5 +10,6 @@ namespace ReadExcel.Models
     {
         public SalesForcVIewModel SalesForce { get; set; }
         public DataTable Dt  { get; set; }
+        public List<string> SelectedList { get; set; }
     }
 }

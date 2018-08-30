@@ -23,30 +23,33 @@
     <div class="table-responsive">
 
         @using (Html.BeginForm("GetAllChildren", "Home", FormMethod.Post))
-        {
-            <div class="row">
-                <div class="col-sm-4">
-                    RSM
-                    @Html.DropDownListFor(m => m.StateModel, new SelectList(Model.StateModel, "Id", "ParName"), "Select",
-                              new { @class = "form-control", @id = "ddlstate", @style = "width:200px;", @onchange = "GetCity(this.value,'#ddlcity');" })
+    {
+        <div class="row">
+            <div class="col-sm-4">
+                Miền
+                @Html.DropDownListFor(m => m.StateModel, new SelectList(Model.StateModel, "Id", "ParName"), " ",
+                             new { @class = "form-control", @id = "ddlstate", @style = "width:200px;", @onchange = "GetValue(this.value,'#ddlcity');" })
 
-                </div>
-
-
-                <div class="col-sm-4">
-                    ASM <select id="ddlcity" class="form-control" name="ddlcity" style="width: 200px" onchange="GetCity(this.value, '#ddlcity1');"></select>
-                </div>
-                <div class="col-sm-4">
-                    SS <select id="ddlcity1" class="form-control" name="ddlcity1" style="width: 200px" onchange="GetCity(this.value, '#ddlcity2');"></select>
-                </div>
             </div>
-            <br />
-            <div class="row">
-                <div class="col-sm-3">
-                    <input type="submit" name="btnupload" value="Search" class="btn btn-primary" />
-                </div>
+
+
+            <div class="col-sm-4">
+                Vùng <select id="ddlcity" class="form-control" name="ddlcity" style="width: 200px" onchange="GetValue(this.value, '#ddlcity1');"></select>
             </div>
-        }
+            <div class="col-sm-4">
+                SS <select id="ddlcity1" class="form-control" name="ddlcity1" style="width: 200px" onchange="GetValue(this.value, '#ddlcity2');"></select>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-3">
+                <input type="submit" name="btnupload" value="Search"  class="btn btn-primary" />
+            </div>
+        </div>
+        <input type="hidden" id="dd1" name="dd1" />
+        <input type="hidden" id="dd2" name="dd2" />
+        <input type="hidden" id="dd3" name="dd3" />
+}
     </div>
   
 
@@ -55,7 +58,16 @@
 </body>
 </html>
 <script>
-    function GetCity(_stateId, id) {
+    $("#ddlstate").on("change", function () {
+        $("#dd1").val($(this).find("option:selected").text());
+    });
+    $("#ddlcity").on("change", function () {
+        $("#dd2").val($(this).find("option:selected").text());
+    });
+    $("#ddlcity1").on("change", function () {
+        $("#dd3").val($(this).find("option:selected").text());
+    });
+    function GetValue(_stateId, id) {
         var procemessage = "<option value='0'> Please wait...</option>";
         //$("#ddlcity").html(procemessage).show();
         var url = "/Home/GetEmpByParentID";
@@ -67,7 +79,7 @@
             type: "POST",
             success: function (data) {
 
-                var markup = "<option value='0'>Select</option>";
+                var markup = "<option value='0'></option>";
                 for (var x = 0; x < data.length; x++) {
                     markup += "<option value=" + data[x].Value + ">" + data[x].Text + "</option>";
                 }
@@ -79,6 +91,7 @@
         });
 
     }
+  
     $(document).ready(function () {
 
 
@@ -113,7 +126,7 @@
             ],
             "columnDefs": [
                 {
-                    "targets": [3, 4, 5, h, 7, 8, 12],
+                    "targets": [3, 4, 5, 6, 7, 8, 12],
                     "visible": false
 
                 }
@@ -128,7 +141,7 @@
         openTab(event, 'tab1');
         $("#button1").addClass("active");
 
-
+        
     });
 
     function openTab(evt, tabName) {
