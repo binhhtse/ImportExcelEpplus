@@ -45,7 +45,7 @@ namespace ReadExcel.Controllers
             return View();
         }
 
-        public ActionResult ReadExcelUsingEpplus()
+        public ActionResult ImportReport()
         {
             return View();
         }
@@ -53,12 +53,18 @@ namespace ReadExcel.Controllers
         [HttpPost]
         public ActionResult ReadExcel(HttpPostedFileBase chooseFile)
         {
-            var ext = Path.GetExtension(chooseFile.FileName);
+            if (chooseFile == null)
+            {
+                TempData["message"] = "Vui lòng chọn file";
+                return RedirectToAction("ImportReport");
+            }
+           
             if (Path.GetExtension(chooseFile.FileName) != ".xlsx" && Path.GetExtension(chooseFile.FileName) != ".xls")
             {
                 TempData["message"] = "Định dạng file excel không hợp lệ";
-                return RedirectToAction("ReadExcelUsingEpplus");
+                return RedirectToAction("ImportReport");
             }
+            
             ExcelPackage package = new ExcelPackage(chooseFile.InputStream);
             DataTable[] Dt = ExcelPackageExtensions.ToDataTable(package);
             //List<Account> ls = sellInRepository.List.ToList();
@@ -70,7 +76,7 @@ namespace ReadExcel.Controllers
             if (Dt[0].Columns.Count != 8)
             {
                 TempData["message"] = "Vui lòng chọn templete sell in để có thể import!";
-                return RedirectToAction("ReadExcelUsingEpplus", "Home", ViewBag.message);
+                return RedirectToAction("ImportReport", "Home", ViewBag.message);
             }
 
             List<MT_SellIn> tab1 = Dt[0].DataTableToList<MT_SellIn>();
@@ -82,7 +88,7 @@ namespace ReadExcel.Controllers
             if (date.Length != 9 && date.Length != 10)
             {
                 TempData["message"] = "Vui lòng chọn templete sell in để có thể import!";
-                return RedirectToAction("ReadExcelUsingEpplus");
+                return RedirectToAction("ImportReport");
             }
             if (date.Length == 9) //7/22/2013
             {
@@ -304,6 +310,11 @@ namespace ReadExcel.Controllers
             //{
             //    return RedirectToAction("ImportSellOut", "Home", message);
             //}
+            if (chooseFile == null)
+            {
+                TempData["message"] = "Vui lòng chọn file";
+                return RedirectToAction("ImportSellOut", "Home", ViewBag.message);
+            }
             if (Path.GetExtension(chooseFile.FileName) != ".xlsx" && Path.GetExtension(chooseFile.FileName) != ".xls")
             {
                 TempData["message"] = "Định dạng file excel không hợp lệ";
@@ -344,6 +355,11 @@ namespace ReadExcel.Controllers
         [HttpPost]
         public ActionResult ImportPerform(HttpPostedFileBase chooseFile)
         {
+            if (chooseFile == null)
+            {
+                TempData["message"] = "Vui lòng chọn file";
+                return RedirectToAction("ImportSellOut", "Home", ViewBag.message);
+            }
             if (Path.GetExtension(chooseFile.FileName) != ".xlsx" && Path.GetExtension(chooseFile.FileName) != ".xls")
             {
                 TempData["message"] = "Định dạng file excel không hợp lệ";
@@ -395,12 +411,13 @@ namespace ReadExcel.Controllers
                 sellOutRepository.Update(item, x => x.Rate);
             }
             var lstSalesForce = salesForceRepository.List.ToList();
-            string day = DateTime.Now.ToShortDateString();
-            if (day.Length == 9)
-            {
-                day = "0" + day;
+            string day = DateTime.Now.ToString("dd/MM/yyyy");
+            //if (day.Length == 9)
+            //{
+            //    day = "0" + day;
                
-            }
+            //}
+
            
             var result = lstSalesForce.Join(lstTarget,
                             dep => dep.EmployeeCode,
@@ -415,8 +432,9 @@ namespace ReadExcel.Controllers
 
                             //SalesForceName = i.e.SalesForceName,
                             //SalesForceLevel = i.e.SalesForceLevel,
-                            Day = DateTime.ParseExact(day, "MM/dd/yyyy", CultureInfo.InvariantCulture)
-                       .ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
+                       //     Day = DateTime.ParseExact(day, "MM/dd/yyyy", CultureInfo.InvariantCulture)
+                       //.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
+                            Day = day,
                             SalesOrg = i.dep.SalesOrg,
                             CustomerCode = i.dep.CustomerCode,
                             SalesRouteCode = i.dep.SalesRouteCode,
@@ -427,6 +445,7 @@ namespace ReadExcel.Controllers
                             Perform = i.dep.Perform,
                             Rate = i.dep.Rate,
                             LineID = i.dep.LineID,
+                            CompanyCode = DMSEnum.CompanyCode,
                             SalesForceLevel = i.e.SalesForceLevel,
                             ParentCode = i.e.ParentCode,
                             SalesForceCode = i.e.SalesForceCode
@@ -477,9 +496,9 @@ namespace ReadExcel.Controllers
 
                 Response.End();
             }
-            return View("ReadExcelUsingEpplus");
+            return View("ImportReport");
         }
-        // Collection for state
+      
 
         /// <summary>
         /// colection of parent
@@ -531,7 +550,7 @@ namespace ReadExcel.Controllers
 
             return result;
         }
-        //collection for city
+        
       
         [HttpPost]
         public ActionResult GetEmpByParentID(string parentCode, int level)
@@ -554,11 +573,12 @@ namespace ReadExcel.Controllers
             selectedList.Add(form["dd1"]);
             selectedList.Add(form["dd2"]);
             selectedList.Add(form["dd3"]);
-            if(value != null && value != "")
+            if(!string.IsNullOrEmpty(value))
             {
                 level = 2;
             }
-            if (Request.Form["ddlcity"] != null)
+            var value1 = Request.Form["ddlcity"];
+            if (!string.IsNullOrEmpty(Request.Form["dd2"]))
             {
                 level = 3;
               

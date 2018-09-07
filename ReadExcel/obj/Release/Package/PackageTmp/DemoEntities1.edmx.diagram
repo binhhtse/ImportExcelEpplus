@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6a707f21acff4fd195c5a8f7539f9af1" Name="Diagram1" ZoomLevel="44">
+        <EntityTypeShape EntityType="DemoModel1.Account" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoModel1.Employee" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoModel1.Person" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoModel1.SalesForce" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoModel1.SellOut" Width="1.5" PointX="7.75" PointY="6.75" IsExpanded="true" />
+        <AssociationConnector Association="DemoModel1.FK_dbo_SalesForce_dbo_Employee_Employee_ID" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DemoModel1.MT_SellIn" Width="1.5" PointX="8.375" PointY="0.75" />
+        <EntityTypeShape EntityType="DemoModel1.MT_SellOut" Width="1.5" PointX="5.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

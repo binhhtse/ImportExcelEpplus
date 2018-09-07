@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "ImportReport";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+
+
+<link href="~/Content/upload.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+@using (Html.BeginForm("ReadExcel", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-group">
+        @if (@TempData["message"] != null)
+        {
+            <div class="alert alert-warning" id="success-alert">
+                <strong><b> @TempData["message"]</b></strong>
+            </div>
+        }
+        @*<input type="file" id="dataFile" name="upload" />*@
+        <div class="file-upload">
+            <div class="file-select">
+                <div class="file-select-button" id="fileName">Choose File</div>
+                <div class="file-select-name" id="noFile">No file chosen...</div>
+                <input type="file" name="chooseFile" id="chooseFile">
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" name="btnupload" value="Upload" class="btn btn-primary" />
+    </div>
+
+}
+@*@using (Html.BeginForm("DownloadSellIn", "Home", FormMethod.Post))
+{
+
+    <div class="col-md-6 input-group">
+        <input type="text" name="bday" value="07/23/2018" id="datepicker" class="form-control" />
+        <label class="input-group-addon btn" for="testdate">
+            <span class="glyphicon glyphicon-calendar"></span>
+        </label>
+    </div>
+    <input type="submit" class="btn btn-primary" value="Search" />
+
+}*@
+<script>
+
+    $(document).ready(function () {
+        $('#chooseFile').bind('change', function () {
+            var filename = $("#chooseFile").val();
+            if (/^\s*$/.test(filename)) {
+                $(".file-upload").removeClass('active');
+                $("#noFile").text("No file chosen...");
+            }
+            else {
+                $(".file-upload").addClass('active');
+                $("#noFile").text(filename.replace("C:\\fakepath\\", ""));
+            }
+        });
+        $("#success-alert").fadeTo(2000, 500).slideUp(500, function () {
+            $("#success-alert").slideUp(500);
+        });
+
+
+
+    });
+</script>

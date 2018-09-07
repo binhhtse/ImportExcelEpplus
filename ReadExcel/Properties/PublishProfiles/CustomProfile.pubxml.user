@@ -6,7 +6,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>C:\Users\Rekkless\Downloads\WebSite</_PublishTargetUrl>
+    <_PublishTargetUrl>C:\Users\Rekkless\Downloads\MTDashBoard</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/Antlr3.Runtime.dll">
@@ -79,16 +79,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/04/2018 09:12:14</publishTime>
     </File>
     <File Include="bin/ReadExcel.dll">
-      <publishTime>07/23/2018 13:18:36</publishTime>
+      <publishTime>09/07/2018 11:52:58</publishTime>
     </File>
     <File Include="bin/ReadExcel.pdb">
-      <publishTime>07/23/2018 13:18:36</publishTime>
+      <publishTime>09/07/2018 11:52:58</publishTime>
     </File>
     <File Include="bin/System.ValueTuple.dll">
       <publishTime>05/15/2018 13:29:52</publishTime>
     </File>
     <File Include="bin/System.Web.Helpers.dll">
       <publishTime>07/04/2018 09:12:07</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.dll">
+      <publishTime>07/04/2018 09:11:56</publishTime>
     </File>
     <File Include="bin/System.Web.Mvc.dll">
       <publishTime>07/04/2018 09:12:03</publishTime>
@@ -112,19 +115,28 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/04/2018 09:12:14</publishTime>
     </File>
     <File Include="Content/bootstrap.css">
-      <publishTime>07/04/2018 09:11:51</publishTime>
+      <publishTime>08/22/2018 14:05:58</publishTime>
     </File>
     <File Include="Content/bootstrap.min.css">
-      <publishTime>07/04/2018 09:11:51</publishTime>
+      <publishTime>08/22/2018 14:05:58</publishTime>
+    </File>
+    <File Include="Content/jquery-ui.css">
+      <publishTime>08/13/2018 15:34:52</publishTime>
     </File>
     <File Include="Content/jquery.dataTables.min.css">
-      <publishTime>07/04/2018 11:28:05</publishTime>
+      <publishTime>08/22/2018 14:05:58</publishTime>
     </File>
     <File Include="Content/Site.css">
       <publishTime>07/04/2018 09:11:51</publishTime>
     </File>
+    <File Include="Content/upload.css">
+      <publishTime>08/30/2018 10:35:29</publishTime>
+    </File>
+    <File Include="DemoEntities1.edmx.diagram">
+      <publishTime>08/30/2018 09:58:56</publishTime>
+    </File>
     <File Include="DmsEntity.edmx.diagram">
-      <publishTime>07/16/2018 13:56:29</publishTime>
+      <publishTime>08/22/2018 14:06:35</publishTime>
     </File>
     <File Include="favicon.ico">
       <publishTime>07/04/2018 09:11:51</publishTime>
@@ -133,7 +145,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/04/2018 09:11:57</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.svg">
-      <publishTime>07/04/2018 09:11:57</publishTime>
+      <publishTime>08/22/2018 14:06:04</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.ttf">
       <publishTime>07/04/2018 09:11:57</publishTime>
@@ -145,31 +157,34 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/04/2018 09:11:50</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>07/13/2018 09:24:50</publishTime>
+      <publishTime>09/07/2018 11:28:54</publishTime>
     </File>
     <File Include="Scripts/bootstrap.js">
-      <publishTime>07/04/2018 09:11:51</publishTime>
+      <publishTime>08/22/2018 14:06:13</publishTime>
     </File>
     <File Include="Scripts/bootstrap.min.js">
-      <publishTime>07/04/2018 09:11:51</publishTime>
+      <publishTime>08/22/2018 14:06:13</publishTime>
     </File>
     <File Include="Scripts/jquery-1.10.2.js">
-      <publishTime>07/04/2018 09:11:52</publishTime>
+      <publishTime>08/22/2018 14:06:13</publishTime>
     </File>
     <File Include="Scripts/jquery-1.10.2.min.js">
-      <publishTime>07/04/2018 09:11:52</publishTime>
+      <publishTime>08/22/2018 14:06:13</publishTime>
     </File>
     <File Include="Scripts/jquery-1.10.2.min.map">
-      <publishTime>07/04/2018 09:11:52</publishTime>
+      <publishTime>08/22/2018 13:53:37</publishTime>
+    </File>
+    <File Include="Scripts/jquery-ui.js">
+      <publishTime>08/13/2018 15:35:12</publishTime>
     </File>
     <File Include="Scripts/jquery.dataTables.min.js">
-      <publishTime>07/04/2018 11:25:01</publishTime>
+      <publishTime>08/22/2018 14:06:13</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.js">
-      <publishTime>07/04/2018 09:11:52</publishTime>
+      <publishTime>08/22/2018 14:06:13</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.min.js">
-      <publishTime>07/04/2018 09:11:52</publishTime>
+      <publishTime>08/22/2018 14:06:13</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.unobtrusive.js">
       <publishTime>07/04/2018 09:11:52</publishTime>
@@ -178,7 +193,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/04/2018 09:11:52</publishTime>
     </File>
     <File Include="Scripts/modernizr-2.6.2.js">
-      <publishTime>07/04/2018 09:11:52</publishTime>
+      <publishTime>08/22/2018 14:06:13</publishTime>
     </File>
     <File Include="Scripts/respond.js">
       <publishTime>07/04/2018 09:11:52</publishTime>
@@ -187,7 +202,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/04/2018 09:11:52</publishTime>
     </File>
     <File Include="Scripts/_references.js">
-      <publishTime>07/04/2018 09:11:51</publishTime>
+      <publishTime>08/22/2018 13:53:37</publishTime>
+    </File>
+    <File Include="Templete/SellIn/SELLIN_SAMPLE.xlsx">
+      <publishTime>08/24/2018 15:46:43</publishTime>
+    </File>
+    <File Include="Templete/SellOut/CHITIEU_SAMPLE.xlsx">
+      <publishTime>08/21/2018 16:10:25</publishTime>
+    </File>
+    <File Include="Templete/SellOut/KETQUA_SAMPLE.xlsx">
+      <publishTime>08/22/2018 17:03:46</publishTime>
+    </File>
+    <File Include="Templete/SellOut/THUCHIEN_SAMPLE.xlsx">
+      <publishTime>08/21/2018 16:10:37</publishTime>
     </File>
     <File Include="Views/Account/ExternalLoginConfirmation.cshtml">
       <publishTime>07/04/2018 09:11:53</publishTime>
@@ -220,34 +247,61 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/04/2018 09:11:53</publishTime>
     </File>
     <File Include="Views/Home/Contact.cshtml">
-      <publishTime>07/04/2018 09:11:53</publishTime>
+      <publishTime>08/22/2018 13:50:31</publishTime>
+    </File>
+    <File Include="Views/Home/GetAllChildren.cshtml">
+      <publishTime>09/05/2018 11:32:14</publishTime>
+    </File>
+    <File Include="Views/Home/ImportPerform.cshtml">
+      <publishTime>08/30/2018 13:35:17</publishTime>
+    </File>
+    <File Include="Views/Home/ImportReport.cshtml">
+      <publishTime>09/07/2018 11:25:37</publishTime>
+    </File>
+    <File Include="Views/Home/ImportSellOut.cshtml">
+      <publishTime>08/30/2018 13:36:57</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>07/04/2018 09:11:53</publishTime>
+      <publishTime>09/05/2018 11:58:08</publishTime>
     </File>
     <File Include="Views/Home/ReadExcel.cshtml">
-      <publishTime>07/19/2018 10:45:49</publishTime>
+      <publishTime>08/31/2018 13:08:05</publishTime>
     </File>
     <File Include="Views/Home/ReadExcelUsingEpplus.cshtml">
-      <publishTime>07/09/2018 14:08:26</publishTime>
+      <publishTime>08/28/2018 14:31:20</publishTime>
+    </File>
+    <File Include="Views/Home/SearchResultSellIn.cshtml">
+      <publishTime>09/07/2018 11:52:24</publishTime>
+    </File>
+    <File Include="Views/Home/SearchSellIn.cshtml">
+      <publishTime>09/07/2018 11:51:52</publishTime>
+    </File>
+    <File Include="Views/Home/SearchSellOut.cshtml">
+      <publishTime>09/05/2018 10:21:30</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>07/04/2018 09:11:53</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>07/09/2018 13:56:21</publishTime>
+      <publishTime>09/07/2018 11:25:37</publishTime>
+    </File>
+    <File Include="Views/Shared/_LayoutMain.cshtml">
+      <publishTime>09/05/2018 09:52:48</publishTime>
+    </File>
+    <File Include="Views/Shared/_LayoutSearchReport.cshtml">
+      <publishTime>09/07/2018 11:25:35</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>07/04/2018 09:11:53</publishTime>
     </File>
     <File Include="Views/Web.config">
-      <publishTime>07/04/2018 09:11:52</publishTime>
+      <publishTime>08/22/2018 13:59:12</publishTime>
     </File>
     <File Include="Views/_ViewStart.cshtml">
       <publishTime>07/04/2018 09:11:52</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>07/23/2018 13:18:37</publishTime>
+      <publishTime>08/30/2018 14:03:21</publishTime>
     </File>
   </ItemGroup>
 </Project>

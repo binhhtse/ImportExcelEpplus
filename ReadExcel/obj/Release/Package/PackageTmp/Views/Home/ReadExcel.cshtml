@@ -1,69 +1,195 @@
 ﻿
 @{
-    ViewBag.Title = "ReadExcel";
+    ViewBag.Title = "Import Sell In";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>ReadExcel</h2>
+<h2>Import Sell In</h2>
 
 <html>
 <head>
-
-    <title>ReadFromExcel</title>
+    <style>
+        .dataTables_filter, .dataTables_info {
+            display: none !important;
+        }
+    </style>
+    <title>Import Sell In</title>
+    <link href="~/Content/upload.css" type='text/css' rel="stylesheet" />
     <link href="~/Content/jquery.dataTables.min.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
 
 
 </head>
 <body>
-    <div>
-       
-        @foreach (var item in ViewContext.ViewData.ModelState)
-        {
-            if (item.Value.Errors.Any())
-            {
-               
-            @*<h5><b>@item.Key</b></h5>*@
-            
-            @*<h5><b>@(string.Join("\r\n" + Environment.NewLine, item.Value.Errors.Select(x => x.ErrorMessage)))</b></h5>*@
-            <b>@Html.ValidationSummary()</b>
-            }
-        }
-        @if (Model != null)
-        {
-            <table border="1" cellpadding="5" id="tableId">
-                <thead>
-                    <tr>
-                        @foreach (System.Data.DataColumn col in Model.Columns)
-                        {
-                            <th>@col.Caption</th>
-                        }
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (System.Data.DataRow row in Model.Rows)
-                    {
-                        <tr>
-                            @foreach (var cell in row.ItemArray)
-                            {
-                                <td>@cell.ToString()</td>
-                            }
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        }
+    <div class="tab">
+        <button class="tablinks active" id="button1" onclick="openTab(event, 'tab1')">Doanh thu theo chuỗi</button>
+        <button class="tablinks" onclick="openTab(event, 'tab2')">Danh thu theo ngành hàng</button>
+
     </div>
+    <div id="tab1" class="tabcontent">
+        <div class="table-responsive">
+
+            @if (@TempData["message"] != null)
+            {
+                <div class="alert alert-success" id="success-alert">
+                    <strong><b> @TempData["message"]</b></strong>
+                </div>
+            }
+            @if (Model != null)
+            {
+
+                <table border="1" id="tableId" class="table table-striped table-bordered table-hover table-condensed">
+                    <thead>
+                        <tr id="filters">
+                            <th style="display:none"></th>
+                            <th style="display:none"></th>
+                            <th style="max-width:90px !important">Filter</th>
+
+                        </tr>
+                        <tr style="background-color:yellow">
+                            @*@foreach (System.Data.DataColumn col in Model[0].Columns)
+                                {
+                                    <th>@col.Caption</th>
+                                }*@
+                            <th rowspan="2">Day</th>
+                            <th rowspan="2">Region</th>
+                            <th rowspan="2" name="key">Key Account</th>
+                            <th rowspan="2">Channel</th>
+                            <th rowspan="2">Performed</th>
+                            <th rowspan="2">Last Month</th>
+                            <th rowspan="2">Target Month</th>
+                            <th rowspan="2">Target Date</th>
+                            <th rowspan="2">Actual</th>
+                            <th rowspan="2">Growth</th>
+                            <th rowspan="2">Growth vs LM</th>
+                            <th rowspan="2">% vs Target</th>
+
+                            <th style="text-align:center" colspan="4">Current Week</th>
+                            <th rowspan="2">% vs Target</th>
+                            <th rowspan="2">Upload Date</th>
+
+
+                            @*<th rowspan="2">Nguồn dữ liệu</th>*@
+                        </tr>
+                        <tr style="background-color:yellow">
+                            <th>Target</th>
+                            <th>Actual</th>
+                            <th>%</th>
+                            <th>Current Date</th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        @foreach (System.Data.DataRow row in Model[0].Rows)
+                        {
+                            <tr>
+                                @{int countRow = 0;}
+
+                                @foreach (var cell in row.ItemArray)
+                                {
+                                    if (countRow > 3 && countRow < 17)
+                                    {
+                                        <td class="text-right">@cell.ToString()</td>
+                                    }
+                                    else
+                                    {
+                                        <td>@cell.ToString()</td>
+                                    }
+                                    countRow++;
+
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                    @*<tfoot>
+                            <tr>
+                                <th style="display:none"></th>
+                                <th style="display:none"></th>
+                                <th></th>
+
+                            </tr>
+                        </tfoot>*@
+                </table>
+            }
+        </div>
+    </div>
+
+    <div id="tab2" class="tabcontent">
+        <div class="table-responsive">
+
+
+            @if (Model != null)
+            {
+                <table border="1" id="tableId1" class="table table-striped table-bordered table-hover table-condensed">
+                    <thead>
+
+                        <tr style="background-color:yellow">
+                            @*@foreach (System.Data.DataColumn col in Model[0].Columns)
+                                {
+                                    <th>@col.Caption</th>
+                                }*@
+                            <th rowspan="2">Day</th>
+                            <th rowspan="2">Region</th>
+                            <th rowspan="2" name="key">Key Account</th>
+                            <th rowspan="2">Channel</th>
+                            <th rowspan="2">Performed</th>
+                            <th rowspan="2">Last Month</th>
+                            <th rowspan="2">Target Month</th>
+                            <th rowspan="2">Target Date</th>
+                            <th rowspan="2">Actual</th>
+                            <th rowspan="2">Growth</th>
+                            <th rowspan="2">Growth vs LM</th>
+                            <th rowspan="2">% vs Target</th>
+
+                            <th style="text-align:center;" colspan="4">Current Week</th>
+                            <th rowspan="2">% vs Target</th>
+                            <th rowspan="2">Upload Date</th>
+                            @*<th rowspan="2">Nguồn dữ liệu</th>*@
+
+                        </tr>
+                        <tr style="background-color:yellow">
+                            <th>Target</th>
+                            <th>Actual</th>
+                            <th>%</th>
+                            <th>Current Date</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (System.Data.DataRow row in Model[1].Rows)
+                        {
+                            <tr>
+                                @{int countRow = 0;}
+
+                                @foreach (var cell in row.ItemArray)
+                                {
+                                    if (countRow > 3 && countRow < 17)
+                                    {
+                                        <td class="text-right">@cell.ToString()</td>
+                                    }
+                                    else
+                                    {
+                                        <td>@cell.ToString()</td>
+                                    }
+                                    countRow++;
+
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
+    </div>
+
 </body>
 </html>
 <script>
+
     $(document).ready(function () {
+
+
         $('#tableId').DataTable({
             "oLanguage": {
                 "sSearch": "Tìm Kiếm", //search,
@@ -83,8 +209,13 @@
                     "sLast": "Cuối"
                 }
             },
+            //"scrollX": true,
+            //"scrollY": "200px",
+            //"scrollCollapse": true,
+            //"paging": false,
             pageLength: 50,
             "bSort": false,
+            ////bFilter: false,
             dom: 'Bfrtip',
             buttons: [
                 {
@@ -93,8 +224,133 @@
                     text: 'Xuất file'
                 }
             ],
+            "columnDefs": [
+                {
+                    "targets": [16, 18, 19, 20],
+                    "visible": false
+
+                }
+
+            ],
+            initComplete: function () {
+                this.api().columns().every(function () {
+                    var column = this;
+                    var select = $('<select style="max-width:70px !important"><option value=""></option></select>')
+                        .appendTo($("#filters").find("th").eq(column.index()))
+                        .on('change', function () {
+                            var val = $.fn.dataTable.util.escapeRegex(
+                                $(this).val()
+                            );
+
+                            column
+                                .search(val ? '^' + val + '$' : '', true, false)
+                                .draw();
+                        });
+
+                    column.data().unique().sort().each(function (d, j) {
+                        select.append('<option value="' + d + '">' + d + '</option>')
+                    });
+                });
+            }
         });
+        $('#tableId1').DataTable({
+            "oLanguage": {
+                "sSearch": "Tìm Kiếm", //search,
+                "sProcessing": "Đang xử lý...",
+                "sLengthMenu": "Xem _MENU_ mục",
+                "sZeroRecords": "Không tìm thấy dòng nào phù hợp",
+                "sInfo": "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
+                "sInfoEmpty": "Đang xem 0 đến 0 trong tổng số 0 mục",
+                "sInfoFiltered": "(được lọc từ _MAX_ mục)",
+                "sInfoPostFix": "",
+                "sSearch": "Tìm:",
+                "sUrl": "",
+                "oPaginate": {
+                    "sFirst": "Đầu",
+                    "sPrevious": "Trước",
+                    "sNext": "Tiếp",
+                    "sLast": "Cuối"
+                }
+            },
+            //"scrollX": true,
+            //"scrollY": "200px",
+            //"scrollCollapse": true,
+            //"paging": false,
+            pageLength: 50,
+            "bSort": false,
+            //bFilter: false,
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'excel',
+                    title: '',
+                    text: 'Xuất file'
+                }
+            ],
+            "columnDefs": [
+                {
+                    "targets": [3, 16, 18, 19, 20],
+                    "visible": false
+
+                }
+
+
+            ],
+            initComplete: function () {
+                this.api().columns().every(function () {
+                    var column = this;
+                    var select = $('<select><option value=""></option></select>')
+                        .appendTo($(column.footer()).empty())
+                        .on('change', function () {
+                            var val = $.fn.dataTable.util.escapeRegex(
+                                $(this).val()
+                            );
+
+                            column
+                                .search(val ? '^' + val + '$' : '', true, false)
+                                .draw();
+                        });
+
+                    column.data().unique().sort().each(function (d, j) {
+                        select.append('<option value="' + d + '">' + d + '</option>')
+                    });
+                });
+            }
+        });
+
+
+        $("table").removeClass("dataTable");
+        openTab(event, 'tab1');
+        $("#button1").addClass("active");
+
+        $("#success-alert").fadeTo(2000, 500).slideUp(500, function () {
+            $("#success-alert").slideUp(500);
+        });
+        $('th[name=key]').width(150);
     });
+
+    function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+
+        // Get all elements with class="tabcontent" and hide them
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        // Get all elements with class="tablinks" and remove the class "active"
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        // Show the current tab, and add an "active" class to the button that opened the tab
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.className += " active";
+
+    }
+
+
 
 </script>
 

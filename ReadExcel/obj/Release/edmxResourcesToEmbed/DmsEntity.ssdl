@@ -16,8 +16,36 @@
     <Property Name="Money" Type="nchar" MaxLength="10" />
     <Property Name="Address" Type="nchar" MaxLength="10" />
   </EntityType>
+  <EntityType Name="SellinFirstTab">
+    <Key>
+      <PropertyRef Name="Day" />
+      <PropertyRef Name="Region" />
+      <PropertyRef Name="KeyAccount" />
+      <PropertyRef Name="Channel" />
+    </Key>
+    <Property Name="Day" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Region" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="KeyAccount" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Channel" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Archive" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastMonth" Type="nvarchar" MaxLength="50" />
+    <Property Name="TargetMonth" Type="nvarchar" MaxLength="50" />
+    <Property Name="TargetDate" Type="nvarchar" MaxLength="50" />
+    <Property Name="Actual" Type="nvarchar" MaxLength="50" />
+    <Property Name="Growth" Type="nvarchar" MaxLength="50" />
+    <Property Name="GrowthLastMonth" Type="nvarchar" MaxLength="50" />
+    <Property Name="PercentTarget" Type="nvarchar" MaxLength="50" />
+    <Property Name="TargetWeek" Type="nvarchar" MaxLength="50" />
+    <Property Name="ActualWeek" Type="nvarchar" MaxLength="50" />
+    <Property Name="PercentWeek" Type="nvarchar" MaxLength="50" />
+    <Property Name="CurrentDate" Type="nvarchar" MaxLength="50" />
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="LastUpdated" Type="nvarchar" MaxLength="50" />
+    <Property Name="Tab" Type="nvarchar" MaxLength="50" />
+  </EntityType>
   <EntityContainer Name="DemoModelStoreContainer">
     <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="People" EntityType="Self.People" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SellinFirstTab" EntityType="Self.SellinFirstTab" Schema="dbo" store:Type="Tables" />
   </EntityContainer>
 </Schema>

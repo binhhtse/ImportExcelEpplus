@@ -314,6 +314,7 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\jquery.dataTables.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -352,7 +353,7 @@
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Home\ReadExcelUsingEpplus.cshtml" />
+    <Content Include="Views\Home\ImportReport.cshtml" />
     <Content Include="Views\Home\ReadExcel.cshtml" />
     <Content Include="Views\Home\SearchSellIn.cshtml" />
     <Content Include="Views\Home\SearchResultSellIn.cshtml" />
@@ -364,6 +365,8 @@
     <Content Include="Templete\SellOut\THUCHIEN_SAMPLE.xlsx" />
     <Content Include="Templete\SellIn\SELLIN_SAMPLE.xlsx" />
     <Content Include="Views\Home\GetAllChildren.cshtml" />
+    <Content Include="Views\Shared\_LayoutSearchReport.cshtml" />
+    <Content Include="Views\Shared\_LayoutMain.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

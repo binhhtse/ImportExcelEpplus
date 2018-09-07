@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DemoModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="Username" />
+    </Key>
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="EmployeeCode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EmployeeName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ReferenceEmployeeCode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+    <Property Name="Gender" Type="Boolean" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
+    <Property Name="IdentityCard" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="IdentityCardPlace" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
+    <Property Name="IdentityCardDate" Type="DateTime" Precision="3" />
+    <Property Name="IdentityCardAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="PaymentType" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="TaxType" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="TaxCode" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
+    <Property Name="Website" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Name="Phone2" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Address2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Address3" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Address4" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SalesPerson" Type="Boolean" Nullable="false" />
+    <Property Name="DeliveryPerson" Type="Boolean" Nullable="false" />
+    <Property Name="CashCollector" Type="Boolean" Nullable="false" />
+    <Property Name="PostalCode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="Ward" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Name="District" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Name="Province" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Name="State" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Name="Country" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Name="RegionCode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="RegionL1" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="RegionL2" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="RegionL3" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="RegionL4" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="RegionL5" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="RegionL6" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="JobTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ContractCode" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Name="ContractExpiredDate" Type="DateTime" Precision="3" />
+    <Property Name="HiredDate" Type="DateTime" Precision="3" />
+    <Property Name="HealthAssuranceNumber" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="EducationDegree" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="College" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="HighSchool" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Attribute1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Attribute2" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Attribute3" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Attribute4" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Attribute5" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Leader" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="WarehouseCode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="SalesGroup" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="ContractType" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="EmployeeGroup" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="EmployeeType" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="Remark" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="CompanyCode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SalesOrgCode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Source" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="LastUpdatedBy" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="DateTime" Precision="7" />
+    <Property Name="LastUpdatedDateTime" Type="DateTime" Precision="7" />
+    <Property Name="RowVersion" Type="Int32" Nullable="false" />
+    <Property Name="Deleted" Type="Boolean" Nullable="false" />
+    <Property Name="RowNumber" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="SalesForces" Relationship="Self.FK_dbo_SalesForce_dbo_Employee_Employee_ID" FromRole="Employee" ToRole="SalesForce" />
+  </EntityType>
+  <EntityType Name="Person">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Fullname" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Money" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SalesForce">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="SalesForceCode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SalesForceLevel" Type="Int32" Nullable="false" />
+    <Property Name="SalesForceName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SalesForceName2" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SalesForceName3" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Ordinal" Type="Int32" Nullable="false" />
+    <Property Name="ParentCode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CompanyCode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SalesOrgCode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Source" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="LastUpdatedBy" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="DateTime" Precision="7" />
+    <Property Name="LastUpdatedDateTime" Type="DateTime" Precision="7" />
+    <Property Name="RowVersion" Type="Int32" Nullable="false" />
+    <Property Name="Deleted" Type="Boolean" Nullable="false" />
+    <Property Name="EmployeeCode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="Employee_ID" Type="Guid" />
+    <Property Name="RowNumber" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_dbo_SalesForce_dbo_Employee_Employee_ID" FromRole="SalesForce" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="SellOut">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="Chain" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Chain" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Target" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Perform" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Rate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_dbo_SalesForce_dbo_Employee_Employee_ID">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="SalesForce" Type="Self.SalesForce" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SalesForce">
+        <PropertyRef Name="Employee_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DemoEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Accounts" EntityType="Self.Account" />
+    <EntitySet Name="Employees" EntityType="Self.Employee" />
+    <EntitySet Name="People" EntityType="Self.Person" />
+    <EntitySet Name="SalesForces" EntityType="Self.SalesForce" />
+    <EntitySet Name="SellOuts" EntityType="Self.SellOut" />
+    <AssociationSet Name="FK_dbo_SalesForce_dbo_Employee_Employee_ID" Association="Self.FK_dbo_SalesForce_dbo_Employee_Employee_ID">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="SalesForce" EntitySet="SalesForces" />
+    </AssociationSet>
+    <FunctionImport Name="sp_Employee_GetAll" ReturnType="Collection(DemoModel1.sp_Employee_GetAll_Result)" />
+    <FunctionImport Name="sp_Employee_GetList" ReturnType="Collection(DemoModel1.sp_Employee_GetList_Result)" />
+    <FunctionImport Name="sp_GetAllChildrenForParent" ReturnType="Collection(DemoModel1.sp_GetAllChildrenForParent_Result)">
+      <Parameter Name="Code" Mode="In" Type="String" />
+      <Parameter Name="level" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="MT_SellIn" EntityType="DemoModel1.MT_SellIn" />
+    <EntitySet Name="MT_SellOut" EntityType="DemoModel1.MT_SellOut" />
+  </EntityContainer>
+  <ComplexType Name="sp_Employee_GetAll_Result">
+    <Property Type="String" Name="EmployeeCode" Nullable="true" MaxLength="40" />
+    <Property Type="String" Name="EmployeeName" Nullable="false" MaxLength="255" />
+    <Property Type="String" Name="SalesForceCode" Nullable="true" MaxLength="40" />
+    <Property Type="String" Name="Parentcode" Nullable="true" MaxLength="40" />
+    <Property Type="String" Name="SalesForceName" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="SalesForceLevel" Nullable="true" />
+    <Property Type="Binary" Name="level" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_Employee_GetList_Result">
+    <Property Type="String" Name="EmployeeCode" Nullable="true" MaxLength="40" />
+    <Property Type="String" Name="EmployeeName" Nullable="false" MaxLength="255" />
+    <Property Type="String" Name="SalesForceCode" Nullable="true" MaxLength="40" />
+    <Property Type="String" Name="Parentcode" Nullable="true" MaxLength="40" />
+    <Property Type="String" Name="SalesForceName" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="SalesForceLevel" Nullable="true" />
+    <Property Type="Binary" Name="level" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_GetAllChildrenForParent_Result">
+    <Property Type="String" Name="SalesOrg" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="CustomerCode" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="SalesRouteCode" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ID" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Store" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Target" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Perform" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Rate" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="LineID" Nullable="true" />
+    <Property Type="String" Name="CompanyCode" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="SalesForceLevel" Nullable="true" />
+    <Property Type="String" Name="ParentCode" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="SalesForceCode" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Day" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <EntityType Name="MT_SellIn">
+    <Key>
+      <PropertyRef Name="Day" />
+      <PropertyRef Name="Region" />
+      <PropertyRef Name="KeyAccount" />
+      <PropertyRef Name="Channel" />
+    </Key>
+    <Property Name="Day" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Region" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="KeyAccount" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Channel" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Archive" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastMonth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TargetMonth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TargetDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Actual" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Growth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GrowthLastMonth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PercentTarget" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TargetWeek" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ActualWeek" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PercentWeek" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CurrentDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="LastUpdated" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Tab" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CompanyCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SalesOrg" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="MT_SellOut">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="Store" />
+    </Key>
+    <Property Name="Day" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SalesOrg" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CustomerCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SalesRouteCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Store" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Target" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Perform" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Rate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LineID" Type="Int32" />
+    <Property Name="CompanyCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SalesForceLevel" Type="Int32" />
+    <Property Name="ParentCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SalesForceCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

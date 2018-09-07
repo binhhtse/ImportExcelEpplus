@@ -1,0 +1,235 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DemoModel1StoreContainer" CdmEntityContainer="DemoEntities1">
+    <EntitySetMapping Name="Accounts">
+      <EntityTypeMapping TypeName="DemoModel1.Account">
+        <MappingFragment StoreEntitySet="Account">
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="DemoModel1.Employee">
+        <MappingFragment StoreEntitySet="Employee">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
+          <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+          <ScalarProperty Name="ReferenceEmployeeCode" ColumnName="ReferenceEmployeeCode" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+          <ScalarProperty Name="IdentityCard" ColumnName="IdentityCard" />
+          <ScalarProperty Name="IdentityCardPlace" ColumnName="IdentityCardPlace" />
+          <ScalarProperty Name="IdentityCardDate" ColumnName="IdentityCardDate" />
+          <ScalarProperty Name="IdentityCardAddress" ColumnName="IdentityCardAddress" />
+          <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+          <ScalarProperty Name="TaxType" ColumnName="TaxType" />
+          <ScalarProperty Name="TaxCode" ColumnName="TaxCode" />
+          <ScalarProperty Name="Website" ColumnName="Website" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Phone2" ColumnName="Phone2" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="Address3" ColumnName="Address3" />
+          <ScalarProperty Name="Address4" ColumnName="Address4" />
+          <ScalarProperty Name="SalesPerson" ColumnName="SalesPerson" />
+          <ScalarProperty Name="DeliveryPerson" ColumnName="DeliveryPerson" />
+          <ScalarProperty Name="CashCollector" ColumnName="CashCollector" />
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+          <ScalarProperty Name="Ward" ColumnName="Ward" />
+          <ScalarProperty Name="District" ColumnName="District" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Province" ColumnName="Province" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="RegionCode" ColumnName="RegionCode" />
+          <ScalarProperty Name="RegionL1" ColumnName="RegionL1" />
+          <ScalarProperty Name="RegionL2" ColumnName="RegionL2" />
+          <ScalarProperty Name="RegionL3" ColumnName="RegionL3" />
+          <ScalarProperty Name="RegionL4" ColumnName="RegionL4" />
+          <ScalarProperty Name="RegionL5" ColumnName="RegionL5" />
+          <ScalarProperty Name="RegionL6" ColumnName="RegionL6" />
+          <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+          <ScalarProperty Name="ContractCode" ColumnName="ContractCode" />
+          <ScalarProperty Name="ContractExpiredDate" ColumnName="ContractExpiredDate" />
+          <ScalarProperty Name="HiredDate" ColumnName="HiredDate" />
+          <ScalarProperty Name="HealthAssuranceNumber" ColumnName="HealthAssuranceNumber" />
+          <ScalarProperty Name="EducationDegree" ColumnName="EducationDegree" />
+          <ScalarProperty Name="College" ColumnName="College" />
+          <ScalarProperty Name="HighSchool" ColumnName="HighSchool" />
+          <ScalarProperty Name="Attribute1" ColumnName="Attribute1" />
+          <ScalarProperty Name="Attribute2" ColumnName="Attribute2" />
+          <ScalarProperty Name="Attribute3" ColumnName="Attribute3" />
+          <ScalarProperty Name="Attribute4" ColumnName="Attribute4" />
+          <ScalarProperty Name="Attribute5" ColumnName="Attribute5" />
+          <ScalarProperty Name="Leader" ColumnName="Leader" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="WarehouseCode" ColumnName="WarehouseCode" />
+          <ScalarProperty Name="SalesGroup" ColumnName="SalesGroup" />
+          <ScalarProperty Name="ContractType" ColumnName="ContractType" />
+          <ScalarProperty Name="EmployeeGroup" ColumnName="EmployeeGroup" />
+          <ScalarProperty Name="EmployeeType" ColumnName="EmployeeType" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+          <ScalarProperty Name="SalesOrgCode" ColumnName="SalesOrgCode" />
+          <ScalarProperty Name="Source" ColumnName="Source" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+          <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+          <ScalarProperty Name="LastUpdatedDateTime" ColumnName="LastUpdatedDateTime" />
+          <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <ScalarProperty Name="RowNumber" ColumnName="RowNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="People">
+      <EntityTypeMapping TypeName="DemoModel1.Person">
+        <MappingFragment StoreEntitySet="People">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+          <ScalarProperty Name="Money" ColumnName="Money" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SalesForces">
+      <EntityTypeMapping TypeName="DemoModel1.SalesForce">
+        <MappingFragment StoreEntitySet="SalesForce">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SalesForceCode" ColumnName="SalesForceCode" />
+          <ScalarProperty Name="SalesForceLevel" ColumnName="SalesForceLevel" />
+          <ScalarProperty Name="SalesForceName" ColumnName="SalesForceName" />
+          <ScalarProperty Name="SalesForceName2" ColumnName="SalesForceName2" />
+          <ScalarProperty Name="SalesForceName3" ColumnName="SalesForceName3" />
+          <ScalarProperty Name="Ordinal" ColumnName="Ordinal" />
+          <ScalarProperty Name="ParentCode" ColumnName="ParentCode" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+          <ScalarProperty Name="SalesOrgCode" ColumnName="SalesOrgCode" />
+          <ScalarProperty Name="Source" ColumnName="Source" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+          <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+          <ScalarProperty Name="LastUpdatedDateTime" ColumnName="LastUpdatedDateTime" />
+          <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
+          <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
+          <ScalarProperty Name="RowNumber" ColumnName="RowNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SellOuts">
+      <EntityTypeMapping TypeName="DemoModel1.SellOut">
+        <MappingFragment StoreEntitySet="SellOut">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Chain" ColumnName="Chain" />
+          <ScalarProperty Name="Target" ColumnName="Target" />
+          <ScalarProperty Name="Perform" ColumnName="Perform" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_Employee_GetAll" FunctionName="DemoModel1.Store.sp_Employee_GetAll">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DemoModel1.sp_Employee_GetAll_Result">
+          <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
+          <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+          <ScalarProperty Name="SalesForceCode" ColumnName="SalesForceCode" />
+          <ScalarProperty Name="Parentcode" ColumnName="Parentcode" />
+          <ScalarProperty Name="SalesForceName" ColumnName="SalesForceName" />
+          <ScalarProperty Name="SalesForceLevel" ColumnName="SalesForceLevel" />
+          <ScalarProperty Name="level" ColumnName="level" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Employee_GetList" FunctionName="DemoModel1.Store.sp_Employee_GetList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DemoModel1.sp_Employee_GetList_Result">
+          <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
+          <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+          <ScalarProperty Name="SalesForceCode" ColumnName="SalesForceCode" />
+          <ScalarProperty Name="Parentcode" ColumnName="Parentcode" />
+          <ScalarProperty Name="SalesForceName" ColumnName="SalesForceName" />
+          <ScalarProperty Name="SalesForceLevel" ColumnName="SalesForceLevel" />
+          <ScalarProperty Name="level" ColumnName="level" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_GetAllChildrenForParent" FunctionName="DemoModel1.Store.sp_GetAllChildrenForParent">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DemoModel1.sp_GetAllChildrenForParent_Result">
+          <ScalarProperty Name="SalesOrg" ColumnName="SalesOrg" />
+          <ScalarProperty Name="CustomerCode" ColumnName="CustomerCode" />
+          <ScalarProperty Name="SalesRouteCode" ColumnName="SalesRouteCode" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Store" ColumnName="Store" />
+          <ScalarProperty Name="Target" ColumnName="Target" />
+          <ScalarProperty Name="Perform" ColumnName="Perform" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+          <ScalarProperty Name="LineID" ColumnName="LineID" />
+          <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+          <ScalarProperty Name="SalesForceLevel" ColumnName="SalesForceLevel" />
+          <ScalarProperty Name="ParentCode" ColumnName="ParentCode" />
+          <ScalarProperty Name="SalesForceCode" ColumnName="SalesForceCode" />
+          <ScalarProperty Name="Day" ColumnName="Day" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="MT_SellIn">
+      <EntityTypeMapping TypeName="DemoModel1.MT_SellIn">
+        <MappingFragment StoreEntitySet="MT_SellIn">
+          <ScalarProperty Name="SalesOrg" ColumnName="SalesOrg" />
+          <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+          <ScalarProperty Name="Tab" ColumnName="Tab" />
+          <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CurrentDate" ColumnName="CurrentDate" />
+          <ScalarProperty Name="PercentWeek" ColumnName="PercentWeek" />
+          <ScalarProperty Name="ActualWeek" ColumnName="ActualWeek" />
+          <ScalarProperty Name="TargetWeek" ColumnName="TargetWeek" />
+          <ScalarProperty Name="PercentTarget" ColumnName="PercentTarget" />
+          <ScalarProperty Name="GrowthLastMonth" ColumnName="GrowthLastMonth" />
+          <ScalarProperty Name="Growth" ColumnName="Growth" />
+          <ScalarProperty Name="Actual" ColumnName="Actual" />
+          <ScalarProperty Name="TargetDate" ColumnName="TargetDate" />
+          <ScalarProperty Name="TargetMonth" ColumnName="TargetMonth" />
+          <ScalarProperty Name="LastMonth" ColumnName="LastMonth" />
+          <ScalarProperty Name="Archive" ColumnName="Archive" />
+          <ScalarProperty Name="Channel" ColumnName="Channel" />
+          <ScalarProperty Name="KeyAccount" ColumnName="KeyAccount" />
+          <ScalarProperty Name="Region" ColumnName="Region" />
+          <ScalarProperty Name="Day" ColumnName="Day" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MT_SellOut">
+      <EntityTypeMapping TypeName="DemoModel1.MT_SellOut">
+        <MappingFragment StoreEntitySet="MT_SellOut">
+          <ScalarProperty Name="SalesForceCode" ColumnName="SalesForceCode" />
+          <ScalarProperty Name="ParentCode" ColumnName="ParentCode" />
+          <ScalarProperty Name="SalesForceLevel" ColumnName="SalesForceLevel" />
+          <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+          <ScalarProperty Name="LineID" ColumnName="LineID" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+          <ScalarProperty Name="Perform" ColumnName="Perform" />
+          <ScalarProperty Name="Target" ColumnName="Target" />
+          <ScalarProperty Name="Store" ColumnName="Store" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SalesRouteCode" ColumnName="SalesRouteCode" />
+          <ScalarProperty Name="CustomerCode" ColumnName="CustomerCode" />
+          <ScalarProperty Name="SalesOrg" ColumnName="SalesOrg" />
+          <ScalarProperty Name="Day" ColumnName="Day" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
