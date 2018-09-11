@@ -42,7 +42,7 @@
 
                     <div class="col-md-6 input-group">
                         <input type="text" name="bday" value="07/23/2018" id="datepicker" class="form-control" />
-                        <label class="input-group-addon btn" for="testdate">
+                        <label class="input-group-addon btn" for="testdate" id="calendar">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </label>
                     </div>
@@ -394,8 +394,8 @@
         $("#datepicker").datepicker({ dateFormat: 'mm/dd/yy' });
         $("#datepicker").datepicker('setDate', new Date());
 
-        $('.btn').on('click', function () {
-            debugger;
+        $('#calendar').on('click', function () {
+
             $('#datepicker').datepicker('show');
         });
 

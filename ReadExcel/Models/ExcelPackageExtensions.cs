@@ -275,7 +275,7 @@ namespace ReadExcel.Models
                 foreach (var row in table.AsEnumerable())
                 {
                     T obj = new T();
-                    int i = 0;
+                    //int i = 0;
                     foreach (var prop in obj.GetType().GetProperties())
                     {
                         try

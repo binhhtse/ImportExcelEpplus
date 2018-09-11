@@ -36,7 +36,7 @@
     {
         if (item.Value.Errors.Any())
         {
-            <div class="alert alert-success" id="success-alert">
+            <div class="alert alert-warning" id="success-alert">
                 <strong><b>@Html.ValidationSummary()</b></strong>
             </div>
 
@@ -45,12 +45,17 @@
 
     @if (@TempData["message"] != null)
     {
-        <div class="alert alert-success" id="success-alert">
+        <div class="alert alert-warning" id="success-alert">
             <strong><b> @TempData["message"]</b></strong>
         </div>
     }
+    @if (@TempData["success"] != null)
+    {
+        <div class="alert alert-success" id="success-alert">
+            <strong><b> @TempData["success"]</b></strong>
+        </div>
+    }
 
-    
 
     <div id="tab1" class="tabcontent">
         @using (Html.BeginForm("ImportTarget", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))

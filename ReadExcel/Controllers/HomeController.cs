@@ -14,6 +14,7 @@ using AutoMapper;
 using System.Globalization;
 using ReadExcel.Util;
 
+
 namespace ReadExcel.Controllers
 {
     public class HomeController : Controller
@@ -267,7 +268,7 @@ namespace ReadExcel.Controllers
             }
             if (TotalDT != null)
             {
-                TempData["message"] = DMSEnum.Success;
+                TempData["success"] = DMSEnum.Success;
             }
             return View(TotalDT);
 
@@ -349,7 +350,7 @@ namespace ReadExcel.Controllers
                 sellOutRepository.InsertOrUpdate(item);
                 lineID++;
             }
-            TempData["message"] = DMSEnum.Success;
+            TempData["success"] = DMSEnum.Success;
             return RedirectToAction("ImportSellOut", "Home", ViewBag.message);
         }
         [HttpPost]
@@ -477,25 +478,9 @@ namespace ReadExcel.Controllers
         [HttpPost]
         public ActionResult DownloadSellIn()
         {
-            string filename = @"~/Templete/SellIn/SELLIN_SAMPLE";
-            string a = @"C:\Users\Rekkless\Downloads\ReadExcel-master\ReadExcel-master\ReadExcel\Templete\SellIn\SELLIN_SAMPLE.xlsx";
-            string wanted_path = Path.GetDirectoryName(Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory()));
            
 
-            FileInfo fileInfo = new FileInfo(a);
-
-            if (fileInfo.Exists)
-            {
-                Response.Clear();
-                Response.AddHeader("Content -Disposition", "attachment; filename=a.xlsx");
-                Response.AddHeader("Content-Length", fileInfo.Length.ToString());
-                Response.ContentType = "application/octet-stream";
-                Response.Flush();
-                //Response.TransmitFile(fileInfo.FullName);
-                 Response.TransmitFile(Server.MapPath("~/Templete/SellIn/SELLIN_SAMPLE.xlsx"));
-
-                Response.End();
-            }
+          
             return View("ImportReport");
         }
       
