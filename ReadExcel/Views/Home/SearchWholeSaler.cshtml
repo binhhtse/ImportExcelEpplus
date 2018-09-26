@@ -1,0 +1,128 @@
+﻿
+@{
+    ViewBag.Title = "SearchWholeSaler";
+    Layout = "~/Views/Shared/_LayoutSearchReport.cshtml";
+}
+<h2>Kết quả tìm kiếm</h2>
+
+<html>
+<head>
+    <style>
+        /*.dataTables_filter, .dataTables_info {
+            display: none !important;
+        }*/
+        #tableId th {
+            text-align: center;
+            vertical-align: middle;
+        }
+    </style>
+    <title>Import Sell In</title>
+</head>
+<body>
+    <br />
+    <div class="table-responsive">
+        @if (Model != null)
+        {
+            <table border="1" id="tableId" class="table table-striped table-bordered table-hover table-condensed">
+                <thead>
+                    <tr style="background-color:yellow">
+                        @*@foreach (System.Data.DataColumn col in Model[0].Columns)
+                            {
+                                <th>@col.Caption</th>
+                            }*@
+                        <th>Kỳ thực hiện</th>
+                        <th>Chuỗi MT</th>
+
+                        <th>Mã SP</th>
+                        <th>Người tạo</th>
+                        <th>Ngày tạo</th>
+                        <th>Người cập nhật</th>
+                        <th>Ngày cập nhật</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (System.Data.DataRow row in Model.Rows)
+                    {
+                        <tr>
+                            @foreach (var cell in row.ItemArray)
+                            {
+                                <td class="text-right">@cell.ToString()</td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</body>
+</html>
+<script>
+    $(document).ready(function () {
+        $('#tableId').DataTable({
+            "oLanguage": {
+                "sSearch": "Tìm Kiếm", //search,
+                "sProcessing": "Đang xử lý...",
+                "sLengthMenu": "Xem _MENU_ mục",
+                "sZeroRecords": "Không tìm thấy dòng nào phù hợp",
+                "sInfo": "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
+                "sInfoEmpty": "Đang xem 0 đến 0 trong tổng số 0 mục",
+                "sInfoFiltered": "(được lọc từ _MAX_ mục)",
+                "sInfoPostFix": "",
+                "sSearch": "Tìm:",
+                "sUrl": "",
+                "oPaginate": {
+                    "sFirst": "Đầu",
+                    "sPrevious": "Trước",
+                    "sNext": "Tiếp",
+                    "sLast": "Cuối"
+                }
+            },
+
+            //"scrollY": "200px",
+            //"scrollCollapse": true,
+            "paging": true,
+            pageLength: 20,
+            "bSort": false,
+            dom: 'Bfrtip',
+            //bFilter: false,
+            buttons: [
+                {
+                    extend: 'excel',
+                    title: '',
+                    text: 'Xuất file'
+                }
+            ],
+            //"columnDefs": [
+            //    {
+            //        "targets": [0],
+            //        "visible": false
+
+            //    }
+
+            //],
+            initComplete: function () {
+                this.api().columns().every(function () {
+                    var column = this;
+                    var select = $('<select style="max-width:70px !important"><option value=""></option></select>')
+                        .appendTo($("#filters").find("th").eq(column.index()))
+                        .on('change', function () {
+                            var val = $.fn.dataTable.util.escapeRegex(
+                                $(this).val()
+                            );
+
+                            column
+                                .search(val ? '^' + val + '$' : '', true, false)
+                                .draw();
+                        });
+
+                    column.data().unique().sort().each(function (d, j) {
+                        select.append('<option value="' + d + '">' + d + '</option>')
+                    });
+                });
+            }
+        });
+    });
+
+
+</script>
+

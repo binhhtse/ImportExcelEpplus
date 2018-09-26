@@ -25,32 +25,53 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <span class="navbar-brand"><a href="/Home/Index">MT Dashboard</a></span>
-                @*@Html.ActionLink("MT Dashboard", "Index", "Home", null, new { @class = "navbar-brand" })*@
+                <span class="navbar-brand"><a href="/MTDashBoard/Home/Index">MT Dashboard</a></span>
+               
             </div>
-            <div class="navbar-collapse collapse">
+           
                 <ul class="nav navbar-nav">
                   
                     <li>
-                        <a href="/Home/ImportReport">Import templete</a>
-                    @*@Html.ActionLink("Import templete", "ImportReport", "Home")*@
+                        <a href="/MTDashBoard/Home/ImportReport">Import templete</a>
+                  
                     </li>
                    
                     <li>
-                        <a href="/Home/SearchSellIn">View report</a>
-                    @*@Html.ActionLink("View report", "SearchSellIn", "Home")*@
+                        <a href="/MTDashBoard/Home/SearchSellIn">View report</a>
+                 
                     </li>
                   
                 </ul>
-                @*@Html.Partial("_LoginPartial")*@
-            </div>
+             
+           
         </div>
+        @*<div class="container-fluid">
+            <div class="navbar-header">
+                <span class="navbar-brand"><a href="/MTDashBoard/Home/Index">MT Dashboard</a></span>
+            </div>
+           
+                <ul class="nav navbar-nav">
+                  
+                    <li>
+                        <a href="/MTDashBoard/Home/ImportReport">Import templete</a>
+                  
+                    </li>
+                   
+                    <li>
+                        <a href="/MTDashBoard/Home/SearchSellIn">View report</a>
+                 
+                    </li>
+                  
+                </ul>
+             
+            
+        </div>*@
     </div>
-    <div class="container body-content">
+    <div class="container body-content" style="margin-top:50px">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            @*<p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>*@
         </footer>
     </div>
 

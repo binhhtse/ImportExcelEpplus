@@ -231,5 +231,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="WholeSaler_Inventory">
+      <EntityTypeMapping TypeName="DemoModel1.WholeSaler_Inventory">
+        <MappingFragment StoreEntitySet="WholeSaler_Inventory">
+          <ScalarProperty Name="LastUpdatedDateTime" ColumnName="LastUpdatedDateTime" />
+          <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+          <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="InvtID" ColumnName="InvtID" />
+          <ScalarProperty Name="WholeSalerID" ColumnName="WholeSalerID" />
+          <ScalarProperty Name="Period" ColumnName="Period" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

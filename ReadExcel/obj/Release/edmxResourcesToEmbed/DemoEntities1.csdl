@@ -164,6 +164,7 @@
     </FunctionImport>
     <EntitySet Name="MT_SellIn" EntityType="DemoModel1.MT_SellIn" />
     <EntitySet Name="MT_SellOut" EntityType="DemoModel1.MT_SellOut" />
+    <EntitySet Name="WholeSaler_Inventory" EntityType="DemoModel1.WholeSaler_Inventory" />
   </EntityContainer>
   <ComplexType Name="sp_Employee_GetAll_Result">
     <Property Type="String" Name="EmployeeCode" Nullable="true" MaxLength="40" />
@@ -249,5 +250,19 @@
     <Property Name="SalesForceLevel" Type="Int32" />
     <Property Name="ParentCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="SalesForceCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="WholeSaler_Inventory">
+    <Key>
+      <PropertyRef Name="Period" />
+      <PropertyRef Name="WholeSalerID" />
+      <PropertyRef Name="InvtID" />
+    </Key>
+    <Property Name="Period" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="WholeSalerID" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="InvtID" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="LastUpdatedBy" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="LastUpdatedDateTime" Type="DateTime" Precision="3" />
   </EntityType>
 </Schema>

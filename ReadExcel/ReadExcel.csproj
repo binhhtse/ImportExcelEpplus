@@ -263,6 +263,9 @@
     </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="Util\DMSEnum.cs" />
+    <Compile Include="WholeSaler_Inventory.cs">
+      <DependentUpon>DemoEntities1.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Antlr3.Runtime.dll" />
@@ -438,6 +441,8 @@
     <Content Include="Views\Home\GetAllChildren.cshtml" />
     <Content Include="Views\Shared\_LayoutSearchReport.cshtml" />
     <Content Include="Views\Shared\_LayoutMain.cshtml" />
+    <Content Include="Views\Home\ImportWholeSalerInventory.cshtml" />
+    <Content Include="Views\Home\SearchWholeSaler.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

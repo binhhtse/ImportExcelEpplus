@@ -25,6 +25,7 @@ namespace ReadExcel.Controllers
         GenericRepository<MT_SellOut> sellOutRepository = new GenericRepository<MT_SellOut>();
         GenericRepository<SalesForce> salesForceRepository = new GenericRepository<SalesForce>();
         GenericRepository<Employee> employeeeRepository = new GenericRepository<Employee>();
+        GenericRepository<WholeSaler_Inventory> wholeSalerRepository = new GenericRepository<WholeSaler_Inventory>();
         DemoEntities1 db = new DemoEntities1();
         public ActionResult Index()
         {
@@ -59,13 +60,13 @@ namespace ReadExcel.Controllers
                 TempData["message"] = "Vui lòng chọn file";
                 return RedirectToAction("ImportReport");
             }
-           
+
             if (Path.GetExtension(chooseFile.FileName) != ".xlsx" && Path.GetExtension(chooseFile.FileName) != ".xls")
             {
                 TempData["message"] = "Định dạng file excel không hợp lệ";
                 return RedirectToAction("ImportReport");
             }
-            
+
             ExcelPackage package = new ExcelPackage(chooseFile.InputStream);
             DataTable[] Dt = ExcelPackageExtensions.ToDataTable(package);
             //List<Account> ls = sellInRepository.List.ToList();
@@ -110,12 +111,13 @@ namespace ReadExcel.Controllers
                     day = "0" + day;
                     tab1.ElementAt(i).Day = DateTime.ParseExact(day, "MM/dd/yyyy", CultureInfo.InvariantCulture)
                        .ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
-                }else if(day.Length == 10)
+                }
+                else if (day.Length == 10)
                 {
                     tab1.ElementAt(i).Day = DateTime.ParseExact(day, "MM/dd/yyyy", CultureInfo.InvariantCulture)
                        .ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
                 }
-               
+
                 if (tab1.ElementAt(i).TargetMonth.Trim() == "0" || tab1.ElementAt(i).TargetMonth.Trim() == "-")
                 {
                     tab1.ElementAt(i).TargetDate = "0";
@@ -276,7 +278,7 @@ namespace ReadExcel.Controllers
 
         public ActionResult SearchSellIn()
         {
-           
+
             //SalesForcVIewModel obj = new SalesForcVIewModel();
             //obj.StateModel = new List<Parent>();
             //obj.StateModel = GetAllParrent();
@@ -324,14 +326,14 @@ namespace ReadExcel.Controllers
             ExcelPackage package = new ExcelPackage(chooseFile.InputStream);
             DataTable Dt = ExcelPackageExtensions.ConvertToDataTable(package);
 
-            
+
             List<MT_SellOut> lstTarget = Dt.DataTableToListBaseHeader<MT_SellOut>();
             if (Dt.Columns.Count > 8)
             {
                 TempData["message"] = "Vui lòng chọn templete sell out để có thể import!";
                 return RedirectToAction("ImportSellOut", "Home", ViewBag.message);
             }
-            
+
 
 
             String salesOrg = lstTarget.ElementAt(0).SalesOrg;
@@ -368,7 +370,7 @@ namespace ReadExcel.Controllers
             }
             ExcelPackage package = new ExcelPackage(chooseFile.InputStream);
             DataTable Dt = ExcelPackageExtensions.ConvertToDataTable(package);
-         
+
             if (Dt.Columns.Count > 8)
             {
                 TempData["message"] = "Vui lòng chọn templete sell out để có thể import!";
@@ -398,7 +400,7 @@ namespace ReadExcel.Controllers
             }).ToList();
 
             DataTable Dt11 = ExcelPackageExtensions.ToDataTable(empViewModel);
-           
+
 
             foreach (var item in lstTarget)
             {
@@ -416,10 +418,10 @@ namespace ReadExcel.Controllers
             //if (day.Length == 9)
             //{
             //    day = "0" + day;
-               
+
             //}
 
-           
+
             var result = lstSalesForce.Join(lstTarget,
                             dep => dep.EmployeeCode,
                              e => e.ID,
@@ -433,8 +435,8 @@ namespace ReadExcel.Controllers
 
                             //SalesForceName = i.e.SalesForceName,
                             //SalesForceLevel = i.e.SalesForceLevel,
-                       //     Day = DateTime.ParseExact(day, "MM/dd/yyyy", CultureInfo.InvariantCulture)
-                       //.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
+                            //     Day = DateTime.ParseExact(day, "MM/dd/yyyy", CultureInfo.InvariantCulture)
+                            //.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
                             Day = day,
                             SalesOrg = i.dep.SalesOrg,
                             CustomerCode = i.dep.CustomerCode,
@@ -455,10 +457,10 @@ namespace ReadExcel.Controllers
                         //.ThenBy(x => x.SalesForceLevel)
                         .ToList();
             //var aa = result.OrderBy(x=>x.LineID).ToList();
-            
+
             foreach (var item in result)
             {
-               
+
                 sellOutRepository.InsertOrUpdate(item);
             }
             DataTable Dt1 = ExcelPackageExtensions.ToDataTable(result);
@@ -478,12 +480,12 @@ namespace ReadExcel.Controllers
         [HttpPost]
         public ActionResult DownloadSellIn()
         {
-           
 
-          
+
+
             return View("ImportReport");
         }
-      
+
 
         /// <summary>
         /// colection of parent
@@ -501,15 +503,15 @@ namespace ReadExcel.Controllers
                        //.Where(item => item.dep.EmployeeCode == item.e.ID)
                        .Select(i => new Parent
                        {
-                            
+
                            Id = i.e.SalesForceCode,
                            ParName = i.dep.EmployeeName
                        }
                        ).Distinct()
-                      
+
                        .ToList();
-           
-           
+
+
             return result;
         }
         public List<Children> GetAllChildren()
@@ -535,8 +537,8 @@ namespace ReadExcel.Controllers
 
             return result;
         }
-        
-      
+
+
         [HttpPost]
         public ActionResult GetEmpByParentID(string parentCode, int level)
         {
@@ -558,7 +560,7 @@ namespace ReadExcel.Controllers
             selectedList.Add(form["dd1"]);
             selectedList.Add(form["dd2"]);
             selectedList.Add(form["dd3"]);
-            if(!string.IsNullOrEmpty(value))
+            if (!string.IsNullOrEmpty(value))
             {
                 level = 2;
             }
@@ -566,14 +568,14 @@ namespace ReadExcel.Controllers
             if (!string.IsNullOrEmpty(Request.Form["dd2"]))
             {
                 level = 3;
-              
+
             }
             string strDDLValue = value.ToString();
             //strDDLValue = "MB-RSM-BTB";
-            
-            var lstEmp = db.sp_GetAllChildrenForParent(strDDLValue,level).Select(i => new MT_SellOut
+
+            var lstEmp = db.sp_GetAllChildrenForParent(strDDLValue, level).Select(i => new MT_SellOut
             {
-               
+
                 Day = i.Day,
                 SalesOrg = i.SalesOrg,
                 CustomerCode = i.CustomerCode,
@@ -609,30 +611,74 @@ namespace ReadExcel.Controllers
             return Json(lst);
         }
 
-       //public string ValidationSellOut(HttpPostedFileBase chooseFile)
-       // {
-       //     ExcelPackage package = new ExcelPackage(chooseFile.InputStream);
-       //     DataTable Dt = ExcelPackageExtensions.ConvertToDataTable(package);
-       //     string message = "";
-       //     if (Dt.Columns.Count > 8)
-       //     {
-       //         message = "Vui lòng chọn templete sell out để có thể import!";
-                
-       //     }
-       //     if (Path.GetExtension(chooseFile.FileName) != ".xlsx" && Path.GetExtension(chooseFile.FileName) != ".xls")
-       //     {
-       //         message = "Định dạng file excel không hợp lệ";
-              
-       //     }
-       //     List<MT_SellOut> lstTarget = Dt.DataTableToListBaseHeader<MT_SellOut>();
-       //     String salesOrg = lstTarget.ElementAt(0).SalesOrg;
+        public ActionResult ImportWholeSalerInventory()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ImportWholeSalerInventory(HttpPostedFileBase chooseFile)
+        {
+            if (chooseFile == null)
+            {
+                TempData["message"] = "Vui lòng chọn file";
+                return RedirectToAction("ImportWholeSalerInventory", "Home", ViewBag.message);
+            }
+            if (Path.GetExtension(chooseFile.FileName) != ".xlsx" && Path.GetExtension(chooseFile.FileName) != ".xls")
+            {
+                TempData["message"] = "Định dạng file excel không hợp lệ";
+                return RedirectToAction("ImportWholeSalerInventory", "Home", ViewBag.message);
+            }
+            ExcelPackage package = new ExcelPackage(chooseFile.InputStream);
+            DataTable Dt = ExcelPackageExtensions.ConvertToDataTable(package);
+            List<WholeSaler_Inventory> lstImport = Dt.DataTableToListBaseHeader<WholeSaler_Inventory>();
 
-       //     if (salesOrg != "1100" && salesOrg != "1500")
-       //     {
-       //         message = "Vui lòng chọn templete out in để có thể import!";
-               
-       //     }
-       //     return  message;
-       // }
+            foreach (var imp in lstImport)
+            {
+                var entity = wholeSalerRepository.List.Where(x => x.InvtID == imp.InvtID
+                                                               && x.Period == imp.Period
+                                                               && x.WholeSalerID == imp.WholeSalerID).FirstOrDefault();
+                if (entity == null)
+                {
+                    imp.LastUpdatedDateTime = DateTime.Now;
+                    imp.CreatedDateTime = DateTime.Now;
+                    wholeSalerRepository.InsertOrUpdate(imp);
+                }
+            }
+           
+            return View();
+        }
+        public ActionResult SearchWholeSaler()
+        {
+            List<WholeSaler_Inventory> lst = wholeSalerRepository.List.ToList();
+            DataTable Dt = ExcelPackageExtensions.ToDataTable(lst);
+           
+            return View(Dt);
+        }
+
+        //public string ValidationSellOut(HttpPostedFileBase chooseFile)
+        // {
+        //     ExcelPackage package = new ExcelPackage(chooseFile.InputStream);
+        //     DataTable Dt = ExcelPackageExtensions.ConvertToDataTable(package);
+        //     string message = "";
+        //     if (Dt.Columns.Count > 8)
+        //     {
+        //         message = "Vui lòng chọn templete sell out để có thể import!";
+
+        //     }
+        //     if (Path.GetExtension(chooseFile.FileName) != ".xlsx" && Path.GetExtension(chooseFile.FileName) != ".xls")
+        //     {
+        //         message = "Định dạng file excel không hợp lệ";
+
+        //     }
+        //     List<MT_SellOut> lstTarget = Dt.DataTableToListBaseHeader<MT_SellOut>();
+        //     String salesOrg = lstTarget.ElementAt(0).SalesOrg;
+
+        //     if (salesOrg != "1100" && salesOrg != "1500")
+        //     {
+        //         message = "Vui lòng chọn templete out in để có thể import!";
+
+        //     }
+        //     return  message;
+        // }
     }
 }

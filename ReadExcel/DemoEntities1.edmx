@@ -187,6 +187,20 @@
           <Property Name="Perform" Type="nvarchar" MaxLength="50" />
           <Property Name="Rate" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="WholeSaler_Inventory">
+          <Key>
+            <PropertyRef Name="Period" />
+            <PropertyRef Name="WholeSalerID" />
+            <PropertyRef Name="InvtID" />
+          </Key>
+          <Property Name="Period" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="WholeSalerID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="InvtID" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="datetime" />
+          <Property Name="LastUpdatedBy" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="LastUpdatedDateTime" Type="datetime" />
+        </EntityType>
         <Association Name="FK_dbo_SalesForce_dbo_Employee_Employee_ID">
           <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
           <End Role="SalesForce" Type="Self.SalesForce" Multiplicity="*" />
@@ -213,6 +227,7 @@
           <EntitySet Name="People" EntityType="Self.People" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SalesForce" EntityType="Self.SalesForce" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SellOut" EntityType="Self.SellOut" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WholeSaler_Inventory" EntityType="Self.WholeSaler_Inventory" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_dbo_SalesForce_dbo_Employee_Employee_ID" Association="Self.FK_dbo_SalesForce_dbo_Employee_Employee_ID">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="SalesForce" EntitySet="SalesForce" />
@@ -386,6 +401,7 @@
           </FunctionImport>
           <EntitySet Name="MT_SellIn" EntityType="DemoModel1.MT_SellIn" />
           <EntitySet Name="MT_SellOut" EntityType="DemoModel1.MT_SellOut" />
+          <EntitySet Name="WholeSaler_Inventory" EntityType="DemoModel1.WholeSaler_Inventory" />
         </EntityContainer>
         <ComplexType Name="sp_Employee_GetAll_Result">
           <Property Type="String" Name="EmployeeCode" Nullable="true" MaxLength="40" />
@@ -471,6 +487,20 @@
           <Property Name="SalesForceLevel" Type="Int32" />
           <Property Name="ParentCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SalesForceCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="WholeSaler_Inventory">
+          <Key>
+            <PropertyRef Name="Period" />
+            <PropertyRef Name="WholeSalerID" />
+            <PropertyRef Name="InvtID" />
+          </Key>
+          <Property Name="Period" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="WholeSalerID" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="InvtID" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="LastUpdatedBy" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdatedDateTime" Type="DateTime" Precision="3" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -705,6 +735,19 @@
                 <ScalarProperty Name="CustomerCode" ColumnName="CustomerCode" />
                 <ScalarProperty Name="SalesOrg" ColumnName="SalesOrg" />
                 <ScalarProperty Name="Day" ColumnName="Day" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WholeSaler_Inventory">
+            <EntityTypeMapping TypeName="DemoModel1.WholeSaler_Inventory">
+              <MappingFragment StoreEntitySet="WholeSaler_Inventory">
+                <ScalarProperty Name="LastUpdatedDateTime" ColumnName="LastUpdatedDateTime" />
+                <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="InvtID" ColumnName="InvtID" />
+                <ScalarProperty Name="WholeSalerID" ColumnName="WholeSalerID" />
+                <ScalarProperty Name="Period" ColumnName="Period" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

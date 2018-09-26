@@ -40,13 +40,18 @@
                 @using (Html.BeginForm("SearchResultSellIn", "Home", FormMethod.Post))
                 {
 
-                    <div class="col-md-6 input-group">
-                        <input type="text" name="bday" value="07/23/2018" id="datepicker" class="form-control" />
-                        <label class="input-group-addon btn" for="testdate" id="calendar">
-                            <span class="glyphicon glyphicon-calendar"></span>
-                        </label>
+                    <div class="form-group col-sm-6">
+
+                        <div class="input-group">
+                            <input type="text" name="bday" value="" id="datepicker" class="form-control" />
+                            <label class="input-group-addon btn" for="testdate" id="calendar">
+                                <span class="glyphicon glyphicon-calendar" id="calendar"></span>
+                            </label>
+                        </div>
+                        <br/>
+                        <input type="submit" class="btn btn-primary" value="Tìm" />
+
                     </div>
-                    <input type="submit" class="btn btn-primary" value="Search" />
 
                 }
 
@@ -258,7 +263,7 @@
             ],
             //"scrollY": "200px",
             //"scrollCollapse": true,
-            //"paging": false,
+            "paging": false,
             pageLength: 50,
             "bSort": false,
             dom: 'Bfrtip',

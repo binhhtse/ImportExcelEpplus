@@ -182,6 +182,20 @@
     <Property Name="Perform" Type="nvarchar" MaxLength="50" />
     <Property Name="Rate" Type="nvarchar" MaxLength="50" />
   </EntityType>
+  <EntityType Name="WholeSaler_Inventory">
+    <Key>
+      <PropertyRef Name="Period" />
+      <PropertyRef Name="WholeSalerID" />
+      <PropertyRef Name="InvtID" />
+    </Key>
+    <Property Name="Period" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="WholeSalerID" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="InvtID" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="datetime" />
+    <Property Name="LastUpdatedBy" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="LastUpdatedDateTime" Type="datetime" />
+  </EntityType>
   <Association Name="FK_dbo_SalesForce_dbo_Employee_Employee_ID">
     <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
     <End Role="SalesForce" Type="Self.SalesForce" Multiplicity="*" />
@@ -208,6 +222,7 @@
     <EntitySet Name="People" EntityType="Self.People" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SalesForce" EntityType="Self.SalesForce" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SellOut" EntityType="Self.SellOut" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WholeSaler_Inventory" EntityType="Self.WholeSaler_Inventory" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_dbo_SalesForce_dbo_Employee_Employee_ID" Association="Self.FK_dbo_SalesForce_dbo_Employee_Employee_ID">
       <End Role="Employee" EntitySet="Employee" />
       <End Role="SalesForce" EntitySet="SalesForce" />

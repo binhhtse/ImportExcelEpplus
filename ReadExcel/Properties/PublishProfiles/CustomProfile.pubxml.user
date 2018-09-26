@@ -100,13 +100,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/07/2018 00:15:54</publishTime>
     </File>
     <File Include="bin/ReadExcel.dll">
-      <publishTime>09/07/2018 17:08:49</publishTime>
+      <publishTime>09/24/2018 16:10:06</publishTime>
     </File>
     <File Include="bin/ReadExcel.dll.config">
       <publishTime>09/07/2018 16:45:21</publishTime>
     </File>
     <File Include="bin/ReadExcel.pdb">
-      <publishTime>09/07/2018 17:08:49</publishTime>
+      <publishTime>09/24/2018 16:10:06</publishTime>
     </File>
     <File Include="bin/System.ValueTuple.dll">
       <publishTime>09/07/2018 00:15:54</publishTime>
@@ -163,7 +163,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/30/2018 10:35:29</publishTime>
     </File>
     <File Include="DemoEntities1.edmx.diagram">
-      <publishTime>08/30/2018 09:58:56</publishTime>
+      <publishTime>09/24/2018 13:21:34</publishTime>
     </File>
     <File Include="DmsEntity.edmx.diagram">
       <publishTime>08/22/2018 14:06:35</publishTime>
@@ -291,6 +291,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Home/ImportSellOut.cshtml">
       <publishTime>09/07/2018 14:42:22</publishTime>
     </File>
+    <File Include="Views/Home/ImportWholeSalerInventory.cshtml">
+      <publishTime>09/20/2018 11:13:16</publishTime>
+    </File>
     <File Include="Views/Home/Index.cshtml">
       <publishTime>09/05/2018 11:58:08</publishTime>
     </File>
@@ -301,25 +304,28 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/28/2018 14:31:20</publishTime>
     </File>
     <File Include="Views/Home/SearchResultSellIn.cshtml">
-      <publishTime>09/07/2018 14:27:36</publishTime>
+      <publishTime>09/24/2018 09:48:45</publishTime>
     </File>
     <File Include="Views/Home/SearchSellIn.cshtml">
-      <publishTime>09/07/2018 14:27:15</publishTime>
+      <publishTime>09/12/2018 14:02:22</publishTime>
     </File>
     <File Include="Views/Home/SearchSellOut.cshtml">
-      <publishTime>09/05/2018 10:21:30</publishTime>
+      <publishTime>09/12/2018 13:51:28</publishTime>
+    </File>
+    <File Include="Views/Home/SearchWholeSaler.cshtml">
+      <publishTime>09/24/2018 09:59:04</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>07/04/2018 09:11:53</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>09/07/2018 16:58:51</publishTime>
+      <publishTime>09/24/2018 10:06:47</publishTime>
     </File>
     <File Include="Views/Shared/_LayoutMain.cshtml">
-      <publishTime>09/07/2018 16:59:50</publishTime>
+      <publishTime>09/13/2018 15:23:16</publishTime>
     </File>
     <File Include="Views/Shared/_LayoutSearchReport.cshtml">
-      <publishTime>09/07/2018 17:00:36</publishTime>
+      <publishTime>09/24/2018 10:08:18</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>07/04/2018 09:11:53</publishTime>
