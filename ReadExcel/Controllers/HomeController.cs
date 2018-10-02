@@ -75,11 +75,11 @@ namespace ReadExcel.Controllers
 
             //List<Person> employeeList = Dt.DataTableToList<Person>();
 
-            if (Dt[0].Columns.Count != 8)
-            {
-                TempData["message"] = "Vui lòng chọn templete sell in để có thể import!";
-                return RedirectToAction("ImportReport", "Home", ViewBag.message);
-            }
+            //if (Dt[0].Columns.Count != 8)
+            //{
+            //    TempData["message"] = "Vui lòng chọn templete sell in để có thể import!";
+            //    return RedirectToAction("ImportReport", "Home", ViewBag.message);
+            //}
 
             List<MT_SellIn> tab1 = Dt[0].DataTableToList<MT_SellIn>();
             List<MT_SellIn> tab2 = Dt[1].DataTableToList<MT_SellIn>();
