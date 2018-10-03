@@ -97,33 +97,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="SalesForces">
-      <EntityTypeMapping TypeName="DemoModel1.SalesForce">
-        <MappingFragment StoreEntitySet="SalesForce">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="SalesForceCode" ColumnName="SalesForceCode" />
-          <ScalarProperty Name="SalesForceLevel" ColumnName="SalesForceLevel" />
-          <ScalarProperty Name="SalesForceName" ColumnName="SalesForceName" />
-          <ScalarProperty Name="SalesForceName2" ColumnName="SalesForceName2" />
-          <ScalarProperty Name="SalesForceName3" ColumnName="SalesForceName3" />
-          <ScalarProperty Name="Ordinal" ColumnName="Ordinal" />
-          <ScalarProperty Name="ParentCode" ColumnName="ParentCode" />
-          <ScalarProperty Name="Status" ColumnName="Status" />
-          <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
-          <ScalarProperty Name="SalesOrgCode" ColumnName="SalesOrgCode" />
-          <ScalarProperty Name="Source" ColumnName="Source" />
-          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-          <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
-          <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
-          <ScalarProperty Name="LastUpdatedDateTime" ColumnName="LastUpdatedDateTime" />
-          <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
-          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
-          <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
-          <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
-          <ScalarProperty Name="RowNumber" ColumnName="RowNumber" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="SellOuts">
       <EntityTypeMapping TypeName="DemoModel1.SellOut">
         <MappingFragment StoreEntitySet="SellOut">
@@ -241,6 +214,33 @@
           <ScalarProperty Name="InvtID" ColumnName="InvtID" />
           <ScalarProperty Name="WholeSalerID" ColumnName="WholeSalerID" />
           <ScalarProperty Name="Period" ColumnName="Period" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EMSalesForces">
+      <EntityTypeMapping TypeName="DemoModel1.EMSalesForce">
+        <MappingFragment StoreEntitySet="EMSalesForce">
+          <ScalarProperty Name="RowNumber" ColumnName="RowNumber" />
+          <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
+          <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+          <ScalarProperty Name="LastUpdatedDateTime" ColumnName="LastUpdatedDateTime" />
+          <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+          <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="Source" ColumnName="Source" />
+          <ScalarProperty Name="SalesOrgCode" ColumnName="SalesOrgCode" />
+          <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="ParentCode" ColumnName="ParentCode" />
+          <ScalarProperty Name="Ordinal" ColumnName="Ordinal" />
+          <ScalarProperty Name="SalesForceName3" ColumnName="SalesForceName3" />
+          <ScalarProperty Name="SalesForceName2" ColumnName="SalesForceName2" />
+          <ScalarProperty Name="SalesForceName" ColumnName="SalesForceName" />
+          <ScalarProperty Name="SalesForceLevel" ColumnName="SalesForceLevel" />
+          <ScalarProperty Name="SalesForceCode" ColumnName="SalesForceCode" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

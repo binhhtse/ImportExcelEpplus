@@ -219,6 +219,9 @@
     <Compile Include="Employee.cs">
       <DependentUpon>DemoEntities1.tt</DependentUpon>
     </Compile>
+    <Compile Include="EMSalesForce.cs">
+      <DependentUpon>DemoEntities1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -243,9 +246,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\GenericRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />
-    <Compile Include="SalesForce.cs">
-      <DependentUpon>DemoEntities1.tt</DependentUpon>
-    </Compile>
     <Compile Include="SellinFirstTab.cs">
       <DependentUpon>DmsEntity.tt</DependentUpon>
     </Compile>

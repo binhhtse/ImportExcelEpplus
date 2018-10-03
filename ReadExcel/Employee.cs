@@ -17,7 +17,7 @@ namespace ReadExcel
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Employee()
         {
-            this.SalesForces = new HashSet<SalesForce>();
+            this.EMSalesForces = new HashSet<EMSalesForce>();
         }
     
         public System.Guid ID { get; set; }
@@ -94,6 +94,6 @@ namespace ReadExcel
         public long RowNumber { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SalesForce> SalesForces { get; set; }
+        public virtual ICollection<EMSalesForce> EMSalesForces { get; set; }
     }
 }

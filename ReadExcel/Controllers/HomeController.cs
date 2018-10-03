@@ -23,7 +23,7 @@ namespace ReadExcel.Controllers
               LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         GenericRepository<MT_SellIn> sellInRepository = new GenericRepository<MT_SellIn>();
         GenericRepository<MT_SellOut> sellOutRepository = new GenericRepository<MT_SellOut>();
-        GenericRepository<SalesForce> salesForceRepository = new GenericRepository<SalesForce>();
+        GenericRepository<EMSalesForce> salesForceRepository = new GenericRepository<EMSalesForce>();
         GenericRepository<Employee> employeeeRepository = new GenericRepository<Employee>();
         GenericRepository<WholeSaler_Inventory> wholeSalerRepository = new GenericRepository<WholeSaler_Inventory>();
         DemoEntities1 db = new DemoEntities1();
@@ -360,16 +360,16 @@ namespace ReadExcel.Controllers
         [HttpPost]
         public ActionResult ImportPerform(HttpPostedFileBase chooseFile)
         {
-            //if (chooseFile == null)
-            //{
-            //    TempData["message"] = "Vui lòng chọn file";
-            //    return RedirectToAction("ImportSellOut", "Home", ViewBag.message);
-            //}
-            //if (Path.GetExtension(chooseFile.FileName) != ".xlsx" && Path.GetExtension(chooseFile.FileName) != ".xls")
-            //{
-            //    TempData["message"] = "Định dạng file excel không hợp lệ";
-            //    return RedirectToAction("ImportSellOut", "Home", ViewBag.message);
-            //}
+            if (chooseFile == null)
+            {
+                TempData["message"] = "Vui lòng chọn file";
+                return RedirectToAction("ImportSellOut", "Home", ViewBag.message);
+            }
+            if (Path.GetExtension(chooseFile.FileName) != ".xlsx" && Path.GetExtension(chooseFile.FileName) != ".xls")
+            {
+                TempData["message"] = "Định dạng file excel không hợp lệ";
+                return RedirectToAction("ImportSellOut", "Home", ViewBag.message);
+            }
             ExcelPackage package = new ExcelPackage(chooseFile.InputStream);
             DataTable Dt = ExcelPackageExtensions.ConvertToDataTable(package);
 
@@ -381,13 +381,13 @@ namespace ReadExcel.Controllers
             List<MT_SellOut> lstTarget = Dt.DataTableToListBaseHeader<MT_SellOut>();
 
 
-            //String salesOrg = lstTarget.ElementAt(0).SalesOrg;
+            String salesOrg = lstTarget.ElementAt(0).SalesOrg;
 
-            //if (salesOrg != "1100" && salesOrg != "1500")
-            //{
-            //    TempData["message"] = "Vui lòng chọn templete out in để có thể import!";
-            //    return RedirectToAction("ImportSellOut", "Home", ViewBag.message);
-            //}
+            if (salesOrg != "1100" && salesOrg != "1500")
+            {
+                TempData["message"] = "Vui lòng chọn templete out in để có thể import!";
+                return RedirectToAction("ImportSellOut", "Home", ViewBag.message);
+            }
             //var db = new DemoEntities1();
             //var lstEmp = db.sp_Employee_GetAll();
             //List<SellOutViewModel> empViewModel = lstEmp.Select(c => new SellOutViewModel
@@ -419,48 +419,50 @@ namespace ReadExcel.Controllers
             var lstSalesForce = salesForceRepository.List.ToList();
             string day = DateTime.Now.ToString("dd/MM/yyyy");
 
+           
+                
+                    var result = lstSalesForce.Join(lstTarget,
+                               dep => dep.EmployeeCode,
+                                e => e.ID,
+                               (e, dep) => new { e, dep })
 
-            if(lstTarget != null && lstSalesForce != null)
-            {
-                var result = lstSalesForce.Join(lstTarget,
-                           dep => dep.EmployeeCode,
-                            e => e.ID,
-                           (e, dep) => new { e, dep })
+                           .Select(i => new MT_SellOut
+                           {
 
-                       .Select(i => new MT_SellOut
-                       {
+                               Day = day,
+                               SalesOrg = i.dep.SalesOrg,
+                               CustomerCode = i.dep.CustomerCode,
+                               SalesRouteCode = i.dep.SalesRouteCode,
+                               ID = i.dep.ID,
+                               Name = i.dep.Name,
+                               Store = i.dep.Store,
+                               Target = i.dep.Target,
+                               Perform = i.dep.Perform,
+                               Rate = i.dep.Rate,
+                               LineID = i.dep.LineID,
+                               CompanyCode = DMSEnum.CompanyCode,
+                               SalesForceLevel = i.e.SalesForceLevel,
+                               ParentCode = i.e.ParentCode,
+                               SalesForceCode = i.e.SalesForceCode
+                           }
+                           ).OrderBy(x => x.LineID)
 
-                           Day = day,
-                           SalesOrg = i.dep.SalesOrg,
-                           CustomerCode = i.dep.CustomerCode,
-                           SalesRouteCode = i.dep.SalesRouteCode,
-                           ID = i.dep.ID,
-                           Name = i.dep.Name,
-                           Store = i.dep.Store,
-                           Target = i.dep.Target,
-                           Perform = i.dep.Perform,
-                           Rate = i.dep.Rate,
-                           LineID = i.dep.LineID,
-                           CompanyCode = DMSEnum.CompanyCode,
-                           SalesForceLevel = i.e.SalesForceLevel,
-                           ParentCode = i.e.ParentCode,
-                           SalesForceCode = i.e.SalesForceCode
-                       }
-                       ).OrderBy(x => x.LineID)
+                           .ToList();
 
-                       .ToList();
-            }
+                
            
 
 
-            //foreach (var item in result)
-            //{
 
-            //    sellOutRepository.InsertOrUpdate(item);
-            //}
 
-            //DataTable Dt1 = ExcelPackageExtensions.ToDataTable(result);
-            return View();
+            foreach (var item in result)
+            {
+
+                sellOutRepository.InsertOrUpdate(item);
+            }
+
+            DataTable Dt1 = ExcelPackageExtensions.ToDataTable(result);
+            return View(Dt1);
         }
 
         public ActionResult SearchSellOut()

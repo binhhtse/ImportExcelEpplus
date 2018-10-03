@@ -12,7 +12,7 @@ namespace ReadExcel
     using System;
     using System.Collections.Generic;
     
-    public partial class SalesForce
+    public partial class EMSalesForce
     {
         public System.Guid ID { get; set; }
         public string SalesForceCode { get; set; }

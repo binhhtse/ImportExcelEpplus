@@ -84,6 +84,32 @@
     <Property Name="Deleted" Type="bit" Nullable="false" />
     <Property Name="RowNumber" Type="bigint" Nullable="false" />
   </EntityType>
+  <EntityType Name="EMSalesForce">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="SalesForceCode" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="SalesForceLevel" Type="int" Nullable="false" />
+    <Property Name="SalesForceName" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="SalesForceName2" Type="nvarchar" MaxLength="255" />
+    <Property Name="SalesForceName3" Type="nvarchar" MaxLength="255" />
+    <Property Name="Ordinal" Type="int" Nullable="false" />
+    <Property Name="ParentCode" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="Status" Type="nvarchar" MaxLength="1" Nullable="false" />
+    <Property Name="CompanyCode" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="SalesOrgCode" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="Source" Type="nvarchar" MaxLength="1" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="LastUpdatedBy" Type="int" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="datetime2" Precision="7" />
+    <Property Name="LastUpdatedDateTime" Type="datetime2" Precision="7" />
+    <Property Name="RowVersion" Type="int" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" />
+    <Property Name="EmployeeCode" Type="nvarchar" MaxLength="40" />
+    <Property Name="Employee_ID" Type="uniqueidentifier" />
+    <Property Name="RowNumber" Type="bigint" Nullable="false" />
+  </EntityType>
   <EntityType Name="MT_SellIn">
     <Key>
       <PropertyRef Name="Day" />
@@ -143,32 +169,6 @@
     <Property Name="Money" Type="nchar" MaxLength="10" />
     <Property Name="Address" Type="nchar" MaxLength="10" />
   </EntityType>
-  <EntityType Name="SalesForce">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="SalesForceCode" Type="nvarchar" MaxLength="40" Nullable="false" />
-    <Property Name="SalesForceLevel" Type="int" Nullable="false" />
-    <Property Name="SalesForceName" Type="nvarchar" MaxLength="255" Nullable="false" />
-    <Property Name="SalesForceName2" Type="nvarchar" MaxLength="255" />
-    <Property Name="SalesForceName3" Type="nvarchar" MaxLength="255" />
-    <Property Name="Ordinal" Type="int" Nullable="false" />
-    <Property Name="ParentCode" Type="nvarchar" MaxLength="40" Nullable="false" />
-    <Property Name="Status" Type="nvarchar" MaxLength="1" Nullable="false" />
-    <Property Name="CompanyCode" Type="nvarchar" MaxLength="40" Nullable="false" />
-    <Property Name="SalesOrgCode" Type="nvarchar" MaxLength="40" Nullable="false" />
-    <Property Name="Source" Type="nvarchar" MaxLength="1" />
-    <Property Name="CreatedBy" Type="int" Nullable="false" />
-    <Property Name="LastUpdatedBy" Type="int" Nullable="false" />
-    <Property Name="CreatedDateTime" Type="datetime2" Precision="7" />
-    <Property Name="LastUpdatedDateTime" Type="datetime2" Precision="7" />
-    <Property Name="RowVersion" Type="int" Nullable="false" />
-    <Property Name="Deleted" Type="bit" Nullable="false" />
-    <Property Name="EmployeeCode" Type="nvarchar" MaxLength="40" />
-    <Property Name="Employee_ID" Type="uniqueidentifier" />
-    <Property Name="RowNumber" Type="bigint" Nullable="false" />
-  </EntityType>
   <EntityType Name="SellOut">
     <Key>
       <PropertyRef Name="ID" />
@@ -198,12 +198,12 @@
   </EntityType>
   <Association Name="FK_dbo_SalesForce_dbo_Employee_Employee_ID">
     <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
-    <End Role="SalesForce" Type="Self.SalesForce" Multiplicity="*" />
+    <End Role="EMSalesForce" Type="Self.EMSalesForce" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Employee">
         <PropertyRef Name="ID" />
       </Principal>
-      <Dependent Role="SalesForce">
+      <Dependent Role="EMSalesForce">
         <PropertyRef Name="Employee_ID" />
       </Dependent>
     </ReferentialConstraint>
@@ -217,15 +217,15 @@
   <EntityContainer Name="DemoModel1StoreContainer">
     <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EMSalesForce" EntityType="Self.EMSalesForce" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MT_SellIn" EntityType="Self.MT_SellIn" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MT_SellOut" EntityType="Self.MT_SellOut" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="People" EntityType="Self.People" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="SalesForce" EntityType="Self.SalesForce" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SellOut" EntityType="Self.SellOut" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="WholeSaler_Inventory" EntityType="Self.WholeSaler_Inventory" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_dbo_SalesForce_dbo_Employee_Employee_ID" Association="Self.FK_dbo_SalesForce_dbo_Employee_Employee_ID">
       <End Role="Employee" EntitySet="Employee" />
-      <End Role="SalesForce" EntitySet="SalesForce" />
+      <End Role="EMSalesForce" EntitySet="EMSalesForce" />
     </AssociationSet>
   </EntityContainer>
 </Schema>
