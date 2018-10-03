@@ -424,47 +424,41 @@ namespace ReadExcel.Controllers
             //}
 
 
-            var result = lstSalesForce.Join(lstTarget,
-                            dep => dep.EmployeeCode,
-                             e => e.ID,
-                            (e, dep) => new { e, dep })
-                        //.Where(item => item.dep.EmployeeCode == item.e.ID)
-                        .Select(i => new MT_SellOut
-                        {
-                            //EmployeeCode = i.e.EmployeeCode,
+            //var result = lstSalesForce.Join(lstTarget,
+            //                dep => dep.EmployeeCode,
+            //                 e => e.ID,
+            //                (e, dep) => new { e, dep })
+                      
+            //            .Select(i => new MT_SellOut
+            //            {
+                           
+            //                Day = day,
+            //                SalesOrg = i.dep.SalesOrg,
+            //                CustomerCode = i.dep.CustomerCode,
+            //                SalesRouteCode = i.dep.SalesRouteCode,
+            //                ID = i.dep.ID,
+            //                Name = i.dep.Name,
+            //                Store = i.dep.Store,
+            //                Target = i.dep.Target,
+            //                Perform = i.dep.Perform,
+            //                Rate = i.dep.Rate,
+            //                LineID = i.dep.LineID,
+            //                CompanyCode = DMSEnum.CompanyCode,
+            //                SalesForceLevel = i.e.SalesForceLevel,
+            //                ParentCode = i.e.ParentCode,
+            //                SalesForceCode = i.e.SalesForceCode
+            //            }
+            //            ).OrderBy(x => x.LineID)
+                       
+            //            .ToList();
 
-                            //SalesForceCode = i.e.SalesForceCode,
-
-                            //SalesForceName = i.e.SalesForceName,
-                            //SalesForceLevel = i.e.SalesForceLevel,
-                            //     Day = DateTime.ParseExact(day, "MM/dd/yyyy", CultureInfo.InvariantCulture)
-                            //.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
-                            Day = day,
-                            SalesOrg = i.dep.SalesOrg,
-                            CustomerCode = i.dep.CustomerCode,
-                            SalesRouteCode = i.dep.SalesRouteCode,
-                            ID = i.dep.ID,
-                            Name = i.dep.Name,
-                            Store = i.dep.Store,
-                            Target = i.dep.Target,
-                            Perform = i.dep.Perform,
-                            Rate = i.dep.Rate,
-                            LineID = i.dep.LineID,
-                            CompanyCode = DMSEnum.CompanyCode,
-                            SalesForceLevel = i.e.SalesForceLevel,
-                            ParentCode = i.e.ParentCode,
-                            SalesForceCode = i.e.SalesForceCode
-                        }
-                        ).OrderBy(x => x.LineID)
-                        //.ThenBy(x => x.SalesForceLevel)
-                        .ToList();
-            //var aa = result.OrderBy(x=>x.LineID).ToList();
 
             //foreach (var item in result)
             //{
 
             //    sellOutRepository.InsertOrUpdate(item);
             //}
+            List<MT_SellOut> result = new List<MT_SellOut>();
             DataTable Dt1 = ExcelPackageExtensions.ToDataTable(result);
             return View(Dt1);
         }
