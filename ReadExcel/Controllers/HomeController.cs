@@ -389,19 +389,19 @@ namespace ReadExcel.Controllers
                 return RedirectToAction("ImportSellOut", "Home", ViewBag.message);
             }
             var db = new DemoEntities1();
-            var lstEmp = db.sp_Employee_GetAll();
-            List<SellOutViewModel> empViewModel = lstEmp.Select(c => new SellOutViewModel
-            {
-                EmployeeCode = c.EmployeeCode,
-                EmployeeName = c.EmployeeName,
-                SalesForceCode = c.SalesForceCode,
-                Parentcode = c.Parentcode,
-                SalesForceName = c.SalesForceName,
-                SalesForceLevel = c.SalesForceLevel
+            //var lstEmp = db.sp_Employee_GetAll();
+            //List<SellOutViewModel> empViewModel = lstEmp.Select(c => new SellOutViewModel
+            //{
+            //    EmployeeCode = c.EmployeeCode,
+            //    EmployeeName = c.EmployeeName,
+            //    SalesForceCode = c.SalesForceCode,
+            //    Parentcode = c.Parentcode,
+            //    SalesForceName = c.SalesForceName,
+            //    SalesForceLevel = c.SalesForceLevel
 
-            }).ToList();
+            //}).ToList();
 
-            DataTable Dt11 = ExcelPackageExtensions.ToDataTable(empViewModel);
+            //DataTable Dt11 = ExcelPackageExtensions.ToDataTable(empViewModel);
 
 
             foreach (var item in lstTarget)
