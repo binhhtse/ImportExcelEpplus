@@ -360,35 +360,35 @@ namespace ReadExcel.Controllers
         [HttpPost]
         public ActionResult ImportPerform(HttpPostedFileBase chooseFile)
         {
-            if (chooseFile == null)
-            {
-                TempData["message"] = "Vui lòng chọn file";
-                return RedirectToAction("ImportSellOut", "Home", ViewBag.message);
-            }
-            if (Path.GetExtension(chooseFile.FileName) != ".xlsx" && Path.GetExtension(chooseFile.FileName) != ".xls")
-            {
-                TempData["message"] = "Định dạng file excel không hợp lệ";
-                return RedirectToAction("ImportSellOut", "Home", ViewBag.message);
-            }
-            ExcelPackage package = new ExcelPackage(chooseFile.InputStream);
-            DataTable Dt = ExcelPackageExtensions.ConvertToDataTable(package);
+            //if (chooseFile == null)
+            //{
+            //    TempData["message"] = "Vui lòng chọn file";
+            //    return RedirectToAction("ImportSellOut", "Home", ViewBag.message);
+            //}
+            //if (Path.GetExtension(chooseFile.FileName) != ".xlsx" && Path.GetExtension(chooseFile.FileName) != ".xls")
+            //{
+            //    TempData["message"] = "Định dạng file excel không hợp lệ";
+            //    return RedirectToAction("ImportSellOut", "Home", ViewBag.message);
+            //}
+            //ExcelPackage package = new ExcelPackage(chooseFile.InputStream);
+            //DataTable Dt = ExcelPackageExtensions.ConvertToDataTable(package);
 
-            if (Dt.Columns.Count > 8)
-            {
-                TempData["message"] = "Vui lòng chọn templete sell out để có thể import!";
-                return RedirectToAction("ImportSellOut", "Home", ViewBag.message);
-            }
-            List<MT_SellOut> lstTarget = Dt.DataTableToListBaseHeader<MT_SellOut>();
+            //if (Dt.Columns.Count > 8)
+            //{
+            //    TempData["message"] = "Vui lòng chọn templete sell out để có thể import!";
+            //    return RedirectToAction("ImportSellOut", "Home", ViewBag.message);
+            //}
+            //List<MT_SellOut> lstTarget = Dt.DataTableToListBaseHeader<MT_SellOut>();
 
 
-            String salesOrg = lstTarget.ElementAt(0).SalesOrg;
+            //String salesOrg = lstTarget.ElementAt(0).SalesOrg;
 
-            if (salesOrg != "1100" && salesOrg != "1500")
-            {
-                TempData["message"] = "Vui lòng chọn templete out in để có thể import!";
-                return RedirectToAction("ImportSellOut", "Home", ViewBag.message);
-            }
-            var db = new DemoEntities1();
+            //if (salesOrg != "1100" && salesOrg != "1500")
+            //{
+            //    TempData["message"] = "Vui lòng chọn templete out in để có thể import!";
+            //    return RedirectToAction("ImportSellOut", "Home", ViewBag.message);
+            //}
+            //var db = new DemoEntities1();
             //var lstEmp = db.sp_Employee_GetAll();
             //List<SellOutViewModel> empViewModel = lstEmp.Select(c => new SellOutViewModel
             //{
@@ -403,25 +403,22 @@ namespace ReadExcel.Controllers
 
             //DataTable Dt11 = ExcelPackageExtensions.ToDataTable(empViewModel);
 
+            //--------------------------------------------------------
 
-            foreach (var item in lstTarget)
-            {
-                sellOutRepository.Update(item, x => x.Perform);
-            }
-
-            lstTarget = sellOutRepository.List.ToList();
-            foreach (var item in lstTarget)
-            {
-                item.Rate = Math.Round((Double.Parse(item.Perform) / Double.Parse(item.Target) * 100)).ToString();
-                sellOutRepository.Update(item, x => x.Rate);
-            }
-            var lstSalesForce = salesForceRepository.List.ToList();
-            string day = DateTime.Now.ToString("dd/MM/yyyy");
-            //if (day.Length == 9)
+            //foreach (var item in lstTarget)
             //{
-            //    day = "0" + day;
-
+            //    sellOutRepository.Update(item, x => x.Perform);
             //}
+
+            //lstTarget = sellOutRepository.List.ToList();
+            //foreach (var item in lstTarget)
+            //{
+            //    item.Rate = Math.Round((Double.Parse(item.Perform) / Double.Parse(item.Target) * 100)).ToString();
+            //    sellOutRepository.Update(item, x => x.Rate);
+            //}
+            //var lstSalesForce = salesForceRepository.List.ToList();
+            //string day = DateTime.Now.ToString("dd/MM/yyyy");
+            
 
 
             //var result = lstSalesForce.Join(lstTarget,
@@ -458,9 +455,9 @@ namespace ReadExcel.Controllers
 
             //    sellOutRepository.InsertOrUpdate(item);
             //}
-            List<MT_SellOut> result = new List<MT_SellOut>();
-            DataTable Dt1 = ExcelPackageExtensions.ToDataTable(result);
-            return View(Dt1);
+           
+            //DataTable Dt1 = ExcelPackageExtensions.ToDataTable(result);
+            return View();
         }
 
         public ActionResult SearchSellOut()
