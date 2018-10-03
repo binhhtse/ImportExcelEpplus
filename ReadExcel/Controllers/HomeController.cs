@@ -29,8 +29,8 @@ namespace ReadExcel.Controllers
         DemoEntities1 db = new DemoEntities1();
         public ActionResult Index()
         {
-            string emp = employeeeRepository.List.FirstOrDefault().ID.ToString();
-            ViewBag.mes = emp;
+            //string emp = employeeeRepository.List.FirstOrDefault().ID.ToString();
+            //ViewBag.mes = emp;
             return View();
         }
 
