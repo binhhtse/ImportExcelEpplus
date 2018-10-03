@@ -460,11 +460,11 @@ namespace ReadExcel.Controllers
                         .ToList();
             //var aa = result.OrderBy(x=>x.LineID).ToList();
 
-            foreach (var item in result)
-            {
+            //foreach (var item in result)
+            //{
 
-                sellOutRepository.InsertOrUpdate(item);
-            }
+            //    sellOutRepository.InsertOrUpdate(item);
+            //}
             DataTable Dt1 = ExcelPackageExtensions.ToDataTable(result);
             return View(Dt1);
         }
