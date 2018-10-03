@@ -23,7 +23,7 @@ namespace ReadExcel.Controllers
               LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         GenericRepository<MT_SellIn> sellInRepository = new GenericRepository<MT_SellIn>();
         GenericRepository<MT_SellOut> sellOutRepository = new GenericRepository<MT_SellOut>();
-        GenericRepository<EMSalesForce> salesForceRepository = new GenericRepository<EMSalesForce>();
+        GenericRepository<SalesForce> salesForceRepository = new GenericRepository<SalesForce>();
         GenericRepository<Employee> employeeeRepository = new GenericRepository<Employee>();
         GenericRepository<WholeSaler_Inventory> wholeSalerRepository = new GenericRepository<WholeSaler_Inventory>();
         DemoEntities1 db = new DemoEntities1();

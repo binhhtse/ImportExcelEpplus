@@ -12,7 +12,7 @@
         <EntityTypeShape EntityType="DemoModel1.MT_SellIn" Width="1.5" PointX="8.375" PointY="0.75" />
         <EntityTypeShape EntityType="DemoModel1.MT_SellOut" Width="1.5" PointX="5.375" PointY="0.75" />
         <EntityTypeShape EntityType="DemoModel1.WholeSaler_Inventory" Width="1.5" PointX="5.375" PointY="9.75" />
-        <EntityTypeShape EntityType="DemoModel1.EMSalesForce" Width="1.5" PointX="3" PointY="6.5" />
+        <EntityTypeShape EntityType="DemoModel1.SalesForce" Width="1.5" PointX="3" PointY="6.5" />
         <AssociationConnector Association="DemoModel1.FK_dbo_SalesForce_dbo_Employee_Employee_ID" />
       </Diagram>
     </edmx:Diagrams>

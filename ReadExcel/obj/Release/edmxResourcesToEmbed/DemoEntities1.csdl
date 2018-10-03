@@ -83,7 +83,7 @@
     <Property Name="RowVersion" Type="Int32" Nullable="false" />
     <Property Name="Deleted" Type="Boolean" Nullable="false" />
     <Property Name="RowNumber" Type="Int64" Nullable="false" />
-    <NavigationProperty Name="EMSalesForces" Relationship="DemoModel1.FK_dbo_SalesForce_dbo_Employee_Employee_ID" FromRole="Employee" ToRole="EMSalesForce" />
+    <NavigationProperty Name="SalesForces" Relationship="DemoModel1.FK_dbo_SalesForce_dbo_Employee_Employee_ID" FromRole="Employee" ToRole="SalesForce" />
   </EntityType>
   <EntityType Name="Person">
     <Key>
@@ -121,10 +121,10 @@
     <EntitySet Name="MT_SellIn" EntityType="DemoModel1.MT_SellIn" />
     <EntitySet Name="MT_SellOut" EntityType="DemoModel1.MT_SellOut" />
     <EntitySet Name="WholeSaler_Inventory" EntityType="DemoModel1.WholeSaler_Inventory" />
-    <EntitySet Name="EMSalesForces" EntityType="DemoModel1.EMSalesForce" />
+    <EntitySet Name="SalesForces" EntityType="DemoModel1.SalesForce" />
     <AssociationSet Name="FK_dbo_SalesForce_dbo_Employee_Employee_ID" Association="DemoModel1.FK_dbo_SalesForce_dbo_Employee_Employee_ID">
       <End Role="Employee" EntitySet="Employees" />
-      <End Role="EMSalesForce" EntitySet="EMSalesForces" />
+      <End Role="SalesForce" EntitySet="SalesForces" />
     </AssociationSet>
   </EntityContainer>
   <ComplexType Name="sp_Employee_GetAll_Result">
@@ -226,7 +226,7 @@
     <Property Name="LastUpdatedBy" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
     <Property Name="LastUpdatedDateTime" Type="DateTime" Precision="3" />
   </EntityType>
-  <EntityType Name="EMSalesForce">
+  <EntityType Name="SalesForce">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
@@ -251,16 +251,16 @@
     <Property Name="EmployeeCode" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
     <Property Name="Employee_ID" Type="Guid" />
     <Property Name="RowNumber" Type="Int64" Nullable="false" />
-    <NavigationProperty Name="Employee" Relationship="DemoModel1.FK_dbo_SalesForce_dbo_Employee_Employee_ID" FromRole="EMSalesForce" ToRole="Employee" />
+    <NavigationProperty Name="Employee" Relationship="DemoModel1.FK_dbo_SalesForce_dbo_Employee_Employee_ID" FromRole="SalesForce" ToRole="Employee" />
   </EntityType>
   <Association Name="FK_dbo_SalesForce_dbo_Employee_Employee_ID">
     <End Type="DemoModel1.Employee" Role="Employee" Multiplicity="0..1" />
-    <End Type="DemoModel1.EMSalesForce" Role="EMSalesForce" Multiplicity="*" />
+    <End Type="DemoModel1.SalesForce" Role="SalesForce" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Employee">
         <PropertyRef Name="ID" />
       </Principal>
-      <Dependent Role="EMSalesForce">
+      <Dependent Role="SalesForce">
         <PropertyRef Name="Employee_ID" />
       </Dependent>
     </ReferentialConstraint>

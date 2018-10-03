@@ -34,7 +34,7 @@ namespace ReadExcel
         public virtual DbSet<MT_SellIn> MT_SellIn { get; set; }
         public virtual DbSet<MT_SellOut> MT_SellOut { get; set; }
         public virtual DbSet<WholeSaler_Inventory> WholeSaler_Inventory { get; set; }
-        public virtual DbSet<EMSalesForce> EMSalesForces { get; set; }
+        public virtual DbSet<SalesForce> SalesForces { get; set; }
     
         public virtual ObjectResult<sp_Employee_GetAll_Result> sp_Employee_GetAll()
         {

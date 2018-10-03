@@ -217,9 +217,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="EMSalesForces">
-      <EntityTypeMapping TypeName="DemoModel1.EMSalesForce">
-        <MappingFragment StoreEntitySet="EMSalesForce">
+    <EntitySetMapping Name="SalesForces">
+      <EntityTypeMapping TypeName="DemoModel1.SalesForce">
+        <MappingFragment StoreEntitySet="SalesForce">
           <ScalarProperty Name="RowNumber" ColumnName="RowNumber" />
           <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
           <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
