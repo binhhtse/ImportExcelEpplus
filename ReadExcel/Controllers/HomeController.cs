@@ -419,42 +419,37 @@ namespace ReadExcel.Controllers
             var lstSalesForce = salesForceRepository.List.ToList();
             string day = DateTime.Now.ToString("dd/MM/yyyy");
 
-            try
+
+            if(lstTarget != null && lstSalesForce != null)
             {
                 var result = lstSalesForce.Join(lstTarget,
-                                           dep => dep.EmployeeCode,
-                                            e => e.ID,
-                                           (e, dep) => new { e, dep })
+                           dep => dep.EmployeeCode,
+                            e => e.ID,
+                           (e, dep) => new { e, dep })
 
-                                       .Select(i => new MT_SellOut
-                                       {
+                       .Select(i => new MT_SellOut
+                       {
 
-                                           Day = day,
-                                           SalesOrg = i.dep.SalesOrg,
-                                           CustomerCode = i.dep.CustomerCode,
-                                           SalesRouteCode = i.dep.SalesRouteCode,
-                                           ID = i.dep.ID,
-                                           Name = i.dep.Name,
-                                           Store = i.dep.Store,
-                                           Target = i.dep.Target,
-                                           Perform = i.dep.Perform,
-                                           Rate = i.dep.Rate,
-                                           LineID = i.dep.LineID,
-                                           CompanyCode = DMSEnum.CompanyCode,
-                                           SalesForceLevel = 2,
-                                           ParentCode = "1",
-                                           SalesForceCode = "1"
-                                       }
-                                       ).OrderBy(x => x.LineID)
+                           Day = day,
+                           SalesOrg = i.dep.SalesOrg,
+                           CustomerCode = i.dep.CustomerCode,
+                           SalesRouteCode = i.dep.SalesRouteCode,
+                           ID = i.dep.ID,
+                           Name = i.dep.Name,
+                           Store = i.dep.Store,
+                           Target = i.dep.Target,
+                           Perform = i.dep.Perform,
+                           Rate = i.dep.Rate,
+                           LineID = i.dep.LineID,
+                           CompanyCode = DMSEnum.CompanyCode,
+                           SalesForceLevel = i.e.SalesForceLevel,
+                           ParentCode = i.e.ParentCode,
+                           SalesForceCode = i.e.SalesForceCode
+                       }
+                       ).OrderBy(x => x.LineID)
 
-                                       .ToList();
+                       .ToList();
             }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-
            
 
 
