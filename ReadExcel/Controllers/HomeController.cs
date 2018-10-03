@@ -370,15 +370,15 @@ namespace ReadExcel.Controllers
             //    TempData["message"] = "Định dạng file excel không hợp lệ";
             //    return RedirectToAction("ImportSellOut", "Home", ViewBag.message);
             //}
-            //ExcelPackage package = new ExcelPackage(chooseFile.InputStream);
-            //DataTable Dt = ExcelPackageExtensions.ConvertToDataTable(package);
+            ExcelPackage package = new ExcelPackage(chooseFile.InputStream);
+            DataTable Dt = ExcelPackageExtensions.ConvertToDataTable(package);
 
             //if (Dt.Columns.Count > 8)
             //{
             //    TempData["message"] = "Vui lòng chọn templete sell out để có thể import!";
             //    return RedirectToAction("ImportSellOut", "Home", ViewBag.message);
             //}
-            //List<MT_SellOut> lstTarget = Dt.DataTableToListBaseHeader<MT_SellOut>();
+            List<MT_SellOut> lstTarget = Dt.DataTableToListBaseHeader<MT_SellOut>();
 
 
             //String salesOrg = lstTarget.ElementAt(0).SalesOrg;
@@ -405,10 +405,10 @@ namespace ReadExcel.Controllers
 
             //--------------------------------------------------------
 
-            //foreach (var item in lstTarget)
-            //{
-            //    sellOutRepository.Update(item, x => x.Perform);
-            //}
+            foreach (var item in lstTarget)
+            {
+                sellOutRepository.Update(item, x => x.Perform);
+            }
 
             //lstTarget = sellOutRepository.List.ToList();
             //foreach (var item in lstTarget)
@@ -418,17 +418,17 @@ namespace ReadExcel.Controllers
             //}
             //var lstSalesForce = salesForceRepository.List.ToList();
             //string day = DateTime.Now.ToString("dd/MM/yyyy");
-            
+
 
 
             //var result = lstSalesForce.Join(lstTarget,
             //                dep => dep.EmployeeCode,
             //                 e => e.ID,
             //                (e, dep) => new { e, dep })
-                      
+
             //            .Select(i => new MT_SellOut
             //            {
-                           
+
             //                Day = day,
             //                SalesOrg = i.dep.SalesOrg,
             //                CustomerCode = i.dep.CustomerCode,
@@ -446,7 +446,7 @@ namespace ReadExcel.Controllers
             //                SalesForceCode = i.e.SalesForceCode
             //            }
             //            ).OrderBy(x => x.LineID)
-                       
+
             //            .ToList();
 
 
@@ -455,7 +455,7 @@ namespace ReadExcel.Controllers
 
             //    sellOutRepository.InsertOrUpdate(item);
             //}
-           
+
             //DataTable Dt1 = ExcelPackageExtensions.ToDataTable(result);
             return View();
         }
