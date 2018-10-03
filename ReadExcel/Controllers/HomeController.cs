@@ -421,33 +421,33 @@ namespace ReadExcel.Controllers
 
 
 
-            //var result = lstSalesForce.Join(lstTarget,
-            //                dep => dep.EmployeeCode,
-            //                 e => e.ID,
-            //                (e, dep) => new { e, dep })
+            var result = lstSalesForce.Join(lstTarget,
+                            dep => dep.EmployeeCode,
+                             e => e.ID,
+                            (e, dep) => new { e, dep })
 
-            //            .Select(i => new MT_SellOut
-            //            {
+                        .Select(i => new MT_SellOut
+                        {
 
-            //                Day = day,
-            //                SalesOrg = i.dep.SalesOrg,
-            //                CustomerCode = i.dep.CustomerCode,
-            //                SalesRouteCode = i.dep.SalesRouteCode,
-            //                ID = i.dep.ID,
-            //                Name = i.dep.Name,
-            //                Store = i.dep.Store,
-            //                Target = i.dep.Target,
-            //                Perform = i.dep.Perform,
-            //                Rate = i.dep.Rate,
-            //                LineID = i.dep.LineID,
-            //                CompanyCode = DMSEnum.CompanyCode,
-            //                SalesForceLevel = i.e.SalesForceLevel,
-            //                ParentCode = i.e.ParentCode,
-            //                SalesForceCode = i.e.SalesForceCode
-            //            }
-            //            ).OrderBy(x => x.LineID)
+                            Day = day,
+                            SalesOrg = i.dep.SalesOrg,
+                            CustomerCode = i.dep.CustomerCode,
+                            SalesRouteCode = i.dep.SalesRouteCode,
+                            ID = i.dep.ID,
+                            Name = i.dep.Name,
+                            Store = i.dep.Store,
+                            Target = i.dep.Target,
+                            Perform = i.dep.Perform,
+                            Rate = i.dep.Rate,
+                            LineID = i.dep.LineID,
+                            CompanyCode = DMSEnum.CompanyCode,
+                            SalesForceLevel = i.e.SalesForceLevel,
+                            ParentCode = i.e.ParentCode,
+                            SalesForceCode = i.e.SalesForceCode
+                        }
+                        ).OrderBy(x => x.LineID)
 
-            //            .ToList();
+                        .ToList();
 
 
             //foreach (var item in result)
