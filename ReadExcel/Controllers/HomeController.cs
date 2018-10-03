@@ -410,14 +410,14 @@ namespace ReadExcel.Controllers
                 sellOutRepository.Update(item, x => x.Perform);
             }
 
-            //lstTarget = sellOutRepository.List.ToList();
-            //foreach (var item in lstTarget)
-            //{
-            //    item.Rate = Math.Round((Double.Parse(item.Perform) / Double.Parse(item.Target) * 100)).ToString();
-            //    sellOutRepository.Update(item, x => x.Rate);
-            //}
-            //var lstSalesForce = salesForceRepository.List.ToList();
-            //string day = DateTime.Now.ToString("dd/MM/yyyy");
+            lstTarget = sellOutRepository.List.ToList();
+            foreach (var item in lstTarget)
+            {
+                item.Rate = Math.Round((Double.Parse(item.Perform) / Double.Parse(item.Target) * 100)).ToString();
+                sellOutRepository.Update(item, x => x.Rate);
+            }
+            var lstSalesForce = salesForceRepository.List.ToList();
+            string day = DateTime.Now.ToString("dd/MM/yyyy");
 
 
 
